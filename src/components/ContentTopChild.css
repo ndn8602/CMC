@@ -1,0 +1,9 @@
+.container .contentTop .row:nth-child(even) {
+  flex-direction: row-reverse;
+}
+.img-fluid {
+  height: 200px;
+  width: 100%;
+  object-fit: contain;
+  background-position: center;
+}

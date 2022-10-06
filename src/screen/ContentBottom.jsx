@@ -3,7 +3,7 @@ import ContentBottomChild from "../components/ContentBottomChild";
 
 const ContentBottom = ({ data }) => {
   return (
-    <div>
+    <div className="contentBottom">
       {data.contentBottoms.map((contentBottom) => (
         <ContentBottomChild
           key={contentBottom.No}

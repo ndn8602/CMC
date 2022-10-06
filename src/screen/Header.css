@@ -1,0 +1,102 @@
+header {
+  background-image: url("D:\cmc\public\image\background.jpg");
+  width: 100%;
+  height: 400px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: cover;
+  overflow: hidden;
+  margin-bottom: 40px;
+  position: relative;
+}
+.navbar {
+  width: 100%;
+  z-index: 2;
+}
+.container-fluid {
+  height: 100%;
+}
+.navbar-brand {
+  width: 100px;
+  height: 100px;
+}
+.navbar-brand img {
+  width: 300px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: cover;
+}
+.navbar-nav {
+  width: 100%;
+  justify-content: center;
+}
+
+.bannerTitle,
+.bannerImage {
+  position: absolute;
+}
+.bannerTitle {
+  top: 30%;
+  width: calc(100% - 300px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1;
+}
+.bannerTitle h1 {
+  color: #fff;
+  text-align: center;
+  font-size: 75px;
+}
+.bannerTitle p {
+  width: 500px;
+  text-align: center;
+  color: orange;
+  font-size: 40px;
+  white-space: wrap;
+}
+.bannerImage {
+  width: 300px;
+  top: 0;
+  right: 0;
+}
+.bannerImage img {
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: cover;
+  overflow: hidden;
+}
+@media screen and (max-width: 992px) {
+  .bannerTitle {
+    width: 100%;
+  }
+  .bannerTitle h1 {
+    font-size: 60px;
+  }
+  .bannerTitle p {
+    font-size: 30px;
+  }
+  .navbar {
+    /* background-image: url("D:\cmc\public\image\background.jpg"); */
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    object-fit: cover;
+    overflow: hidden;
+    position: relative;
+  }
+}
+@media screen and (max-width: 571px) {
+  .bannerTitle h1 {
+    font-size: 40px;
+  }
+  .bannerTitle p {
+    font-size: 20px;
+  }
+}

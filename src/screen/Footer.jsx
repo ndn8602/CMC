@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-
+import "./footer.css";
 const Footer = () => {
   const [modalShow, setModalShow] = useState(false);
   const [name, setName] = useState("");
@@ -25,7 +25,7 @@ const Footer = () => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
+            <img src="./image/Logo.png" alt="" className="img-fluid" />
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -46,8 +46,13 @@ const Footer = () => {
     );
   }
   return (
-    <div>
-      <Row className="m-0">
+    <footer>
+      <div className="footer-brand">
+        <p>C.C.Global </p>
+        <p>&copy;2021-2022</p>
+        <p>C.C.Global L.L.C</p>
+      </div>
+      <Row className="m-0 footer-info">
         <Col md={4}>
           <img src="./image/logo.png" alt="" />
         </Col>
@@ -112,7 +117,7 @@ const Footer = () => {
           setMessage("");
         }}
       />
-    </div>
+    </footer>
   );
 };
 

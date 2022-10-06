@@ -1,13 +1,14 @@
 import React from "react";
 import ContentMainChild from "../components/ContentMainChild";
+import Container from "react-bootstrap/Container";
 
 const ContentMain = ({ data }) => {
   return (
-    <div>
+    <Container classname="m-0">
       {data.contentMains.map((contentMain, index) => (
         <ContentMainChild key={index} contentMain={contentMain} />
       ))}
-    </div>
+    </Container>
   );
 };
 
