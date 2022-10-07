@@ -1,5 +1,5 @@
 import React from "react";
-import ContentBottomChild from "../components/ContentBottomChild";
+import ContentBottomChild from "../../components/ContentBottom/ContentBottomChild";
 
 const ContentBottom = ({ data }) => {
   return (

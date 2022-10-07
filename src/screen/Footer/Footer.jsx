@@ -11,10 +11,6 @@ const Footer = () => {
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
-  console.log(name);
-  console.log(email);
-  console.log(subject);
-  console.log(message);
   function MyVerticallyCenteredModal(props) {
     return (
       <Modal

@@ -9,7 +9,7 @@ const ContentBottomChild = ({ contentBottom }) => {
         <img src={contentBottom.image} alt="" className="img-fluid" />
       </Col>
       <Col md={9}>
-        <h3>{contentBottom.title}</h3>
+        <h3 data-aos="fade-down">{contentBottom.title}</h3>
       </Col>
       <Col md={12}></Col>
     </Row>

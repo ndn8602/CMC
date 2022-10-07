@@ -1,5 +1,21 @@
-@media screen and (max-width: 992px) {
-  .bannerTitle {
-    width: 100%;
-  }
+html {
+  scroll-behavior: smooth;
+}
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+.scrollbar-track {
+  background-color: transparent !important;
+}
+
+.scrollbar-track-y {
+  width: 4px !important;
+}
+
+.scrollbar-thumb {
+  width: 4px !important;
+  background-color: rgba(0, 0, 0, 0.118) !important;
+  border-radius: 0 !important;
 }

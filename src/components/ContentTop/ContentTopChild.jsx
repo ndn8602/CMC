@@ -9,9 +9,11 @@ const ContentTopChild = ({ contentTop }) => {
         <img src={contentTop.image} alt="" className="img-fluid" />
       </Col>
       <Col md={10}>
-        <h3>{contentTop.title}</h3>
+        <h3 data-aos="fade-down">{contentTop.title}</h3>
         {contentTop.contents.map((content, index) => (
-          <p key={index}>{content}</p>
+          <p key={index} data-aos="fade-down">
+            {content}
+          </p>
         ))}
       </Col>
     </Row>
