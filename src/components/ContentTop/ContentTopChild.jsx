@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import "./ContentTopChild.css";
 const ContentTopChild = ({ contentTop }) => {
   return (
-    <Row>
+    <Row className="m-0">
       <Col md={2}>
         <img src={contentTop.image} alt="" className="img-fluid" />
       </Col>

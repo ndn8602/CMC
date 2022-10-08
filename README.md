@@ -68,3 +68,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+#task
+
+1.Mix SmoothScroll beetwen AOS
+2.Validation Form
+3.Implement Admin
+4.Get Data from Firebase db:cmccontent <-xxx->
+5.Post contact to db:contact <-xxx->
+6.Loading - Error

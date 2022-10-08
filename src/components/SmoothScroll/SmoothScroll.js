@@ -1,6 +1,8 @@
 import Scrollbar from "smooth-scrollbar";
 import { useEffect } from "react";
 import OverscrollPlugin from "smooth-scrollbar/plugins/overscroll";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 // const overscrollOptions = {
 //   enable: true,
@@ -27,6 +29,7 @@ const options = {
 
 const Scroll = () => {
   useEffect(() => {
+    AOS.init();
     Scrollbar.use(OverscrollPlugin);
     const smoothScroll = Scrollbar.init(document.body, options);
     function listener(status) {

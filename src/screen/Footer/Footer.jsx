@@ -63,7 +63,7 @@ const Footer = () => {
   }
   return (
     <footer>
-      <div className="footer-brand">
+      <div className="footer-brand ">
         <p>C.C.Global </p>
         <p>&copy;2021-2022</p>
         <p>C.C.Global L.L.C</p>
@@ -79,6 +79,7 @@ const Footer = () => {
                 <Form.Label>NAME(*)</Form.Label>
                 <Form.Control
                   value={name}
+                  type="text"
                   placeholder="Enter Your Name"
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -88,6 +89,8 @@ const Footer = () => {
               <Form.Group className="mb-3">
                 <Form.Label>EMAIL(*)</Form.Label>
                 <Form.Control
+                  required
+                  type="email"
                   value={email}
                   placeholder="Enter Your Email"
                   onChange={(e) => setEmail(e.target.value)}
@@ -98,6 +101,7 @@ const Footer = () => {
           <Form.Group className="mb-3">
             <Form.Label>SUBJECT</Form.Label>
             <Form.Control
+              type="text"
               value={subject}
               placeholder="Enter You Subject"
               onChange={(e) => setSubject(e.target.value)}
@@ -106,6 +110,7 @@ const Footer = () => {
           <Form.Group className="mb-3">
             <Form.Label>MESSAGE</Form.Label>
             <Form.Control
+              type="text"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               as="textarea"

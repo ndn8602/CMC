@@ -5,12 +5,10 @@ import ContentBottom from "./ContentBottom";
 import Container from "react-bootstrap/Container";
 import AOS from "aos";
 import "aos/dist/aos.css";
-// import LocomotiveScroll from "locomotive-scroll";
 export default function Content(props) {
   const { contentTop, contentMid, contentBottom } = props;
   useEffect(() => {
     AOS.init();
-    AOS.refresh();
   }, []);
   return (
     <Container>

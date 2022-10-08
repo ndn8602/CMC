@@ -1,7 +1,7 @@
 import Content from "./screen/Content/Content";
 import Footer from "./screen/Footer/Footer";
 import Header from "./screen/Header/Header";
-import Scroll from "./components/SmoothScroll/SmoothScroll";
+// import Scroll from "./components/SmoothScroll/SmoothScroll";
 import { useEffect, useReducer } from "react";
 import { db } from "./firebase";
 import { collection, getDocs } from "firebase/firestore";
@@ -48,10 +48,9 @@ function App() {
   );
   return (
     <div className="App">
-      <Scroll />
+      {/* <Scroll /> */}
       <Header />
       <Content
-        data-aos="fade-down"
         contentTop={ContentTop}
         contentMid={ContentMid}
         contentBottom={ContentBottom}
