@@ -5,12 +5,25 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "./footer.css";
+import { db } from "../../firebase";
+import { addDoc, collection } from "firebase/firestore";
 const Footer = () => {
   const [modalShow, setModalShow] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const contactCollectionRef = collection(db, "contact");
+  const sendContact = async (props) => {
+    await addDoc(contactCollectionRef, {
+      name: name,
+      email: email,
+      subject: subject,
+      message: message,
+      createDate: new Date(),
+      ModifiedDate: new Date(),
+    });
+  };
   function MyVerticallyCenteredModal(props) {
     return (
       <Modal
@@ -34,7 +47,14 @@ const Footer = () => {
           <p>{message}</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit" onClick={props.onHide} variant="success">
+          <Button
+            type="submit"
+            onClick={(e) => {
+              sendContact();
+              props.onHide();
+            }}
+            variant="success"
+          >
             Submit
           </Button>
         </Modal.Footer>

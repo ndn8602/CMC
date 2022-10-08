@@ -48,7 +48,7 @@ function App() {
   );
   return (
     <div className="App">
-      {/* <Scroll /> */}
+      <Scroll />
       <Header />
       <Content
         data-aos="fade-down"
