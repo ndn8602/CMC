@@ -1,29 +1,19 @@
-import React, { useEffect, useState } from "react";
-import Table from "react-bootstrap/Table";
+import React, { useState } from "react";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { db } from "../../firebase";
-import { collection, getDocs } from "firebase/firestore";
 import { Link } from "react-router-dom";
-import TableContact from "./TableContact";
-const ResFromUser = () => {
+const Content = () => {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [image, setImage] = useState("");
   const [show, setShow] = useState(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const [lists, setList] = useState([]);
-  useEffect(() => {
-    const getDatas = async () => {
-      const contactCollectionRef = collection(db, "contact");
-
-      const data = await getDocs(contactCollectionRef);
-      setList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-    getDatas();
-  }, []);
-  const tablecontent = lists;
   return (
     <div>
       <Row>
@@ -42,39 +32,35 @@ const ResFromUser = () => {
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-              <Link to="./content">
+              <Link to="/admin/content">
                 <Button variant="warning" className="w-100">
                   Content
                 </Button>
               </Link>
-              <Link to="./resfromuser">
+              <Link to="/admin/contact">
                 <Button variant="primary" className="w-100">
-                  Message
+                  Contact
                 </Button>
               </Link>
             </Offcanvas.Body>
           </Offcanvas>
         </Col>
         <Col md={9}>
-          <Table bordered hover size="sm">
-            <thead>
-              <tr>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Message</th>
-                <th>Subject</th>
-                <th>Create Date</th>
-                <th>Modified Date</th>
-              </tr>
-            </thead>
-            {lists.map((list) => (
-              <TableContact lists={list} />
-            ))}
-          </Table>
+          <Navbar>
+            <Container>
+              <Navbar.Brand href="#home">Navbar with text</Navbar.Brand>
+              <Navbar.Toggle />
+              <Navbar.Collapse className="justify-content-end">
+                <Navbar.Text>
+                  Signed in as: <a href="#login">Mark Otto</a>
+                </Navbar.Text>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
         </Col>
       </Row>
     </div>
   );
 };
 
-export default ResFromUser;
+export default Content;

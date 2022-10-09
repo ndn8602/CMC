@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
@@ -6,7 +6,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 const Dashboard = () => {
-  
   const [show, setShow] = useState(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -33,9 +32,9 @@ const Dashboard = () => {
                 Content
               </Button>
             </Link>
-            <Link to="./resfromuser">
+            <Link to="./contact">
               <Button variant="primary" className="w-100">
-                Message
+                Contact
               </Button>
             </Link>
           </Offcanvas.Body>

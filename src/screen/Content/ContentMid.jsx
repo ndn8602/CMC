@@ -2,7 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import ContentMainChild from "../../components/ContentMain/ContentMidChild";
 
-const ContentMain = ({ data }) => {
+const ContentMid = ({ data }) => {
   console.log("mid");
   console.log(data);
   return (
@@ -14,4 +14,4 @@ const ContentMain = ({ data }) => {
   );
 };
 
-export default ContentMain;
+export default ContentMid;

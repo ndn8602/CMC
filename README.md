@@ -78,3 +78,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 5.Post contact to db:contact <-xxx->
 6.Loading - Error
 7.Upload image
+8.Convert spantime to date

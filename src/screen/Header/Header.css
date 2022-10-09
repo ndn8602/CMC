@@ -1,5 +1,5 @@
 header {
-  background-image: url("D:\cmc\public\image\background.jpg");
+  background-image: url("/public/image/background.jpg");
   width: 100%;
   height: 400px;
   background-size: cover;
@@ -82,7 +82,6 @@ header {
     font-size: 30px;
   }
   .navbar {
-    /* background-image: url("D:\cmc\public\image\background.jpg"); */
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
