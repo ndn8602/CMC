@@ -14,6 +14,7 @@ const Footer = () => {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const contactCollectionRef = collection(db, "contact");
+
   const sendContact = async (props) => {
     await addDoc(contactCollectionRef, {
       name: name,
@@ -24,6 +25,7 @@ const Footer = () => {
       ModifiedDate: new Date(),
     });
   };
+
   function MyVerticallyCenteredModal(props) {
     return (
       <Modal

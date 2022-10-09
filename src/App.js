@@ -5,7 +5,9 @@ import Header from "./screen/Header/Header";
 import { useEffect, useReducer } from "react";
 import { db } from "./firebase";
 import { collection, getDocs } from "firebase/firestore";
-
+import Dashboard from "./screen/Admin/Dashboard";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ResFromUser from "./screen/Admin/Contact";
 const reducer = (state, action) => {
   switch (action.type) {
     case "REQUEST_FIREBASE":
@@ -47,16 +49,24 @@ function App() {
     (content) => content.position === "bottom"
   );
   return (
-    <div className="App">
+    <BrowserRouter>
       {/* <Scroll /> */}
-      <Header />
-      <Content
-        contentTop={ContentTop}
-        contentMid={ContentMid}
-        contentBottom={ContentBottom}
-      />
-      <Footer />
-    </div>
+      {/* <Routes>
+        <Route path="/">
+          <Header />
+          <Content
+            contentTop={ContentTop}
+            contentMid={ContentMid}
+            contentBottom={ContentBottom}
+          />
+          <Footer />
+        </Route>
+      </Routes> */}
+      <Routes>
+        <Route path="/admin" element={<Dashboard />} />
+        <Route path="/admin/resfromuser" element={<ResFromUser />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

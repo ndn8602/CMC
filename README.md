@@ -72,8 +72,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 #task
 
 1.Mix SmoothScroll beetwen AOS
-2.Validation Form
-3.Implement Admin
+2.Validation Form use Formik
+3.Implement Admin (post : title,content,image,)
 4.Get Data from Firebase db:cmccontent <-xxx->
 5.Post contact to db:contact <-xxx->
 6.Loading - Error
+7.Upload image
