@@ -38,7 +38,6 @@ export default function Content() {
       const datasCollectionRef = collection(db, "cmcContent");
       try {
         const data = await getDocs(datasCollectionRef);
-        console.log(data);
         dispatch({
           type: "GET_FIREBASE_SUCCESS",
           payload: data.docs.map((doc) => ({ ...doc.data(), id: doc.id })),
