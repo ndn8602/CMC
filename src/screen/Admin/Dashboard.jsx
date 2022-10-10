@@ -4,11 +4,14 @@ import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 const Dashboard = () => {
   const [show, setShow] = useState(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const { search } = useLocation();
+  console.log(search);
+  console.log(new URLSearchParams(search));
 
   return (
     <Row>

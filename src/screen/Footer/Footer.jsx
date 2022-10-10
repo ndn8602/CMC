@@ -75,10 +75,6 @@ const Footer = () => {
       </Modal>
     );
   }
-  const DataSubmited = (data) => {
-    console.log(data);
-  };
-  console.log(errors);
 
   const validationForm = () => {
     if (errors.name?.type === "required") {
@@ -166,7 +162,7 @@ const Footer = () => {
               variant="success"
               onClick={() => {
                 Object.keys(errors).length !== 0
-                  ? validationForm(errors)
+                  ? validationForm()
                   : setModalShow(true);
               }}
             >

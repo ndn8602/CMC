@@ -8,14 +8,14 @@ const ContentTopChild = ({ contentTop }) => {
     <Row className="m-0">
       <Col md={2}>
         {<img src={contentTop.image} alt="" className="img-fluid" /> || (
-          <Skeleton count={5} />
+          <Skeleton />
         )}
       </Col>
       <Col md={10}>
         <h3 data-aos="fade-down">{contentTop.title}</h3>
         {contentTop.contents.map((content, index) => (
           <p key={index} data-aos="fade-down">
-            {content || <Skeleton count={5} />}
+            {content || <Skeleton />}
           </p>
         ))}
       </Col>

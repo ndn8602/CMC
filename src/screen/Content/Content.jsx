@@ -9,6 +9,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
+import LoadingSkeletonTop from "../Loading/LoadingSkeletonTop";
+import LoadingSkeletonMid from "../Loading/LoadingSkeletonMid";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -26,9 +28,8 @@ export default function Content() {
   useEffect(() => {
     AOS.init();
   }, []);
-  const [{ loading, error, content }, dispatch] = useReducer(reducer, {
+  const [{ loading, content }, dispatch] = useReducer(reducer, {
     loading: true,
-    error: "",
     content: [],
   });
   useEffect(() => {
@@ -55,15 +56,28 @@ export default function Content() {
   return (
     <>
       <Header />
+
       <Container>
         <section>
-          <ContentTop data={contentTop} data-aos="fade-down" />
+          {!loading ? (
+            <ContentTop data={contentTop} data-aos="fade-down" />
+          ) : (
+            <LoadingSkeletonTop />
+          )}
         </section>
         <main>
-          <ContentMid data={contentMid} ata-aos="fade-down" />
+          {!loading ? (
+            <ContentMid data={contentMid} ata-aos="fade-down" />
+          ) : (
+            <LoadingSkeletonMid />
+          )}
         </main>
         <section>
-          <ContentBottom data={contentBottom} data-aos="fade-down" />
+          {!loading ? (
+            <ContentBottom data={contentBottom} data-aos="fade-down" />
+          ) : (
+            <LoadingSkeletonTop />
+          )}
         </section>
       </Container>
       <Footer />
