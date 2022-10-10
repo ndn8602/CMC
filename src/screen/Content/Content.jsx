@@ -1,7 +1,6 @@
 import React, { useEffect, useReducer } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-
 import ContentMid from "./ContentMid";
 import ContentBottom from "./ContentBottom";
 import ContentTop from "./ContentTop";

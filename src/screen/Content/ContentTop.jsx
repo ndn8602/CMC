@@ -1,6 +1,5 @@
 import React from "react";
 import ContentTopChild from "../../components/ContentTop/ContentTopChild";
-
 const ContentTop = ({ data }) => {
   return (
     <div className="contentTop">

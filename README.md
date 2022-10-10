@@ -82,3 +82,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 9.React Form
 10.Authentication (CRUD) 
 11. Validation Form
+12. Loading Skeleton

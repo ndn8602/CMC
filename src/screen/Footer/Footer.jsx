@@ -80,7 +80,7 @@ const Footer = () => {
   };
   console.log(errors);
 
-  const validationForm = (errors) => {
+  const validationForm = () => {
     if (errors.name?.type === "required") {
       return showToastMessage("Name is required !");
     } else if (errors.email?.type === "required") {
@@ -89,7 +89,7 @@ const Footer = () => {
       return showToastMessage("Email did not match format - test@example.com");
     }
   };
-  useEffect(() => validationForm(errors), [errors]);
+  useEffect(() => validationForm(), [errors]);
   return (
     <footer>
       <div className="footer-brand ">
@@ -161,14 +161,13 @@ const Footer = () => {
                 style={{ height: "100px" }}
               />
             </Form.Group>
-
             <Button
               type="submit"
               variant="success"
               onClick={() => {
-                Object.keys(errors).length === 0
-                  ? setModalShow(true)
-                  : validationForm(errors);
+                Object.keys(errors).length !== 0
+                  ? validationForm(errors)
+                  : setModalShow(true);
               }}
             >
               Submit
