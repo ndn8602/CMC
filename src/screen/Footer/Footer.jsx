@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -7,6 +7,9 @@ import Modal from "react-bootstrap/Modal";
 import "./footer.css";
 import { db } from "../../firebase";
 import { addDoc, collection } from "firebase/firestore";
+import { useForm } from "react-hook-form";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Footer = () => {
   const [modalShow, setModalShow] = useState(false);
   const [name, setName] = useState("");
@@ -14,7 +17,11 @@ const Footer = () => {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const contactCollectionRef = collection(db, "contact");
-
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const sendContact = async (props) => {
     await addDoc(contactCollectionRef, {
       name: name,
@@ -25,7 +32,12 @@ const Footer = () => {
       ModifiedDate: new Date(),
     });
   };
-
+  const showToastMessage = (message) => {
+    toast.error(message, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+    return;
+  };
   function MyVerticallyCenteredModal(props) {
     return (
       <Modal
@@ -63,6 +75,21 @@ const Footer = () => {
       </Modal>
     );
   }
+  const DataSubmited = (data) => {
+    console.log(data);
+  };
+  console.log(errors);
+
+  const validationForm = (errors) => {
+    if (errors.name?.type === "required") {
+      return showToastMessage("Name is required !");
+    } else if (errors.email?.type === "required") {
+      return showToastMessage("Email is required !");
+    } else if (errors.email?.type === "pattern") {
+      return showToastMessage("Email did not match format - test@example.com");
+    }
+  };
+  useEffect(() => validationForm(errors), [errors]);
   return (
     <footer>
       <div className="footer-brand ">
@@ -70,76 +97,96 @@ const Footer = () => {
         <p>&copy;2021-2022</p>
         <p>C.C.Global L.L.C</p>
       </div>
-      <Row className="m-0 footer-info">
-        <Col md={4}>
-          <img src="./image/logo.png" alt="" />
-        </Col>
-        <Col md={8}>
-          <Row>
-            <Col md={6}>
-              <Form.Group className="mb-3">
-                <Form.Label>NAME(*)</Form.Label>
-                <Form.Control
-                  value={name}
-                  type="text"
-                  placeholder="Enter Your Name"
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-            <Col md={6}>
-              <Form.Group className="mb-3">
-                <Form.Label>EMAIL(*)</Form.Label>
-                <Form.Control
-                  required
-                  type="email"
-                  value={email}
-                  placeholder="Enter Your Email"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Form.Group className="mb-3">
-            <Form.Label>SUBJECT</Form.Label>
-            <Form.Control
-              type="text"
-              value={subject}
-              placeholder="Enter You Subject"
-              onChange={(e) => setSubject(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>MESSAGE</Form.Label>
-            <Form.Control
-              type="text"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              as="textarea"
-              placeholder="Enter Your Message"
-              style={{ height: "100px" }}
-            />
-          </Form.Group>
-          <Button
-            variant="success"
-            onClick={() => {
-              setModalShow(true);
-            }}
-          >
-            Submit
-          </Button>
-        </Col>
-      </Row>
-      <MyVerticallyCenteredModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        onClick={(e) => {
-          setEmail("");
-          setName("");
-          setSubject("");
-          setMessage("");
-        }}
-      />
+      <Form onSubmit={handleSubmit()}>
+        <Row className="m-0 footer-info">
+          <Col md={4}>
+            <img src="./image/logo.png" alt="" />
+          </Col>
+          <Col md={8}>
+            <Row>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>NAME(*)</Form.Label>
+                  <Form.Control
+                    value={name}
+                    name="name"
+                    ref={register}
+                    {...register("name", {
+                      required: true,
+                    })}
+                    type="text"
+                    placeholder="Enter Your Name"
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>EMAIL(*)</Form.Label>
+                  <Form.Control
+                    name="email"
+                    ref={register}
+                    {...register("email", {
+                      required: true,
+                      pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    })}
+                    value={email}
+                    placeholder="Enter Your Email"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Form.Group className="mb-3">
+              <Form.Label>SUBJECT</Form.Label>
+              <Form.Control
+                type="text"
+                name="subject"
+                {...register("subject", { required: true })}
+                value={subject}
+                placeholder="Enter You Subject"
+                onChange={(e) => setSubject(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>MESSAGE</Form.Label>
+              <Form.Control
+                type="text"
+                name="message"
+                {...register("message")}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                as="textarea"
+                placeholder="Enter Your Message"
+                style={{ height: "100px" }}
+              />
+            </Form.Group>
+
+            <Button
+              type="submit"
+              variant="success"
+              onClick={() => {
+                Object.keys(errors).length === 0
+                  ? setModalShow(true)
+                  : validationForm(errors);
+              }}
+            >
+              Submit
+            </Button>
+          </Col>
+        </Row>
+        <MyVerticallyCenteredModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          onClick={(e) => {
+            setEmail("");
+            setName("");
+            setSubject("");
+            setMessage("");
+          }}
+        />
+      </Form>
+      <ToastContainer />
     </footer>
   );
 };
