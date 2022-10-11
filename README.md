@@ -71,10 +71,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 #task
 
-1.Mix SmoothScroll beetwen AOS.
 3.Implement Admin (post : title,content,image,)..
 7.Upload image.
 10.Authentication (CRUD)
-12.Connect Auth Firebase.
 13.Responsive
-14.Create Login Form and Vilidate
+14.Create Login Form and Vilidate.
