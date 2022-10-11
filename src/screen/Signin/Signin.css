@@ -1,0 +1,11 @@
+.form {
+  height: 100vh;
+}
+Form {
+  width: 350px;
+  height: 350px;
+  padding: 20px;
+  border-radius: 10px;
+  background: #f9f6f6;
+  box-shadow: 50px 50px 100px #c2c0c0, -50px -50px 100px #ffffff;
+}

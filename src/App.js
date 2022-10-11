@@ -3,6 +3,7 @@ import ContentAdmin from "./screen/Admin/Content/Content";
 import Contact from "./screen/Admin/Contact/Contact";
 import Dashboard from "./screen/Admin/Dashboard";
 import { SkeletonTheme } from "react-loading-skeleton";
+import Signin from "./screen/Signin/Signin";
 import "react-loading-skeleton/dist/skeleton.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route path="/admin" element={<Dashboard />} />
           <Route path="admin/content" element={<ContentAdmin />} />
           <Route path="admin/contact" element={<Contact />} />
+          <Route path="/signin" element={<Signin />} />
         </Routes>
       </BrowserRouter>
     </SkeletonTheme>

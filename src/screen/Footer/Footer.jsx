@@ -11,6 +11,8 @@ import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Footer = () => {
+  const initalState = -1;
+  const [count, setCount] = useState(initalState);
   const [modalShow, setModalShow] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -75,7 +77,8 @@ const Footer = () => {
       </Modal>
     );
   }
-
+  console.log("rerender");
+  console.log(count);
   const validationForm = () => {
     if (errors.name?.type === "required") {
       return showToastMessage("Name is required !");
@@ -85,15 +88,23 @@ const Footer = () => {
       return showToastMessage("Email did not match format - test@example.com");
     }
   };
-  useEffect(() => validationForm(), [errors]);
+  console.log("on submit data");
+  const onSubmitData = (data) => {
+    setCount(count + 1);
+    console.log(data);
+  };
+  console.log(errors);
+  useEffect(() => {
+    validationForm();
+  }, [errors]);
   return (
-    <footer>
+    <footer id="contact">
       <div className="footer-brand ">
         <p>C.C.Global </p>
         <p>&copy;2021-2022</p>
         <p>C.C.Global L.L.C</p>
       </div>
-      <Form onSubmit={handleSubmit()}>
+      <Form onSubmit={handleSubmit(onSubmitData)}>
         <Row className="m-0 footer-info">
           <Col md={4}>
             <img src="./image/logo.png" alt="" />
@@ -105,8 +116,8 @@ const Footer = () => {
                   <Form.Label>NAME(*)</Form.Label>
                   <Form.Control
                     value={name}
-                    name="name"
                     ref={register}
+                    name="name"
                     {...register("name", {
                       required: true,
                     })}
@@ -115,6 +126,8 @@ const Footer = () => {
                     onChange={(e) => setName(e.target.value)}
                   />
                 </Form.Group>
+                {/* {errors.name?.type === "required" &&
+                  showToastMessage("Name is required !")} */}
               </Col>
               <Col md={6}>
                 <Form.Group className="mb-3">
@@ -131,6 +144,8 @@ const Footer = () => {
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </Form.Group>
+                {/* {errors.email?.type === "required" &&
+                  showToastMessage("Email is required !")} */}
               </Col>
             </Row>
             <Form.Group className="mb-3">
@@ -138,12 +153,14 @@ const Footer = () => {
               <Form.Control
                 type="text"
                 name="subject"
-                {...register("subject", { required: true })}
                 value={subject}
+                {...register("subject", { required: true })}
                 placeholder="Enter You Subject"
                 onChange={(e) => setSubject(e.target.value)}
               />
             </Form.Group>
+            {/* {errors.subject?.type === "required" &&
+              showToastMessage("Email is required !")} */}
             <Form.Group className="mb-3">
               <Form.Label>MESSAGE</Form.Label>
               <Form.Control
@@ -161,9 +178,10 @@ const Footer = () => {
               type="submit"
               variant="success"
               onClick={() => {
-                Object.keys(errors).length !== 0
-                  ? validationForm()
-                  : setModalShow(true);
+                if (Object.keys(errors).length !== 0 || count <= 0) {
+                  validationForm();
+                }
+                setModalShow(true);
               }}
             >
               Submit

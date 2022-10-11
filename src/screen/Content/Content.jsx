@@ -11,6 +11,7 @@ import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import LoadingSkeletonTop from "../Loading/LoadingSkeletonTop";
 import LoadingSkeletonMid from "../Loading/LoadingSkeletonMid";
+import SmoothScroll from "../../components/SmoothScroll/SmoothScroll";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -55,9 +56,9 @@ export default function Content() {
   );
   return (
     <>
+      {!loading && <SmoothScroll />}
       <Header />
-
-      <Container>
+      <Container id="q&a">
         <section>
           {!loading ? (
             <ContentTop data={contentTop} data-aos="fade-down" />

@@ -75,5 +75,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 3.Implement Admin (post : title,content,image,)..
 7.Upload image.
 10.Authentication (CRUD)
-11. Validation Form (70%)
 12.Connect Auth Firebase.
+13.Responsive
+14.Create Login Form and Vilidate

@@ -38,8 +38,8 @@ export default function Header() {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/">HOME</Nav.Link>
-              <Nav.Link href="/q&a">Q&A</Nav.Link>
-              <Nav.Link href="/contactus">CONTACT US</Nav.Link>
+              <Nav.Link href="#q&a">Q&A</Nav.Link>
+              <Nav.Link href="#contact">CONTACT US</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
