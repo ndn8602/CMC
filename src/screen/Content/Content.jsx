@@ -11,7 +11,6 @@ import LoadingSkeletonTop from "../Loading/LoadingSkeletonTop";
 import LoadingSkeletonMid from "../Loading/LoadingSkeletonMid";
 import SmoothScroll from "../../components/SmoothScroll/SmoothScroll";
 import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -55,21 +54,8 @@ export default function Content() {
   return (
     <>
       <Navbar collapseOnSelect expand="lg" variant="dark">
-        <Container fluid className="align-items-start">
-          <Navbar.Brand href="/">
-            <img src="./image/Logo.png" alt="" className="logo" />
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="/">HOME</Nav.Link>
-              <Nav.Link href="#q&a">Q&A</Nav.Link>
-              <Nav.Link href="#contact">CONTACT US</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
+        {!loading && <SmoothScroll />}
       </Navbar>
-      {!loading && <SmoothScroll />}
       <div id="webScroll">
         <Header />
         <Container className="content">
