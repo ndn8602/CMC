@@ -76,3 +76,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 10.Authentication (CRUD)
 13.Responsive
 14.Create Login Form and Vilidate.
+15.JWT
+16.Validate
+17.fixed navbar
+18.notice error form

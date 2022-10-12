@@ -5,13 +5,13 @@ import ContentMid from "./ContentMid";
 import ContentBottom from "./ContentBottom";
 import ContentTop from "./ContentTop";
 import Container from "react-bootstrap/Container";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import LoadingSkeletonTop from "../Loading/LoadingSkeletonTop";
 import LoadingSkeletonMid from "../Loading/LoadingSkeletonMid";
 import SmoothScroll from "../../components/SmoothScroll/SmoothScroll";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -25,10 +25,8 @@ const reducer = (state, action) => {
       return state;
   }
 };
+
 export default function Content() {
-  useEffect(() => {
-    AOS.init();
-  }, []);
   const [{ loading, content }, dispatch] = useReducer(reducer, {
     loading: true,
     content: [],
@@ -56,32 +54,49 @@ export default function Content() {
   );
   return (
     <>
+      <Navbar collapseOnSelect expand="lg" variant="dark">
+        <Container fluid className="align-items-start">
+          <Navbar.Brand href="/">
+            <img src="./image/Logo.png" alt="" className="logo" />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="/">HOME</Nav.Link>
+              <Nav.Link href="#q&a">Q&A</Nav.Link>
+              <Nav.Link href="#contact">CONTACT US</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
       {!loading && <SmoothScroll />}
-      <Header />
-      <Container id="q&a">
-        <section>
-          {!loading ? (
-            <ContentTop data={contentTop} data-aos="fade-down" />
-          ) : (
-            <LoadingSkeletonTop />
-          )}
-        </section>
-        <main>
-          {!loading ? (
-            <ContentMid data={contentMid} ata-aos="fade-down" />
-          ) : (
-            <LoadingSkeletonMid />
-          )}
-        </main>
-        <section>
-          {!loading ? (
-            <ContentBottom data={contentBottom} data-aos="fade-down" />
-          ) : (
-            <LoadingSkeletonTop />
-          )}
-        </section>
-      </Container>
-      <Footer />
+      <div id="webScroll">
+        <Header />
+        <Container className="content">
+          <section>
+            {!loading ? (
+              <ContentTop data={contentTop} data-aos="fade-down" />
+            ) : (
+              <LoadingSkeletonTop />
+            )}
+          </section>
+          <main>
+            {!loading ? (
+              <ContentMid data={contentMid} ata-aos="fade-down" />
+            ) : (
+              <LoadingSkeletonMid />
+            )}
+          </main>
+          <section>
+            {!loading ? (
+              <ContentBottom data={contentBottom} data-aos="fade-down" />
+            ) : (
+              <LoadingSkeletonTop />
+            )}
+          </section>
+        </Container>
+        <Footer />
+      </div>
     </>
   );
 }

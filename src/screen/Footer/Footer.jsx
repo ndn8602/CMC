@@ -15,6 +15,7 @@ const Footer = () => {
   const [count, setCount] = useState(initalState);
   const [modalShow, setModalShow] = useState(false);
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
@@ -77,8 +78,6 @@ const Footer = () => {
       </Modal>
     );
   }
-  console.log("rerender");
-  console.log(count);
   const validationForm = () => {
     if (errors.name?.type === "required") {
       return showToastMessage("Name is required !");
@@ -88,17 +87,14 @@ const Footer = () => {
       return showToastMessage("Email did not match format - test@example.com");
     }
   };
-  console.log("on submit data");
   const onSubmitData = (data) => {
     setCount(count + 1);
-    console.log(data);
   };
-  console.log(errors);
   useEffect(() => {
     validationForm();
   }, [errors]);
   return (
-    <footer id="contact">
+    <footer id="contact" className="footer">
       <div className="footer-brand ">
         <p>C.C.Global </p>
         <p>&copy;2021-2022</p>
@@ -148,17 +144,33 @@ const Footer = () => {
                   showToastMessage("Email is required !")} */}
               </Col>
             </Row>
-            <Form.Group className="mb-3">
-              <Form.Label>SUBJECT</Form.Label>
-              <Form.Control
-                type="text"
-                name="subject"
-                value={subject}
-                {...register("subject", { required: true })}
-                placeholder="Enter You Subject"
-                onChange={(e) => setSubject(e.target.value)}
-              />
-            </Form.Group>
+            <Row>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>SUBJECT</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="subject"
+                    value={subject}
+                    placeholder="Enter You Subject"
+                    onChange={(e) => setSubject(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>PHONE(*)</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="subject"
+                    value={phone}
+                    {...register("subject", { required: true })}
+                    placeholder="Enter You Subject"
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
             {/* {errors.subject?.type === "required" &&
               showToastMessage("Email is required !")} */}
             <Form.Group className="mb-3">

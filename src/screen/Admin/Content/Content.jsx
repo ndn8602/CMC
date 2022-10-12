@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../../../context/AuthContext";
+
 const Content = () => {
   const navigate = useNavigate();
   const { logout } = UserAuth();
@@ -27,6 +28,7 @@ const Content = () => {
       console.log(e.message);
     }
   };
+
   return (
     <div>
       <Row>

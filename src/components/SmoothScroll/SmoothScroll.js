@@ -26,16 +26,29 @@ const options = {
     overscroll: { ...overscrollOptions },
   },
 };
-
 const Scroll = () => {
   useEffect(() => {
-    AOS.init();
+    AOS.init({ delay: 500 });
     Scrollbar.use(OverscrollPlugin);
-    const smoothScroll = Scrollbar.init(document.body, options);
+    const smoothScroll = Scrollbar.init(
+      document.getElementById("webScroll"),
+      options
+    );
+    const navbars = document.querySelector(".navbar");
+    const header = document.querySelector(".header");
+    const content = document.querySelector(".content");
+    const footer = document.querySelector(".footer");
+    console.log(header.offsetTop);
+    console.log(content.offsetTop);
+    console.log(footer.offsetTop);
     function listener(status) {
-      console.log(smoothScroll.scrollTop);
+      let scrollbar = smoothScroll.offset.y;
+      if (scrollbar >= 300) {
+        navbars.classList.add("active");
+      } else {
+        navbars.classList.remove("active");
+      }
     }
-    smoothScroll.addListener(listener);
     [].forEach.call(document.querySelectorAll("[data-aos]"), (el) => {
       smoothScroll.addListener(() => {
         if (smoothScroll.isVisible(el)) {
@@ -43,6 +56,7 @@ const Scroll = () => {
         }
       });
     });
+    smoothScroll.addListener(listener);
     return () => {
       if (Scrollbar) Scrollbar.destroy(document.body);
     };

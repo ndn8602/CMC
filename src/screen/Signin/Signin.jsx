@@ -19,12 +19,12 @@ const Signup = () => {
       navigate("/admin");
     } catch (e) {
       setError(e.message);
-      console.log(error);
     }
   };
   return (
     <Container fluid="sm wrap d-flex justify-content-center align-items-center ">
       <Form className="form" onSubmit={handleSignin}>
+        <h1>Sign In</h1>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -32,6 +32,9 @@ const Signup = () => {
             type="email"
             placeholder="Enter email"
           />
+          <Form.Text className="font-italic text-danger">
+            {error ? "User Not Found" : ""}
+          </Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -42,6 +45,9 @@ const Signup = () => {
             placeholder="Password"
           />
         </Form.Group>
+        <Form.Text className="font-italic text-danger">
+          {error ? "User Not Found" : ""}
+        </Form.Text>
         <Button variant="primary" type="submit">
           Submit
         </Button>
