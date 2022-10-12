@@ -30,6 +30,7 @@ const Footer = () => {
       name: name,
       email: email,
       subject: subject,
+      phone: phone,
       message: message,
       createDate: new Date(),
       ModifiedDate: new Date(),
@@ -58,10 +59,11 @@ const Footer = () => {
           <h4>C.C Global Agency</h4>
           <h5>Hello, thansk for visitting C.C Global Website</h5>
           <p>Who I am speaking with</p>
-          <p>{name}</p>
-          <p>{email}</p>
-          <p>{subject}</p>
-          <p>{message}</p>
+          <p>Full Name: {name}</p>
+          <p>Email: {email}</p>
+          <p>Subject: {subject}</p>
+          <p>Phone: {phone}</p>
+          <p>Message: {message}</p>
         </Modal.Body>
         <Modal.Footer>
           <Button
@@ -203,12 +205,13 @@ const Footer = () => {
         <MyVerticallyCenteredModal
           show={modalShow}
           onHide={() => setModalShow(false)}
-          onClick={(e) => {
-            setEmail("");
-            setName("");
-            setSubject("");
-            setMessage("");
-          }}
+          // onClick={(e) => {
+          //   setEmail("");
+          //   setName("");
+          //   setSubject("");
+          //   setPhone("");
+          //   setMessage("");
+          // }}
         />
       </Form>
       <ToastContainer />

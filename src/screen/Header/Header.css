@@ -19,7 +19,7 @@ header {
   z-index: 999;
 }
 .navbar.active {
-  background-image: url("/public/image/background.jpg");
+  background-image: url("/public/image/background.jpg") !important;
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;

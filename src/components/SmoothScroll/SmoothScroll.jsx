@@ -1,11 +1,12 @@
 import Scrollbar from "smooth-scrollbar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import OverscrollPlugin from "smooth-scrollbar/plugins/overscroll";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
+import "./Navbar.css";
 // const overscrollOptions = {
 //   enable: true,
 //   effect: "bounce",
@@ -29,6 +30,7 @@ const options = {
   },
 };
 const Scroll = () => {
+  const [menu, setMenu] = useState(false);
   AOS.init({ delay: 500 });
   Scrollbar.use(OverscrollPlugin);
   const smoothScroll = Scrollbar.init(
@@ -36,7 +38,7 @@ const Scroll = () => {
     options
   );
 
-  const navbars = document.querySelector(".navbar");
+  const navbars = document.querySelector(".navbarFixed");
   const header = document.querySelector(".header");
   const content = document.querySelector(".content");
   const footer = document.querySelector(".footer");
@@ -72,28 +74,43 @@ const Scroll = () => {
     return () => {
       if (Scrollbar) Scrollbar.destroy(document.body);
     };
-  }, []);
+  }, [smoothScroll]);
+  console.log("window.innerWidth");
+  console.log(window.innerWidth);
+  const handleButtonMenu = () => {
+    if (window.innerWidth <= 992) menu ? setMenu(false) : setMenu(true);
+  };
   return (
     <>
-      <Container fluid className="align-items-start">
-        <Navbar.Brand href="/">
-          <img src="./image/Logo.png" alt="" className="logo" />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#!" onClick={sessionHome}>
-              HOME
-            </Nav.Link>
-            <Nav.Link href="#!" onClick={sessionContent}>
-              Q&A
-            </Nav.Link>
-            <Nav.Link href="#!" onClick={sessionFooter}>
-              CONTACT US
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        bg={menu ? "dark" : ""}
+        variant="dark"
+      >
+        <Container fluid className="align-items-start">
+          <Navbar.Brand href="/">
+            <img src="./image/Logo.png" alt="" className="logo" />
+          </Navbar.Brand>
+          <Navbar.Toggle
+            aria-controls="responsive-navbar-nav"
+            onClick={handleButtonMenu}
+          />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto ">
+              <Nav.Link href="#!" onClick={sessionHome}>
+                HOME
+              </Nav.Link>
+              <Nav.Link href="#!" onClick={sessionContent}>
+                Q&A
+              </Nav.Link>
+              <Nav.Link href="#!" onClick={sessionFooter}>
+                CONTACT US
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </>
   );
 };
