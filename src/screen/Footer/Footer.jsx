@@ -10,11 +10,6 @@ import { addDoc, collection } from "firebase/firestore";
 import { useFormik } from "formik";
 import { contactFormSchema } from "./Schema";
 
-const onSubmit = async (values, actions) => {
-  await new Promise((resolve) => setTimeout(resolve, 5000));
-  actions.resetForm();
-};
-
 const Footer = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -37,7 +32,6 @@ const Footer = () => {
         message: "",
       },
       validationSchema: contactFormSchema,
-      onSubmit,
     });
 
   useEffect(() => {
@@ -90,11 +84,21 @@ const Footer = () => {
           <Button
             type="submit"
             onClick={(e) => {
-              setEmail("");
-              setName("");
-              setSubject("");
-              setPhone("");
-              setMessage("");
+              setEmail(() => {
+                values.email = "";
+              });
+              setName(() => {
+                values.name = "";
+              });
+              setSubject(() => {
+                values.subject = "";
+              });
+              setPhone(() => {
+                values.phone = "";
+              });
+              setMessage(() => {
+                values.message = "";
+              });
               sendContact();
               props.onHide();
               handleShow();
