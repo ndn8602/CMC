@@ -1,0 +1,14 @@
+.navbarFixed.active {
+  background-image: url("/public/image/background.jpg") !important;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: cover;
+  position: relative;
+  animation: growDown 300ms ease-in-out forwards;
+  transform-origin: top center;
+  z-index: 1;
+  position: relative;
+  min-height: 70px;
+}

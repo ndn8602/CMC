@@ -71,6 +71,11 @@ const Footer = () => {
             onClick={(e) => {
               sendContact();
               props.onHide();
+              setEmail("");
+              setName("");
+              setSubject("");
+              setPhone("");
+              setMessage("");
             }}
             variant="success"
           >
@@ -205,13 +210,6 @@ const Footer = () => {
         <MyVerticallyCenteredModal
           show={modalShow}
           onHide={() => setModalShow(false)}
-          // onClick={(e) => {
-          //   setEmail("");
-          //   setName("");
-          //   setSubject("");
-          //   setPhone("");
-          //   setMessage("");
-          // }}
         />
       </Form>
       <ToastContainer />

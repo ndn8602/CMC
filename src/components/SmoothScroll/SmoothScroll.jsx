@@ -1,5 +1,5 @@
 import Scrollbar from "smooth-scrollbar";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import OverscrollPlugin from "smooth-scrollbar/plugins/overscroll";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -30,7 +30,7 @@ const options = {
   },
 };
 const Scroll = () => {
-  const [menu, setMenu] = useState(false);
+  console.log("rerender");
   AOS.init({ delay: 500 });
   Scrollbar.use(OverscrollPlugin);
   const smoothScroll = Scrollbar.init(
@@ -77,8 +77,16 @@ const Scroll = () => {
   }, [smoothScroll]);
   console.log("window.innerWidth");
   console.log(window.innerWidth);
-  const handleButtonMenu = () => {
-    if (window.innerWidth <= 992) menu ? setMenu(false) : setMenu(true);
+  let menu = true;
+  const handleButtonMenu = (menu) => {
+    if (window.innerWidth <= 992) {
+      if (menu) {
+        menu = true;
+      } else {
+        menu = false;
+      }
+    }
+    return menu;
   };
   return (
     <>
