@@ -90,7 +90,7 @@ const Scroll = () => {
     <>
       <Container fluid className="align-items-start">
         <Navbar.Brand href="/">
-          <img src="./image/Logo.png" alt="" className="logo" />
+          <img src="./image/logo.png" alt="" className="logo" />
         </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"

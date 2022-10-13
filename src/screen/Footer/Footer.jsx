@@ -231,7 +231,9 @@ const Footer = () => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            Your information is noted, we will contact you as soon as posible!
+            <div className="thankYou">
+              Your information is noted, we will contact you as soon as posible!
+            </div>
           </Modal.Body>
         </Modal>
       </div>

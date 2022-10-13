@@ -64,14 +64,8 @@
   object-fit: cover;
 }
 
-.form-control {
-  border: none;
-}
-.form-control .errors {
-  border: 2px solid red !important;
-}
 .noticeError {
-  color: #fff;
+  color: #ef4343;
   font-style: italic;
   font-size: 13px;
 }
@@ -80,4 +74,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.thankYou {
+  font-weight: 700;
+  font-size: 36px;
 }
