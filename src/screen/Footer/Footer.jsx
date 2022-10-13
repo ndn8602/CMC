@@ -9,22 +9,38 @@ import { db } from "../../firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
+import { useFormik } from "formik";
 import "react-toastify/dist/ReactToastify.css";
+import { contactFormSchema } from "./Schema";
+
+const onSubmit = () => {
+  console.log("submitted");
+};
+
 const Footer = () => {
   const initalState = -1;
   const [count, setCount] = useState(initalState);
   const [modalShow, setModalShow] = useState(false);
+  const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+    },
+    validationSchema: contactFormSchema,
+    onSubmit,
+  });
+  console.log("errors");
+  console.log(errors);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const contactCollectionRef = collection(db, "contact");
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register } = useForm();
   const sendContact = async (props) => {
     await addDoc(contactCollectionRef, {
       name: name,
@@ -85,21 +101,22 @@ const Footer = () => {
       </Modal>
     );
   }
-  const validationForm = () => {
-    if (errors.name?.type === "required") {
-      return showToastMessage("Name is required !");
-    } else if (errors.email?.type === "required") {
-      return showToastMessage("Email is required !");
-    } else if (errors.email?.type === "pattern") {
-      return showToastMessage("Email did not match format - test@example.com");
-    }
-  };
+  // const validationForm = () => {
+  //   if (errors.name?.type === "required") {
+  //     return showToastMessage("Name is required !");
+  //   } else if (errors.email?.type === "required") {
+  //     return showToastMessage("Email is required !");
+  //   } else if (errors.email?.type === "pattern") {
+  //     return showToastMessage("Email did not match format - test@example.com");
+  //   }
+  // };
   const onSubmitData = (data) => {
     setCount(count + 1);
   };
-  useEffect(() => {
-    validationForm();
-  }, [errors]);
+  // useEffect(() => {
+  //   validationForm();
+  // }, [errors]);
+  console.log(values);
   return (
     <footer id="contact" className="footer">
       <div className="footer-brand ">
@@ -107,7 +124,7 @@ const Footer = () => {
         <p>&copy;2021-2022</p>
         <p>C.C.Global L.L.C</p>
       </div>
-      <Form onSubmit={handleSubmit(onSubmitData)}>
+      {/* <Form onSubmit={handleSubmit(onSubmitData)}>
         <Row className="m-0 footer-info">
           <Col md={4}>
             <img src="./image/logo.png" alt="" />
@@ -129,8 +146,6 @@ const Footer = () => {
                     onChange={(e) => setName(e.target.value)}
                   />
                 </Form.Group>
-                {/* {errors.name?.type === "required" &&
-                  showToastMessage("Name is required !")} */}
               </Col>
               <Col md={6}>
                 <Form.Group className="mb-3">
@@ -147,8 +162,6 @@ const Footer = () => {
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </Form.Group>
-                {/* {errors.email?.type === "required" &&
-                  showToastMessage("Email is required !")} */}
               </Col>
             </Row>
             <Row>
@@ -178,8 +191,7 @@ const Footer = () => {
                 </Form.Group>
               </Col>
             </Row>
-            {/* {errors.subject?.type === "required" &&
-              showToastMessage("Email is required !")} */}
+
             <Form.Group className="mb-3">
               <Form.Label>MESSAGE</Form.Label>
               <Form.Control
@@ -211,8 +223,101 @@ const Footer = () => {
           show={modalShow}
           onHide={() => setModalShow(false)}
         />
+      </Form> */}
+
+      <Form onSubmit={handleSubmit}>
+        <Row className="m-0 footer-info">
+          <Col md={4}>
+            <img src="./image/logo.png" alt="" />
+          </Col>
+          <Col md={8}>
+            <Row>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>NAME(*)</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter Your Name"
+                    id="name"
+                    value={values.name}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>EMAIL(*)</Form.Label>
+                  <Form.Control
+                    value={values.email}
+                    id="email"
+                    type="email"
+                    placeholder="Enter Your Email"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>SUBJECT</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="subject"
+                    placeholder="Enter You Subject"
+                    id="subject"
+                    value={values.subject}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>PHONE(*)</Form.Label>
+                  <Form.Control
+                    type="text"
+                    id="phone"
+                    placeholder="Enter You Subject"
+                    value={values.phone}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+
+            <Form.Group className="mb-3">
+              <Form.Label>MESSAGE</Form.Label>
+              <Form.Control
+                type="text"
+                id="message"
+                value={values.message}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                as="textarea"
+                placeholder="Enter Your Message"
+                style={{ height: "100px" }}
+              />
+            </Form.Group>
+            <Button
+              type="submit"
+              variant="success"
+              onClick={() => {
+                setModalShow(true);
+              }}
+            >
+              Submit
+            </Button>
+          </Col>
+        </Row>
+        <MyVerticallyCenteredModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+        />
       </Form>
-      <ToastContainer />
     </footer>
   );
 };

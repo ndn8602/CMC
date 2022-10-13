@@ -53,7 +53,11 @@ export default function Content() {
   );
   return (
     <>
-      <div className="navbarFixed">{!loading && <SmoothScroll />}</div>
+      <div className="navbarFixed">
+        <Navbar collapseOnSelect expand="lg" variant="dark">
+          {!loading && <SmoothScroll />}
+        </Navbar>
+      </div>
       <div id="webScroll">
         <Header />
         <Container className="content">

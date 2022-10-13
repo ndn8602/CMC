@@ -17,19 +17,16 @@ header {
   position: fixed !important;
   top: 0;
   z-index: 999;
+  transition: 0.7s all;
 }
-.navbar.active {
-  background-image: url("/public/image/background.jpg") !important;
+.navbar.background {
+  background-image: url("/public/image/background.jpg");
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   object-fit: cover;
   overflow: hidden;
-  margin-bottom: 40px;
-  position: relative;
-  animation: growDown 300ms ease-in-out forwards;
-  transform-origin: top center;
 }
 
 .container-fluid {
@@ -69,7 +66,6 @@ header {
   font-size: 75px;
 }
 .bannerTitle p {
-  width: 500px;
   text-align: center;
   color: orange;
   font-size: 40px;
@@ -105,6 +101,7 @@ header {
   }
   .bannerTitle {
     width: 100%;
+    padding: 10px;
   }
   .bannerTitle h1 {
     font-size: 60px;
@@ -124,9 +121,10 @@ header {
 }
 @media screen and (max-width: 571px) {
   .bannerTitle h1 {
-    font-size: 40px;
+    font-size: 36px;
   }
   .bannerTitle p {
-    font-size: 20px;
+    font-size: 18px;
+    word-wrap: break-word;
   }
 }

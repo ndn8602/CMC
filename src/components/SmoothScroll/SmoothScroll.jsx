@@ -30,7 +30,6 @@ const options = {
   },
 };
 const Scroll = () => {
-  console.log("rerender");
   AOS.init({ delay: 500 });
   Scrollbar.use(OverscrollPlugin);
   const smoothScroll = Scrollbar.init(
@@ -39,6 +38,7 @@ const Scroll = () => {
   );
 
   const navbars = document.querySelector(".navbarFixed");
+  const navbarss = document.querySelector(".navbar");
   const header = document.querySelector(".header");
   const content = document.querySelector(".content");
   const footer = document.querySelector(".footer");
@@ -51,9 +51,6 @@ const Scroll = () => {
   const sessionFooter = (e) => {
     smoothScroll.scrollTo(0, footer.offsetTop - 130, 1000);
   };
-  console.log(header.offsetTop);
-  console.log(content.offsetTop);
-  console.log(footer.offsetTop);
   function listener(status) {
     let scrollbar = smoothScroll.offset.y;
     if (scrollbar >= 300) {
@@ -75,50 +72,44 @@ const Scroll = () => {
       if (Scrollbar) Scrollbar.destroy(document.body);
     };
   }, [smoothScroll]);
-  console.log("window.innerWidth");
-  console.log(window.innerWidth);
   let menu = true;
-  const handleButtonMenu = (menu) => {
+  const handleButtonMenu = () => {
     if (window.innerWidth <= 992) {
       if (menu) {
-        menu = true;
-      } else {
         menu = false;
+        navbarss.classList.add("background");
+      } else {
+        menu = true;
+        navbarss.classList.remove("background");
       }
+    } else {
+      navbarss.classList.remove("background");
     }
-    return menu;
   };
   return (
     <>
-      <Navbar
-        collapseOnSelect
-        expand="lg"
-        bg={menu ? "dark" : ""}
-        variant="dark"
-      >
-        <Container fluid className="align-items-start">
-          <Navbar.Brand href="/">
-            <img src="./image/Logo.png" alt="" className="logo" />
-          </Navbar.Brand>
-          <Navbar.Toggle
-            aria-controls="responsive-navbar-nav"
-            onClick={handleButtonMenu}
-          />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto ">
-              <Nav.Link href="#!" onClick={sessionHome}>
-                HOME
-              </Nav.Link>
-              <Nav.Link href="#!" onClick={sessionContent}>
-                Q&A
-              </Nav.Link>
-              <Nav.Link href="#!" onClick={sessionFooter}>
-                CONTACT US
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <Container fluid className="align-items-start">
+        <Navbar.Brand href="/">
+          <img src="./image/Logo.png" alt="" className="logo" />
+        </Navbar.Brand>
+        <Navbar.Toggle
+          aria-controls="responsive-navbar-nav"
+          onClick={handleButtonMenu}
+        />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto ">
+            <Nav.Link href="#!" onClick={sessionHome}>
+              HOME
+            </Nav.Link>
+            <Nav.Link href="#!" onClick={sessionContent}>
+              Q&A
+            </Nav.Link>
+            <Nav.Link href="#!" onClick={sessionFooter}>
+              CONTACT US
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
     </>
   );
 };
