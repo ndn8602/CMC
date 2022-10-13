@@ -122,7 +122,7 @@ const Footer = () => {
       <Form onSubmit={handleSubmit}>
         <Row className="m-0 footer-info">
           <Col md={4}>
-            <img src="./image/logo.png" alt="" />
+            <img src="./image/Logo.png" alt="" />
           </Col>
           <Col md={8}>
             <Row>
