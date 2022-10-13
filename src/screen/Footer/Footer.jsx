@@ -21,17 +21,18 @@ const Footer = () => {
   const initalState = -1;
   const [count, setCount] = useState(initalState);
   const [modalShow, setModalShow] = useState(false);
-  const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
-    initialValues: {
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-    },
-    validationSchema: contactFormSchema,
-    onSubmit,
-  });
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: {
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      },
+      validationSchema: contactFormSchema,
+      onSubmit,
+    });
   console.log("errors");
   console.log(errors);
   const [name, setName] = useState("");
@@ -255,6 +256,7 @@ const Footer = () => {
                     placeholder="Enter Your Email"
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    className={errors.email && touched.email ? "error" : ""}
                   />
                 </Form.Group>
               </Col>

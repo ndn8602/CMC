@@ -63,3 +63,9 @@
   background-position: center;
   object-fit: cover;
 }
+.form-control {
+  border: 2px solid red !important;
+}
+.form-control.errors {
+  border: 2px solid red !important;
+}
