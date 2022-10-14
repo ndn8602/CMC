@@ -38,7 +38,13 @@ h3 {
 .content ul {
   padding-left: 5rem !important;
 }
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 768px) {
+  .content {
+    padding: 10px !important;
+  }
+  .container {
+    max-width: 100% !important;
+  }
   .contentTop img,
   .contentBottom img {
     width: 100%;
@@ -48,22 +54,8 @@ h3 {
     object-fit: cover;
     margin: 0;
   }
-}
-@media screen and (max-width: 1024px) {
-  .content {
-    padding: 80px !important;
-  }
-  .container {
-    max-width: 100% !important;
-  }
-  .contentTop img,
-  .contentBottom img {
-    width: 40%;
-    /* height: 200px; */
-    background-size: cover;
-    background-position: center;
-    object-fit: cover;
-    margin: 0;
-    margin: 10px 20px 10px 10px;
+  .content ol,
+  .content ul {
+    padding-left: 3rem !important;
   }
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
+import "../Dashboard.css";
 
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
@@ -29,56 +30,7 @@ const Content = () => {
     }
   };
 
-  return (
-    <div>
-      <Row>
-        <Col md={3}>
-          <Button variant="primary" onClick={handleShow}>
-            Launch
-          </Button>
-
-          <Offcanvas show={show} onHide={handleClose}>
-            <Offcanvas.Header closeButton>
-              <Offcanvas.Title>
-                <div className="admin-brand">Dashboard</div>
-                <div className="admin-avartar">
-                  {/* <img src="./image/Logo.png" alt="" /> */}
-                </div>
-              </Offcanvas.Title>
-            </Offcanvas.Header>
-            <Offcanvas.Body>
-              <Link to="/admin/content">
-                <Button variant="warning" className="w-100">
-                  Content
-                </Button>
-              </Link>
-              <Link to="/admin/contact">
-                <Button variant="primary" className="w-100">
-                  Contact
-                </Button>
-              </Link>
-              <Button variant="warning" onClick={handleLogout}>
-                Logout
-              </Button>
-            </Offcanvas.Body>
-          </Offcanvas>
-        </Col>
-        <Col md={9}>
-          <Navbar>
-            <Container>
-              <Navbar.Brand href="#home">Navbar with text</Navbar.Brand>
-              <Navbar.Toggle />
-              <Navbar.Collapse className="justify-content-end">
-                <Navbar.Text>
-                  Signed in as: <a href="#login">Mark Otto</a>
-                </Navbar.Text>
-              </Navbar.Collapse>
-            </Container>
-          </Navbar>
-        </Col>
-      </Row>
-    </div>
-  );
+  return <></>;
 };
 
 export default Content;

@@ -1,6 +1,6 @@
 import Content from "./screen/Content/Content";
 import ContentAdmin from "./screen/Admin/Content/Content";
-import Contact from "./screen/Admin/Contact/Contact";
+import Contact from "./screen/Admin/Contact";
 import Dashboard from "./screen/Admin/Dashboard";
 import { SkeletonTheme } from "react-loading-skeleton";
 import Signup from "./screen/Signup/Signup";

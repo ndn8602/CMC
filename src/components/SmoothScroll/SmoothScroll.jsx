@@ -44,12 +44,15 @@ const Scroll = () => {
   const footer = document.querySelector(".footer");
   const sessionHome = () => {
     smoothScroll.scrollTo(0, header.offsetTop - 130, 1000);
+    navbarss.classList.remove("background");
   };
   const sessionContent = () => {
     smoothScroll.scrollTo(0, content.offsetTop - 130, 1000);
+    navbarss.classList.remove("background");
   };
   const sessionFooter = (e) => {
     smoothScroll.scrollTo(0, footer.offsetTop - 130, 1000);
+    navbarss.classList.remove("background");
   };
   function listener(status) {
     let scrollbar = smoothScroll.offset.y;
