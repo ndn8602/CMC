@@ -19,7 +19,7 @@ const Footer = () => {
   const contactCollectionRef = collection(db, "contact");
   const [modalShow, setModalShow] = useState(false);
   const [show, setShow] = useState(false);
-
+  const [count, setCount] = useState(-2);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
@@ -33,9 +33,8 @@ const Footer = () => {
       },
       validationSchema: contactFormSchema,
     });
-
   useEffect(() => {
-    return () => {};
+    setCount((count) => count + 1);
   }, [errors]);
 
   const submitForm = () => {
@@ -123,6 +122,15 @@ const Footer = () => {
         <Row className="m-0 footer-info">
           <Col md={4}>
             <img src="./image/Logo.png" alt="" />
+            <div className="text-brand">
+              <h3>LET'S GET STARTED</h3>
+              <p>
+                We'r here to help answer your questions. Judicial matters can be
+                complicated, our experts are on hand to help inform you of every
+                aspect regarding your topic. We take great pride in usong our
+                experties for you and look forward to hearing from you.{" "}
+              </p>
+            </div>
           </Col>
           <Col md={8}>
             <Row>
@@ -211,7 +219,7 @@ const Footer = () => {
                 type="submit"
                 variant="success"
                 onClick={() => {
-                  if (Object.keys(errors).length === 0) {
+                  if (Object.keys(errors).length === 0 && count > 0) {
                     setModalShow(true);
                     submitForm();
                   }

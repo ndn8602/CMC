@@ -79,3 +79,20 @@
   font-weight: 700;
   font-size: 36px;
 }
+
+.text-brand {
+  padding: 0 20px;
+  width: 100%;
+  color: #fff;
+}
+.text-brand h3 {
+  font-weight: 600;
+  font-size: 14px;
+}
+.text-brand p {
+  font-size: 11px;
+  font-style: italic;
+}
+.footer .button{
+  margin-bottom: 25px;
+}

@@ -16,17 +16,17 @@
   float: right;
 }
 .contentTop p {
-  font-size: 16px;
+  font-size: 20px;
 }
 h3 {
-  font-size: 20px !important;
+  font-size: 24px !important;
 }
 .contentTitle {
-  font-size: 20px;
+  font-size: 24px;
   color: orange;
 }
-ol,
-ul {
+.content ol,
+.conteent ul {
   padding-left: 5rem !important;
 }
 @media screen and (max-width: 992px) {
