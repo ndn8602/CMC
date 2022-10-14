@@ -7,6 +7,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectRouteAdmin from "./screen/Admin/ProtectRouteAdmin";
 import "./screen/Header/Header.css";
+import Contact from "./screen/Admin/Contact/Contact";
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
         </Routes>
+        {/* <Routes>
+          <Route path="/" element={<Contact />} />
+        </Routes> */}
       </BrowserRouter>
     </SkeletonTheme>
   );

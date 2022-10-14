@@ -19,15 +19,7 @@ header {
   z-index: 999;
   transition: 0.7s all;
 }
-.navbar.background {
-  background-image: url("/public/image/background.jpg");
-  width: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  object-fit: cover;
-  overflow: hidden;
-}
+
 
 .container-fluid {
   height: 100%;

@@ -42,18 +42,7 @@ const Scroll = () => {
   const header = document.querySelector(".header");
   const content = document.querySelector(".content");
   const footer = document.querySelector(".footer");
-  const sessionHome = () => {
-    smoothScroll.scrollTo(0, header.offsetTop - 130, 1000);
-    navbarss.classList.remove("background");
-  };
-  const sessionContent = () => {
-    smoothScroll.scrollTo(0, content.offsetTop - 130, 1000);
-    navbarss.classList.remove("background");
-  };
-  const sessionFooter = (e) => {
-    smoothScroll.scrollTo(0, footer.offsetTop - 130, 1000);
-    navbarss.classList.remove("background");
-  };
+
   function listener(status) {
     let scrollbar = smoothScroll.offset.y;
     if (scrollbar >= 300) {
@@ -86,6 +75,36 @@ const Scroll = () => {
         navbarss.classList.remove("background");
       }
     } else {
+      navbarss.classList.remove("background");
+    }
+  };
+  const sessionHome = () => {
+    smoothScroll.scrollTo(0, header.offsetTop - 130, 1000);
+    if (menu) {
+      menu = false;
+      navbarss.classList.add("background");
+    } else {
+      menu = true;
+      navbarss.classList.remove("background");
+    }
+  };
+  const sessionContent = () => {
+    smoothScroll.scrollTo(0, content.offsetTop - 130, 1000);
+    if (menu) {
+      menu = false;
+      navbarss.classList.add("background");
+    } else {
+      menu = true;
+      navbarss.classList.remove("background");
+    }
+  };
+  const sessionFooter = (e) => {
+    smoothScroll.scrollTo(0, footer.offsetTop - 130, 1000);
+    if (menu) {
+      menu = false;
+      navbarss.classList.add("background");
+    } else {
+      menu = true;
       navbarss.classList.remove("background");
     }
   };
