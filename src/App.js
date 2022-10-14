@@ -1,6 +1,4 @@
 import Content from "./screen/Content/Content";
-import ContentAdmin from "./screen/Admin/Content/Content";
-import Contact from "./screen/Admin/Contact";
 import Dashboard from "./screen/Admin/Dashboard";
 import { SkeletonTheme } from "react-loading-skeleton";
 import Signup from "./screen/Signup/Signup";
@@ -24,8 +22,8 @@ function App() {
               </ProtectRouteAdmin>
             }
           />
-          <Route path="admin/content" element={<ContentAdmin />} />
-          <Route path="admin/contact" element={<Contact />} />
+          {/* <Route path="admin/content" element={<ContentAdmin />} /> */}
+          {/* <Route path="admin/contact" element={<Contact />} /> */}
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
         </Routes>
