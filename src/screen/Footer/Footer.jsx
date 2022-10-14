@@ -104,7 +104,7 @@ const Footer = () => {
             }}
             variant="success"
           >
-            Submit
+            Confirm 
           </Button>
         </Modal.Footer>
       </Modal>

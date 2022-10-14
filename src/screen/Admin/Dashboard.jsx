@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
 import "./Dashboard.css";
 const Dashboard = () => {
@@ -267,10 +267,10 @@ const Dashboard = () => {
                   </a>
                   <ul className="nav nav-treeview">
                     <li className="nav-item">
-                      <a href="pages/tables/data.html" className="nav-link">
+                      <Link to="./contact" className="nav-link">
                         <i className="far fa-circle nav-icon" />
                         <p>DataTables</p>
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </li>

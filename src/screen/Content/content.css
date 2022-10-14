@@ -1,6 +1,15 @@
+.content {
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  padding: 100px !important;
+}
+.container {
+  max-width: 1200px !important;
+}
 .contentTop img,
 .contentBottom img {
-  width: 300px;
+  width: 250px;
   /* height: 200px; */
   background-size: cover;
   background-position: center;
@@ -26,7 +35,7 @@ h3 {
   color: orange;
 }
 .content ol,
-.conteent ul {
+.content ul {
   padding-left: 5rem !important;
 }
 @media screen and (max-width: 992px) {
@@ -41,6 +50,12 @@ h3 {
   }
 }
 @media screen and (max-width: 1024px) {
+  .content {
+    padding: 80px !important;
+  }
+  .container {
+    max-width: 100% !important;
+  }
   .contentTop img,
   .contentBottom img {
     width: 40%;
