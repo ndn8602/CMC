@@ -180,7 +180,7 @@ const Footer = () => {
                   <Form.Control
                     type="text"
                     id="phone"
-                    placeholder="Enter You Subject"
+                    placeholder="Enter You Phone"
                     value={values.phone}
                     onChange={handleChange}
                     onBlur={handleBlur}

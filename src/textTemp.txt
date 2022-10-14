@@ -103,3 +103,101 @@ const Dashboard = () => {
   );
 };
 export default Dashboard;
+<------------------------------------------------------------------------------------->
+\\
+<------------------------------------------------------------------------------------->
+Content.jsx
+<------------------------------------------------------------------------------------->
+<Container className="content">
+          <section>
+            {!loading ? (
+              <ContentTop data={contentTop} data-aos="fade-down" />
+            ) : (
+              <LoadingSkeletonTop />
+            )}
+          </section>
+          <main>
+            {!loading ? (
+              <ContentMid data={contentMid} ata-aos="fade-down" />
+            ) : (
+              <LoadingSkeletonMid />
+            )}
+          </main>
+          <section>
+            {!loading ? (
+              <ContentBottom data={contentBottom} data-aos="fade-down" />
+            ) : (
+              <LoadingSkeletonTop />
+            )}
+          </section>
+        </Container>
+<------------------------------------------------------------------------------------->
+\\
+<------------------------------------------------------------------------------------->
+ContenTop.jsx
+<------------------------------------------------------------------------------------->
+import React from "react";
+import ContentTopChild from "../../components/ContentTop/ContentTopChild";
+const ContentTop = ({ data }) => {
+  return (
+    <div className="contentTop">
+      {data.map((contentTop) => (
+        <ContentTopChild
+          key={contentTop.id}
+          contentTop={contentTop}
+        ></ContentTopChild>
+      ))}
+    </div>
+  );
+};
+
+export default ContentTop;
+<------------------------------------------------------------------------------------->
+\\
+
+<------------------------------------------------------------------------------------->
+ContenMid.jsx
+<------------------------------------------------------------------------------------->
+
+import React from "react";
+import Container from "react-bootstrap/Container";
+import ContentMainChild from "../../components/ContentMain/ContentMidChild";
+
+const ContentMid = ({ data }) => {
+  return (
+    <Container className="m-0">
+      {data.map((ContentMain) => (
+        <ContentMainChild key={ContentMain.id} contentMain={ContentMain} />
+      ))}
+    </Container>
+  );
+};
+
+export default ContentMid;
+
+<------------------------------------------------------------------------------------->
+\\
+
+<------------------------------------------------------------------------------------->
+ContenBottom.jsx
+<------------------------------------------------------------------------------------->
+import React from "react";
+import ContentBottomChild from "../../components/ContentBottom/ContentBottomChild";
+
+const ContentBottom = ({ data }) => {
+  return (
+    <div className="contentBottom">
+      {data.map((contentBottom) => (
+        <ContentBottomChild
+          key={contentBottom.id}
+          contentBottom={contentBottom}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default ContentBottom;
+<------------------------------------------------------------------------------------->
+
+
