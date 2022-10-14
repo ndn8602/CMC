@@ -1,8 +1,35 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+.row {
+  height: 100%;
+  margin-right: 0 !important;
+  margin-top: 0 !important;
+}
 .sidebar {
-  background-color: red;
+  height: 100vh;
   width: 100%;
+}
+
+.sidebar-logo img {
+  padding: 20px;
+  width: 100%;
+  background-size: cover;
+  object-fit: cover;
+}
+.sidebar-avatar img {
+  margin-left: 20px;
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  object-fit: cover;
+  background-position: center;
+  border-radius: 50%;
+}
+.sidebar-avatar span {
+  font-size: 18px;
+  color: #fff;
+  font-weight: 700;
+  margin-left: 10px;
 }
 .fa-2x {
   font-size: 2em;
@@ -20,11 +47,8 @@
 .main-menu {
   background: #212121;
   border-right: 1px solid #e5e5e5;
-  position: fixed;
-  top: 0;
   height: 100%;
-  left: 0;
-  width: 250px;
+  width: 100%;
   overflow: hidden;
   -webkit-transition: width 0.05s linear;
   transition: width 0.05s linear;
@@ -39,7 +63,7 @@
 .main-menu li {
   position: relative;
   display: block;
-  width: 250px;
+  width: 100%;
 }
 
 .main-menu li > a {
@@ -133,4 +157,16 @@ nav.main-menu li.active > a,
   src: local("Titillium WebLight"), local("TitilliumWeb-Light"),
     url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff)
       format("woff");
+}
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+  bottom: 0.5em;
 }

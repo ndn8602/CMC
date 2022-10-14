@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../../firebase";
 import { collection, getDocs } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../../../context/AuthContext";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button, Alert, Table } from "react-bootstrap";
 import "./Contact.css";
+import TableContact from "./TableContact";
+import $ from "jquery";
+
 const Contact = () => {
   const navigate = useNavigate();
   const { logout } = UserAuth();
@@ -19,6 +22,12 @@ const Contact = () => {
     };
     getDatas();
   }, []);
+  useEffect(() => {
+    $(document).ready(function () {
+      $("#dtBasicExample").DataTable();
+      $(".dataTables_length").addClass("bs-select");
+    });
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -30,77 +39,76 @@ const Contact = () => {
     }
   };
   return (
-    <>
-      <div className="area">
-        <nav className="main-menu">
-          <ul>
-            <li>
-              <a href="http://justinfarrow.com">
-                <i className="fa fa-home fa-2x" />
-                <span className="nav-text">Dashboard</span>
-              </a>
-            </li>
-            <li className="has-subnav">
-              <a href="#">
-                <i className="fa fa-laptop fa-2x" />
-                <span className="nav-text">Stars Components</span>
-              </a>
-            </li>
-            <li className="has-subnav">
-              <a href="#">
-                <i className="fa fa-list fa-2x" />
-                <span className="nav-text">Forms</span>
-              </a>
-            </li>
-            <li className="has-subnav">
-              <a href="#">
-                <i className="fa fa-folder-open fa-2x" />
-                <span className="nav-text">Pages</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i className="fa fa-bar-chart-o fa-2x" />
-                <span className="nav-text">Graphs and Statistics</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i className="fa fa-font fa-2x" />
-                <span className="nav-text">Quotes</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i className="fa fa-table fa-2x" />
-                <span className="nav-text">Tables</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i className="fa fa-map-marker fa-2x" />
-                <span className="nav-text">Maps</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i className="fa fa-info fa-2x" />
-                <span className="nav-text">Documentation</span>
-              </a>
-            </li>
-          </ul>
-          <ul className="logout">
-            <li>
-              <a href="#">
-                <i className="fa fa-power-off fa-2x" />
-                <span className="nav-text">Logout</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <h1>HEllo</h1>
-      </div>
-    </>
+    <div className="contactAdmin">
+      <Row className="overflow-hiddenr">
+        <Col md={2} className="sidebar">
+          <div className="area">
+            <nav className="main-menu">
+              <div className="sidebar-logo">
+                <img src="./image/Logo.png" alt="" />
+              </div>
+              <div className="sidebar-avatar">
+                <img
+                  src="https://images.unsplash.com/photo-1440589473619-3cde28941638?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                  alt=""
+                />
+                <span>Nham Dep Trai</span>
+              </div>
+              <ul>
+                <li className="has-subnav">
+                  <Link to="../admin">
+                    <i className="fa fa-laptop fa-2x" />
+                    <span className="nav-text">Admin</span>
+                  </Link>
+                </li>
+                <li className="has-subnav">
+                  <Link to="../admin/content">
+                    <i className="fa fa-laptop fa-2x" />
+                    <span className="nav-text">Content</span>
+                  </Link>
+                </li>
+                <li className="has-subnav">
+                  <Link to="../admin/contact">
+                    <i className="fa fa-list fa-2x" />
+                    <span className="nav-text">Contact</span>
+                  </Link>
+                </li>
+              </ul>
+
+              <ul className="logout">
+                <li>
+                  <Button onClick={handleLogout}>
+                    <i className="fa fa-power-off fa-2x" />
+                    <span className="nav-text">Logout</span>
+                  </Button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </Col>
+        {/* <!--- Content ---> */}
+        <Col md={10} className="p-0">
+          <Alert variant="dark">Contact</Alert>
+          <Table bordered hover size="sm">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Subject</th>
+                <th>Create Date</th>
+                <th>Modified Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {lists.map((list) => (
+                <TableContact key={list.id} lists={list} />
+              ))}
+            </tbody>
+          </Table>
+        </Col>
+      </Row>
+    </div>
   );
 };
 

@@ -1,14 +1,14 @@
 import React, { useEffect, useReducer } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import ContentMid from "./ContentMid";
-import ContentBottom from "./ContentBottom";
-import ContentTop from "./ContentTop";
+// import ContentMid from "./ContentMid";
+// import ContentBottom from "./ContentBottom";
+// import ContentTop from "./ContentTop";
 import Container from "react-bootstrap/Container";
 import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
-import LoadingSkeletonTop from "../Loading/LoadingSkeletonTop";
-import LoadingSkeletonMid from "../Loading/LoadingSkeletonMid";
+// import LoadingSkeletonTop from "../Loading/LoadingSkeletonTop";
+// import LoadingSkeletonMid from "../Loading/LoadingSkeletonMid";
 import SmoothScroll from "../../components/SmoothScroll/SmoothScroll";
 import Navbar from "react-bootstrap/Navbar";
 import "./content.css";
@@ -46,11 +46,11 @@ export default function Content() {
     };
     getDatas();
   }, []);
-  const contentTop = content.filter((content) => content.position === "top");
-  const contentMid = content.filter((content) => content.position === "mid");
-  const contentBottom = content.filter(
-    (content) => content.position === "bottom"
-  );
+  // const contentTop = content.filter((content) => content.position === "top");
+  // const contentMid = content.filter((content) => content.position === "mid");
+  // const contentBottom = content.filter(
+    // (content) => content.position === "bottom"
+  // );
   return (
     <>
       <div className="navbarFixed">
