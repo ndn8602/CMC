@@ -6,11 +6,10 @@ import { UserAuth } from "../../../context/AuthContext";
 import { Row, Col, Button, Alert, Table } from "react-bootstrap";
 import "./Contact.css";
 import TableContact from "./TableContact";
-import $ from "jquery";
 
 const Contact = () => {
   const navigate = useNavigate();
-  const { logout } = UserAuth();
+  const { user, logout } = UserAuth();
   const [lists, setList] = useState([]);
 
   useEffect(() => {
@@ -21,12 +20,6 @@ const Contact = () => {
       setList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getDatas();
-  }, []);
-  useEffect(() => {
-    $(document).ready(function () {
-      $("#dtBasicExample").DataTable();
-      $(".dataTables_length").addClass("bs-select");
-    });
   }, []);
 
   const handleLogout = async () => {
@@ -39,7 +32,7 @@ const Contact = () => {
     }
   };
   return (
-    <div className="contactAdmin">
+    <div className="pannelAdmin">
       <Row className="overflow-hiddenr">
         <Col md={2} className="sidebar">
           <div className="area">
@@ -52,7 +45,7 @@ const Contact = () => {
                   src="https://images.unsplash.com/photo-1440589473619-3cde28941638?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                   alt=""
                 />
-                <span>Nham Dep Trai</span>
+                <span>{user && user.email}</span>
               </div>
               <ul>
                 <li className="has-subnav">

@@ -1,18 +1,28 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../../../context/AuthContext";
-import { Navbar, Row, Col, Button, Alert, Table, Form } from "react-bootstrap";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import {
+  Row,
+  Col,
+  Button,
+  Alert,
+  Form,
+  Navbar,
+  Container,
+} from "react-bootstrap";
+import Ckeditor from "./Ckeditor";
 
 const Content = () => {
   const navigate = useNavigate();
   const { user, logout } = UserAuth();
   const [title, setTitle] = useState("");
+  const [position, setPosition] = useState("");
   const [content, setContent] = useState("");
-  const [image, setImage] = useState("");
-  const [show, setShow] = useState(true);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
+  const [numberPosition, setNumberPosition] = useState(0);
+  const [imageUpload, setImageUpload] = useState("");
+  const [imageUrls, setImageUrls] = useState([]);
   const handleLogout = async () => {
     try {
       await logout();
@@ -22,10 +32,13 @@ const Content = () => {
       console.log(e.message);
     }
   };
-
+  console.log(title);
+  console.log(numberPosition);
+  console.log(position);
+  console.log(content);
   return (
-    <>
-      <Row className="overflow-hidden">
+    <div className="pannelAdmin">
+      <Row className=" overflow-hidden">
         <Col md={2} className="sidebar">
           <div className="area">
             <nav className="main-menu">
@@ -72,24 +85,37 @@ const Content = () => {
           </div>
         </Col>
         {/* <!--- Content ---> */}
-        <Col md={10} className="p-0">
-          <Alert variant="dark">Add mew content</Alert>
+        <Col md={10} className="">
           <Form>
             <Row className="m-0 ">
+              <Row>
+                <Col md={2}>Add new content</Col>
+                <Col md={8}></Col>
+                <Col md={1}>
+                  <Button>Add</Button>
+                </Col>
+                <Col md={1}>
+                  <Button>Cancel</Button>
+                </Col>
+              </Row>
               <Row>
                 <Col md={6}>
                   <Form.Group className="mb-3">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Your Name" />
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter Your Name"
+                      onChange={(e) => setTitle(e.target.value)}
+                    />
                   </Form.Group>
                 </Col>
                 <Col md={6}>
                   <Form.Group className="mb-3">
                     <Form.Label>Position</Form.Label>
-                    <Form.Select>
-                      <option value={1}>Top</option>
-                      <option value={2}>Mid</option>
-                      <option value={3}>Bottom</option>
+                    <Form.Select onChange={(e) => setPosition(e.target.value)}>
+                      <option value={"Top"}>Top</option>
+                      <option value={"Mid"}>Mid</option>
+                      <option value={"Bottom"}>Bottom</option>
                     </Form.Select>
                   </Form.Group>
                 </Col>
@@ -100,28 +126,44 @@ const Content = () => {
                     <Form.Label>Number</Form.Label>
                     <Form.Control
                       type="Number"
-                      placeholder="Enter You Subject"
-                      id="subject"
+                      placeholder="Enter You Number"
+                      onChange={(e) => setNumberPosition(e.target.value)}
                     />
                   </Form.Group>
                 </Col>
                 <Col md={6}>
-                  <Form.Group className="mb-3">
+                  <Form.Group controlId="formFile" className="mb-3">
                     <Form.Label>Image</Form.Label>
-                    <Form.Control
-                      type="text"
-                      id="phone"
-                      placeholder="Enter You Phone"
-                    />
+                    <Form.Control type="file" />
                   </Form.Group>
                 </Col>
               </Row>
             </Row>
           </Form>
-          Here is ckeditor
+          <h2>Using CKEditor 5 build in React</h2>
+          <CKEditor
+            editor={ClassicEditor}
+            data="<p>Hello from CKEditor 5!</p>"
+            onReady={(editor) => {
+              // You can store the "editor" and use when it is needed.
+              console.log("Editor is ready to use!", editor);
+            }}
+            onChange={(event, editor) => {
+              const data = editor.getData();
+              console.log({ data });
+              setContent(editor.getData());
+            }}
+            onBlur={(event, editor) => {
+              console.log("Blur.", editor);
+            }}
+            onFocus={(event, editor) => {
+              console.log("Focus.", editor);
+            }}
+          />
+          {content}
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 

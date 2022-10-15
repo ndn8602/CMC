@@ -17,7 +17,7 @@ const Dashboard = () => {
     }
   };
   return (
-    <>
+    <div className="pannelAdmin">
       <Row className="overflow-hidden">
         <Col md={2} className="sidebar">
           <div className="area">
@@ -69,7 +69,7 @@ const Dashboard = () => {
           <Alert variant="dark">Admin --&gt; pull & modify content </Alert>
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 

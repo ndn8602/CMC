@@ -104,7 +104,7 @@ const Footer = () => {
             }}
             variant="success"
           >
-            Confirm 
+            Confirm
           </Button>
         </Modal.Footer>
       </Modal>
@@ -132,7 +132,7 @@ const Footer = () => {
               </p>
             </div>
           </Col>
-          <Col md={8}>
+          <Col md={8} className='footerForm-contact'>
             <Row>
               <Col md={6}>
                 <Form.Group className="mb-3">

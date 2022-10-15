@@ -1,6 +1,6 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
-.row {
+.pannelAdmin .row {
   height: 100%;
   margin-right: 0 !important;
   margin-top: 0 !important;
@@ -16,6 +16,7 @@
   background-size: cover;
   object-fit: cover;
 }
+
 .sidebar-avatar img {
   margin-left: 20px;
   width: 50px;

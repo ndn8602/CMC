@@ -81,7 +81,7 @@
 }
 
 .text-brand {
-  padding: 0 20px;
+  padding:0 calc(100% - 85%);
   width: 100%;
   color: #fff;
 }
@@ -90,9 +90,22 @@
   font-size: 14px;
 }
 .text-brand p {
-  font-size: 11px;
+  font-size: 13px;
   font-style: italic;
 }
-.footer .button{
+.footer .button {
   margin-bottom: 25px;
 }
+@media screen and (max-width: 992px) {
+  .footerForm-contact {
+    padding-bottom: 3rem;
+  }
+  .text-brand {
+    padding: 0 ;
+  }
+}
+/* @media screen and (max-width: 768px) {
+  .text-brand {
+    padding: 0;
+  }
+} */
