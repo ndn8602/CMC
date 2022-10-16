@@ -14,7 +14,7 @@ const Footer = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
+  const [address, setAddress] = useState("");
   const [message, setMessage] = useState("");
   const contactCollectionRef = collection(db, "contact");
   const [modalShow, setModalShow] = useState(false);
@@ -28,7 +28,7 @@ const Footer = () => {
         name: "",
         email: "",
         phone: "",
-        subject: "",
+        address: "",
         message: "",
       },
       validationSchema: contactFormSchema,
@@ -41,14 +41,14 @@ const Footer = () => {
     setName(values.name);
     setEmail(values.email);
     setPhone(values.phone);
-    setSubject(values.subject);
+    setAddress(values.address);
     setMessage(values.message);
   };
   const sendContact = async (props) => {
     await addDoc(contactCollectionRef, {
       name: name,
       email: email,
-      subject: subject,
+      address: address,
       phone: phone,
       message: message,
       createDate: new Date(),
@@ -73,10 +73,10 @@ const Footer = () => {
           <h4>C.C Global Agency</h4>
           <h5>Hello, thansk for visitting C.C Global Website</h5>
           <p>Who I am speaking with</p>
-          <p>Full Name: {name}</p>
+          <p>FullName: {name}</p>
           <p>Email: {email}</p>
           <p>Phone: {phone}</p>
-          <p>Subject: {subject}</p>
+          <p>Address: {address}</p>
           <p>Message: {message}</p>
         </Modal.Body>
         <Modal.Footer>
@@ -89,8 +89,8 @@ const Footer = () => {
               setName(() => {
                 values.name = "";
               });
-              setSubject(() => {
-                values.subject = "";
+              setAddress(() => {
+                values.address = "";
               });
               setPhone(() => {
                 values.phone = "";
@@ -136,7 +136,7 @@ const Footer = () => {
             <Row>
               <Col md={6}>
                 <Form.Group className="mb-3">
-                  <Form.Label>NAME(*)</Form.Label>
+                  <Form.Label>FULLNAME(*)</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter Your Name"
@@ -170,13 +170,13 @@ const Footer = () => {
             <Row>
               <Col md={6}>
                 <Form.Group className="mb-3">
-                  <Form.Label>SUBJECT</Form.Label>
+                  <Form.Label>ADDRESS</Form.Label>
                   <Form.Control
                     type="text"
-                    name="subject"
-                    placeholder="Enter You Subject"
-                    id="subject"
-                    value={values.subject}
+                    name="address"
+                    placeholder="Enter You address"
+                    id="address"
+                    value={values.address}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />

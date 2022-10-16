@@ -75,3 +75,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 4. Get data from firebase
    5.edit UI table contact
 5. CSS UI homepage
+   6.Modify Table
+7. Upload Admin
+8. Banner
+9. Sort by number content

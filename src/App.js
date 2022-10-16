@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./screen/Header/Header.css";
 import Contact from "./screen/Admin/Contact/Contact";
 import ContentAdmin from "./screen/Admin/Content/Content";
+import UpdateContent from "./screen/Admin/Content/UpdateContent";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           />
           <Route path="admin/contact" element={<Contact />} />
           <Route path="admin/content" element={<ContentAdmin />} />
+          <Route path="admin/content/:id" element={<UpdateContent />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
         </Routes>

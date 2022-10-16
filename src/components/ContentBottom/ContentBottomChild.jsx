@@ -1,24 +1,29 @@
 import React from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Row, Col } from "react-bootstrap";
+import ReactHtmlParser from "react-html-parser";
 import "./ContentBottomChild.css";
-import Skeleton from "react-loading-skeleton";
-const ContentBottomChild = ({ contentBottom }) => {
+const ContentBottomChild = ({ data }) => {
   return (
-    <Row>
-      <Col md={3}>
-        <img
-          src={contentBottom.image || <Skeleton />}
-          alt=""
-          className="img-fluid"
-        />
-      </Col>
-      <Col md={9}>
-        <h3 data-aos="fade-down">{contentBottom.title || <Skeleton />}</h3>
-      </Col>
-      <Col md={12}></Col>
-    </Row>
+    <>
+      <Row>
+        <Col md={3}>
+          <img src={data.image} alt="" className="img-fluid"/>
+        </Col>
+        <Col md={9}>
+          <h5 className="contentTitle" data-aos="fade-down">
+            {data.title}
+          </h5>
+          <div className="contentBottom">{ReactHtmlParser(data.content)}</div>
+        </Col>
+      </Row>
+    </>
   );
 };
 
 export default ContentBottomChild;
+
+// <div className="contentBottom">
+//
+//   <h5 className="contentTitle" data-aos="fade-down">{data.title}</h5>
+//   <div className="contentBottom">{ReactHtmlParser(data.content)}</div>
+// </div>

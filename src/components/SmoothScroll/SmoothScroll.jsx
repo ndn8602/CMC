@@ -51,8 +51,21 @@ const Scroll = () => {
       navbars.classList.remove("active");
     }
   }
+
   smoothScroll.addListener(listener);
   useEffect(() => {
+    const p = document.querySelectorAll("p");
+    const li = document.querySelectorAll("li");
+    console.log(p);
+    p.forEach((element) => {
+      console.log(element);
+      element.setAttribute("data-aos", "fade-down");
+    });
+    li.forEach((element) => {
+      console.log(element);
+      element.setAttribute("data-aos", "fade-down");
+    });
+
     [].forEach.call(document.querySelectorAll("[data-aos]"), (el) => {
       smoothScroll.addListener(() => {
         if (smoothScroll.isVisible(el)) {
@@ -80,32 +93,38 @@ const Scroll = () => {
   };
   const sessionHome = () => {
     smoothScroll.scrollTo(0, header.offsetTop - 130, 1000);
-    if (menu) {
-      menu = false;
-      navbarss.classList.add("background");
-    } else {
-      menu = true;
-      navbarss.classList.remove("background");
+    if (window.innerWidth <= 992) {
+      if (menu) {
+        menu = false;
+        navbarss.classList.add("background");
+      } else {
+        menu = true;
+        navbarss.classList.remove("background");
+      }
     }
   };
   const sessionContent = () => {
     smoothScroll.scrollTo(0, content.offsetTop - 130, 1000);
-    if (menu) {
-      menu = false;
-      navbarss.classList.add("background");
-    } else {
-      menu = true;
-      navbarss.classList.remove("background");
+    if (window.innerWidth <= 992) {
+      if (menu) {
+        menu = false;
+        navbarss.classList.add("background");
+      } else {
+        menu = true;
+        navbarss.classList.remove("background");
+      }
     }
   };
   const sessionFooter = (e) => {
     smoothScroll.scrollTo(0, footer.offsetTop - 130, 1000);
-    if (menu) {
-      menu = false;
-      navbarss.classList.add("background");
-    } else {
-      menu = true;
-      navbarss.classList.remove("background");
+    if (window.innerWidth <= 992) {
+      if (menu) {
+        menu = false;
+        navbarss.classList.add("background");
+      } else {
+        menu = true;
+        navbarss.classList.remove("background");
+      }
     }
   };
   return (

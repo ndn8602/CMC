@@ -4,7 +4,7 @@ import ContentMidChild from "../../components/ContentMain/ContentMidChild";
 
 const ContentMid = ({ datas }) => {
   return (
-    <Container className="m-0">
+    <Container className="contentMid">
       {datas.map((data) => (
         <ContentMidChild key={data.id} data={data} />
       ))}

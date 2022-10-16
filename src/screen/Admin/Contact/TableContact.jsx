@@ -2,9 +2,7 @@ import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import paginationFactory from "react-bootstrap-table2-paginator";
-import { AuthContextProvider } from "../../../context/AuthContext";
 const TableContact = ({ lists }) => {
-  console.log(lists);
   const convertCreateDate = (data, row) => {
     return new Date(data * 1000).toLocaleString();
   };
@@ -55,11 +53,3 @@ const TableContact = ({ lists }) => {
 
 export default TableContact;
 
-// <tr key={lists.email}>
-//   <td>{lists.name}</td>
-//   <td>{lists.email}</td>
-//   <td>{lists.subject}</td>
-//   <td>{lists.message}</td>
-//   <td>{new Date(lists.createDate.seconds * 1000).toLocaleString()}</td>
-//   <td>{new Date(lists.ModifiedDate.seconds * 1000).toLocaleString()}</td>
-// </tr>

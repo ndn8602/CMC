@@ -7,11 +7,14 @@ import ContentTop from "./ContentTop";
 import Container from "react-bootstrap/Container";
 import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
-// import LoadingSkeletonTop from "../Loading/LoadingSkeletonTop";
-// import LoadingSkeletonMid from "../Loading/LoadingSkeletonMid";
+import LoadingSkeletonTop from "../Loading/LoadingSkeletonTop";
+import LoadingSkeletonMid from "../Loading/LoadingSkeletonMid";
 import SmoothScroll from "../../components/SmoothScroll/SmoothScroll";
 import Navbar from "react-bootstrap/Navbar";
 import "./content.css";
+
+//  <!---- REDUCER GET DATA ---->
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "REQUEST_FIREBASE":
@@ -24,8 +27,10 @@ const reducer = (state, action) => {
       return state;
   }
 };
+//  <!---- END REDUCER GET DATA ---->
 
 export default function Content() {
+  // <!--- Use Reducer ---->
   const [{ loading, content }, dispatch] = useReducer(reducer, {
     loading: true,
     content: [],
@@ -41,8 +46,6 @@ export default function Content() {
           type: "GET_FIREBASE_SUCCESS",
           payload: data.docs.map((doc) => ({ ...doc.data(), id: doc.id })),
         });
-        console.log("data.");
-        console.log(data.docs.map((doc) => doc.data()));
       } catch (err) {
         dispatch({ type: "GET_FIREBASE_FAIL", payload: err.message });
       }
@@ -54,12 +57,6 @@ export default function Content() {
   const contentBottom = content.filter(
     (content) => content.position === "Bottom"
   );
-  console.log("contentTop");
-  console.log(contentTop);
-  console.log("contentMid");
-  console.log(contentMid);
-  console.log("contentBottom");
-  console.log(contentBottom);
   return (
     <>
       <div className="navbarFixed">
@@ -71,13 +68,26 @@ export default function Content() {
         <Header />
         <Container className="content">
           <section>
-            <ContentTop datas={contentTop} />
+            {!loading ? (
+              <ContentTop datas={contentTop} />
+            ) : (
+              <LoadingSkeletonTop />
+            )}
           </section>
           <main>
-            <ContentMid datas={contentMid} />
+            {" "}
+            {!loading ? (
+              <ContentMid datas={contentMid} />
+            ) : (
+              <LoadingSkeletonMid />
+            )}
           </main>
           <section>
-            {/* <ContentBottom data={contentBottom} /> */}
+            {!loading ? (
+              <ContentBottom datas={contentBottom} />
+            ) : (
+              <LoadingSkeletonTop />
+            )}
           </section>
         </Container>
         <Footer />

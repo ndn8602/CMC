@@ -1,16 +1,14 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 import ContentBottomChild from "../../components/ContentBottom/ContentBottomChild";
 
-const ContentBottom = ({ data }) => {
+const ContentBottom = ({ datas }) => {
   return (
-    <div className="contentBottom">
-      {data.map((contentBottom) => (
-        <ContentBottomChild
-          key={contentBottom.id}
-          contentBottom={contentBottom}
-        />
+    <Container>
+      {datas.map((data) => (
+        <ContentBottomChild key={data.id} data={data} />
       ))}
-    </div>
+    </Container>
   );
 };
 

@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { UserAuth } from "../../../context/AuthContext";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Row, Col, Button, Form } from "react-bootstrap";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDoc, doc } from "firebase/firestore";
 import { db, storage } from "../../../firebase";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
-const Content = () => {
+const UpdateContent = () => {
+  const params = useParams();
+  const { id } = params;
+  console.log("id");
+  console.log(id);
   const navigate = useNavigate();
   const { user, logout } = UserAuth();
   const usersCollectionRef = collection(db, "content");
@@ -16,19 +19,9 @@ const Content = () => {
   const [position, setPosition] = useState("Top");
   const [content, setContent] = useState("");
   const [numberPosition, setNumberPosition] = useState(0);
-  const [image, setImage] = useState("");
+
   const [file, setFile] = useState("");
-  const [lists, setList] = useState([]);
-  const createContent = async () => {
-    await addDoc(usersCollectionRef, {
-      title: title,
-      position: position,
-      numberPosition: numberPosition,
-      content: content,
-      image: image,
-    });
-    alert("added");
-  };
+  const [dataa, setData] = useState([]);
 
   const handleLogout = async () => {
     try {
@@ -40,53 +33,30 @@ const Content = () => {
     }
   };
 
+  const getData = async (id) => {
+    console.log("pass");
+    console.log(id);
+    const contentDoc = doc(db, "content", `${id}`);
+    const docSnap = await getDoc(contentDoc);
+    console.log(docSnap.data());
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+      setData(docSnap.data());
+      setTitle(dataa.title);
+      setPosition(dataa.position);
+      setContent(dataa.content);
+      setNumberPosition(dataa.numberPosition);
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  };
+  console.log(dataa);
   useEffect(() => {
-    const getDatas = async () => {
-      const contactCollectionRef = collection(db, "content");
-
-      const data = await getDocs(contactCollectionRef);
-      setList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-    getDatas();
-  }, []);
-  useEffect(() => {
-    const uploadFile = () => {
-      const name = new Date().getTime() + file.name;
-      console.log(name);
-      const storageRef = ref(storage, file.name);
-      const uploadTask = uploadBytesResumable(storageRef, file);
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Upload is paused");
-              break;
-            case "running":
-              console.log("Upload is running");
-              break;
-            default:
-              break;
-          }
-        },
-        (error) => {
-          // Handle unsuccessful uploads
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log("File available at", downloadURL);
-            setImage(downloadURL);
-          });
-        }
-      );
-    };
-
-    file && uploadFile();
-  }, [file]);
-  console.log(lists);
+    setTimeout(() => {
+      getData(id);
+    }, 3000);
+  }, [navigate, id]);
   return (
     <div className="pannelAdmin">
       <Row className=" overflow-hidden">
@@ -143,7 +113,7 @@ const Content = () => {
                 <Col md={2}>Add new content</Col>
                 <Col md={8}></Col>
                 <Col md={1}>
-                  <Button onClick={createContent}>Add</Button>
+                  <Button>Add</Button>
                 </Col>
                 <Col md={1}>
                   <Button>Cancel</Button>
@@ -154,6 +124,7 @@ const Content = () => {
                   <Form.Group className="mb-3">
                     <Form.Label>Title</Form.Label>
                     <Form.Control
+                      value={dataa.title}
                       type="text"
                       placeholder="Enter Your Name"
                       onChange={(e) => setTitle(e.target.value)}
@@ -163,7 +134,11 @@ const Content = () => {
                 <Col md={6}>
                   <Form.Group className="mb-3">
                     <Form.Label>Position</Form.Label>
-                    <Form.Select onChange={(e) => setPosition(e.target.value)}>
+
+                    <Form.Select
+                      value={dataa.position}
+                      onChange={(e) => setPosition(e.target.value)}
+                    >
                       <option value={"Top"}>Top</option>
                       <option value={"Mid"}>Mid</option>
                       <option value={"Bottom"}>Bottom</option>
@@ -177,6 +152,7 @@ const Content = () => {
                     <Form.Label>Number</Form.Label>
                     <Form.Control
                       type="Number"
+                      value={dataa.numberPosition}
                       placeholder="Enter You Number"
                       onChange={(e) => setNumberPosition(e.target.value)}
                     />
@@ -197,16 +173,12 @@ const Content = () => {
           <h2>Using CKEditor 5 build in React</h2>
           <CKEditor
             editor={ClassicEditor}
-            data="<p>Hello from CKEditor 5!</p>"
-            onReady={(editor) => {
-              // You can store the "editor" and use when it is needed.
-              console.log("Editor is ready to use!", editor);
-            }}
             onChange={(event, editor) => {
               const data = editor.getData();
               console.log({ data });
               setContent(editor.getData());
             }}
+            data={dataa.content ? dataa.content : ""}
             onBlur={(event, editor) => {
               console.log("Blur.", editor);
             }}
@@ -221,4 +193,4 @@ const Content = () => {
   );
 };
 
-export default Content;
+export default UpdateContent;
