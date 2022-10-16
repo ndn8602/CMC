@@ -5,6 +5,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
+
 import { auth } from ".././firebase";
 const UserContext = createContext();
 
@@ -32,6 +33,9 @@ export const AuthContextProvider = ({ children }) => {
   const logout = () => {
     return signOut(auth);
   };
+
+
+
 
   return (
     <UserContext.Provider value={{ createUser, user, logout, signIn }}>

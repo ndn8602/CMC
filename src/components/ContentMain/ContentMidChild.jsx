@@ -1,17 +1,14 @@
 import React from "react";
-import Skeleton from "react-loading-skeleton";
+import ReactHtmlParser from "react-html-parser";
+const ContentMidChild = ({ data }) => {
+  console.log("main");
 
-const ContentMainChild = ({ contentMain }) => {
   return (
-    <div>
-      <h5 data-aos="fade-down">{contentMain.title}</h5>
-      {contentMain.contents.map((content, index) => (
-        <p data-aos="fade-down" key={index}>
-          {content || <Skeleton />}
-        </p>
-      ))}
-    </div>
+    <>
+      <h5 data-aos="fade-down">{data.title}</h5>
+      <div className="contentMid">{ReactHtmlParser(data.content)}</div>
+    </>
   );
 };
 
-export default ContentMainChild;
+export default ContentMidChild;

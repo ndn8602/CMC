@@ -71,7 +71,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 #task
 
-1.setting editor
-2.Fix UI (I)
 3. Push data to firebase
 4. Get data from firebase
+   5.edit UI table contact
+5. CSS UI homepage

@@ -31,6 +31,7 @@ const Contact = () => {
       console.log(e.message);
     }
   };
+
   return (
     <div className="pannelAdmin">
       <Row className="overflow-hiddenr">
@@ -83,21 +84,10 @@ const Contact = () => {
         <Col md={10} className="p-0">
           <Alert variant="dark">Contact</Alert>
           <Table bordered hover size="sm">
-            <thead>
-              <tr>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Message</th>
-                <th>Subject</th>
-                <th>Create Date</th>
-                <th>Modified Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {lists.map((list) => (
+            {/* {lists.map((list) => (
                 <TableContact key={list.id} lists={list} />
-              ))}
-            </tbody>
+              ))} */}
+            <TableContact lists={lists} />
           </Table>
         </Col>
       </Row>

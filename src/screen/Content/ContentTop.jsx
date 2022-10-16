@@ -1,14 +1,14 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 import ContentTopChild from "../../components/ContentTop/ContentTopChild";
-const ContentTop = ({ data }) => {
+const ContentTop = ({ datas }) => {
   return (
     <div className="contentTop">
-      {data.map((contentTop) => (
-        <ContentTopChild
-          key={contentTop.id}
-          contentTop={contentTop}
-        ></ContentTopChild>
-      ))}
+      <Container className="m-0">
+        {datas.map((data) => (
+          <ContentTopChild key={data.id} data={data} />
+        ))}
+      </Container>
     </div>
   );
 };

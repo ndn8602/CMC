@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
 import "./Dashboard.css";
 import { Row, Col, Button, Alert, Table } from "react-bootstrap";
+import BootstrapTable from "react-bootstrap-table-next";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+import paginationFactory from "react-bootstrap-table2-paginator";
+import { db } from "../../firebase";
+import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 const Dashboard = () => {
   const navigate = useNavigate();
   const { user, logout } = UserAuth();
+  const [lists, setList] = useState([]);
+  useEffect(() => {
+    const getDatas = async () => {
+      const contactCollectionRef = collection(db, "content");
 
+      const data = await getDocs(contactCollectionRef);
+      setList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+    getDatas();
+  }, []);
+  let confirm = false;
+
+  // console.log(lists[0].id);
   const handleLogout = async () => {
     try {
       await logout();
@@ -16,6 +33,57 @@ const Dashboard = () => {
       console.log(e.message);
     }
   };
+  const deleteContent = async (id) => {
+    const contentDoc = doc(db, "content", id);
+    console.log(contentDoc);
+    await deleteDoc(contentDoc);
+    console.log("deleted");
+  };
+  const Modify = (data, row) => {
+    console.log(data);
+    return (
+      <>
+        <Button variant="primary">update</Button>
+        <Button variant="danger" onClick={() => alert(data ? "null" : data)}>
+          delete
+        </Button>
+      </>
+    );
+  };
+  const tesst = (data, row) => {
+    return <span>test={data}</span>;
+  };
+
+  const columns = [
+    {
+      dataField: "title",
+      text: "Title",
+      sort: true,
+      // formatter: tesst,
+    },
+    {
+      dataField: "numberPosition",
+      text: "Number",
+      sort: true,
+    },
+    {
+      dataField: "position",
+      text: "Position",
+    },
+    {
+      dataField: "image",
+      text: "Image",
+    },
+    {
+      dataField: "content",
+      text: "Message",
+    },
+    {
+      dataField: "Modify",
+      text: "Modify",
+      formatter: Modify,
+    },
+  ];
   return (
     <div className="pannelAdmin">
       <Row className="overflow-hidden">
@@ -66,7 +134,16 @@ const Dashboard = () => {
         </Col>
         {/* <!--- Content ---> */}
         <Col md={10} className="p-0">
-          <Alert variant="dark">Admin --&gt; pull & modify content </Alert>
+          <BootstrapTable
+            keyField="id"
+            data={lists}
+            columns={columns}
+            striped
+            hover
+            condensed
+            pagination={paginationFactory({ showTotal: false })}
+            rowStyle={{ whiteSpace: "normal" }}
+          />
         </Col>
       </Row>
     </div>

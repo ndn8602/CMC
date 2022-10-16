@@ -1,28 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../../../context/AuthContext";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { Row, Col, Button, Form } from "react-bootstrap";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import { db, storage } from "../../../firebase";
 import {
-  Row,
-  Col,
-  Button,
-  Alert,
-  Form,
-  Navbar,
-  Container,
-} from "react-bootstrap";
-import Ckeditor from "./Ckeditor";
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 const Content = () => {
   const navigate = useNavigate();
   const { user, logout } = UserAuth();
+  const usersCollectionRef = collection(db, "content");
   const [title, setTitle] = useState("");
   const [position, setPosition] = useState("");
   const [content, setContent] = useState("");
   const [numberPosition, setNumberPosition] = useState(0);
-  const [imageUpload, setImageUpload] = useState("");
-  const [imageUrls, setImageUrls] = useState([]);
+  const [image, setImage] = useState("");
+  const [file, setFile] = useState("");
+  const [lists, setList] = useState([]);
+
+  console.log("info");
+  console.log(title);
+  console.log(position);
+  console.log(content);
+  console.log(image);
+
+  const createContent = async () => {
+    await addDoc(usersCollectionRef, {
+      title: title,
+      position: position,
+      numberPosition: numberPosition,
+      content: content,
+      image: image,
+    });
+    console.log("added");
+  };
   const handleLogout = async () => {
     try {
       await logout();
@@ -32,10 +50,54 @@ const Content = () => {
       console.log(e.message);
     }
   };
-  console.log(title);
-  console.log(numberPosition);
-  console.log(position);
-  console.log(content);
+
+  useEffect(() => {
+    const getDatas = async () => {
+      const contactCollectionRef = collection(db, "content");
+
+      const data = await getDocs(contactCollectionRef);
+      setList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+    getDatas();
+  }, []);
+  useEffect(() => {
+    const uploadFile = () => {
+      const name = new Date().getTime() + file.name;
+      console.log(name);
+      const storageRef = ref(storage, file.name);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+            default:
+              break;
+          }
+        },
+        (error) => {
+          // Handle unsuccessful uploads
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+            setImage(downloadURL);
+          });
+        }
+      );
+    };
+
+    file && uploadFile();
+  }, [file]);
+  console.log(lists);
   return (
     <div className="pannelAdmin">
       <Row className=" overflow-hidden">
@@ -92,7 +154,7 @@ const Content = () => {
                 <Col md={2}>Add new content</Col>
                 <Col md={8}></Col>
                 <Col md={1}>
-                  <Button>Add</Button>
+                  <Button onClick={createContent}>Add</Button>
                 </Col>
                 <Col md={1}>
                   <Button>Cancel</Button>
@@ -134,7 +196,10 @@ const Content = () => {
                 <Col md={6}>
                   <Form.Group controlId="formFile" className="mb-3">
                     <Form.Label>Image</Form.Label>
-                    <Form.Control type="file" />
+                    <Form.Control
+                      type="file"
+                      onChange={(e) => setFile(e.target.files[0])}
+                    />
                   </Form.Group>
                 </Col>
               </Row>
