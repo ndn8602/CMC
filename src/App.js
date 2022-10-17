@@ -10,6 +10,7 @@ import "./screen/Header/Header.css";
 import Contact from "./screen/Admin/Contact/Contact";
 import ContentAdmin from "./screen/Admin/Content/Content";
 import UpdateContent from "./screen/Admin/Content/UpdateContent";
+import Banner from "./screen/Admin/Banner/Banner";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             }
           />
           <Route path="admin/contact" element={<Contact />} />
+          <Route path="/banner" element={<Banner />} />
           <Route path="admin/content" element={<ContentAdmin />} />
           <Route path="admin/content/:id" element={<UpdateContent />} />
           <Route path="/signup" element={<Signup />} />

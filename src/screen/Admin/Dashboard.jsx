@@ -13,6 +13,9 @@ import {
   doc,
   getDoc,
   getDocs,
+  onSnapshot,
+  orderBy,
+  query,
   updateDoc,
 } from "firebase/firestore";
 import ReactHtmlParser from "react-html-parser";
@@ -21,13 +24,12 @@ const Dashboard = () => {
   const { user, logout } = UserAuth();
   const [lists, setList] = useState([]);
   useEffect(() => {
-    const getDatas = async () => {
-      const contactCollectionRef = collection(db, "content");
-
-      const data = await getDocs(contactCollectionRef);
-      setList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-    getDatas();
+    const contactCollectionRef = collection(db, "content");
+    const q = query(contactCollectionRef, orderBy("numberPosition", "asc"));
+    const data = onSnapshot(q, (snapshot) =>
+      setList(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    );
+    return data;
   }, []);
 
   const handleLogout = async () => {
@@ -67,15 +69,23 @@ const Dashboard = () => {
       </>
     );
   };
-
+  console.log(lists.position);
   const convertHtml = (data, row) => {
     return ReactHtmlParser(data);
   };
+  const convertImg = (data, row) => {
+    return <img src={data} alt="" style={{ heigh: 200, width: 200 }} />;
+  };
+  const defaultSortedBy = [
+    {
+      dataField: "position",
+      order: "desc", // or asc
+    },
+  ];
   const columns = [
     {
       dataField: "title",
       text: "Title",
-      sort: true,
     },
     {
       dataField: "numberPosition",
@@ -90,6 +100,7 @@ const Dashboard = () => {
     {
       dataField: "image",
       text: "Image",
+      formatter: convertImg,
     },
     {
       dataField: "content",
@@ -161,6 +172,7 @@ const Dashboard = () => {
             condensed
             pagination={paginationFactory({ showTotal: false })}
             rowStyle={{ whiteSpace: "normal" }}
+            defaultSorted={defaultSortedBy}
           />
         </Col>
       </Row>

@@ -23,13 +23,13 @@ const Content = () => {
     await addDoc(usersCollectionRef, {
       title: title,
       position: position,
-      numberPosition: numberPosition,
+      numberPosition: Number(numberPosition),
       content: content,
       image: image,
     });
     alert("added");
   };
-
+  console.log(lists);
   const handleLogout = async () => {
     try {
       await logout();
@@ -86,7 +86,7 @@ const Content = () => {
 
     file && uploadFile();
   }, [file]);
-  console.log(lists);
+
   return (
     <div className="pannelAdmin">
       <Row className=" overflow-hidden">

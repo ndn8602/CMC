@@ -4,14 +4,15 @@ import { UserAuth } from "../../../context/AuthContext";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Row, Col, Button, Form } from "react-bootstrap";
-import { collection, addDoc, getDoc, doc } from "firebase/firestore";
-import { db, storage } from "../../../firebase";
+import { collection, getDoc, doc, updateDoc } from "firebase/firestore";
+import { db } from "../../../firebase";
+import { getDatabase, ref, child, get } from "firebase/database";
 
 const UpdateContent = () => {
   const params = useParams();
   const { id } = params;
-  console.log("id");
-  console.log(id);
+  // console.log("id");
+  // console.log(id);
   const navigate = useNavigate();
   const { user, logout } = UserAuth();
   const usersCollectionRef = collection(db, "content");
@@ -34,8 +35,8 @@ const UpdateContent = () => {
   };
 
   const getData = async (id) => {
-    console.log("pass");
-    console.log(id);
+    // console.log("pass");
+    // console.log(id);
     const contentDoc = doc(db, "content", `${id}`);
     const docSnap = await getDoc(contentDoc);
     console.log(docSnap.data());
@@ -51,12 +52,32 @@ const UpdateContent = () => {
       console.log("No such document!");
     }
   };
-  console.log(dataa);
+
+  // console.log(dataa);
   useEffect(() => {
     setTimeout(() => {
       getData(id);
     }, 3000);
   }, [navigate, id]);
+
+  const updateContent = async (
+    id,
+    title,
+    position,
+    numberPosition,
+    content,
+    file
+  ) => {
+    const contentDoc = doc(db, "content", id);
+    console.log("contentDoc");
+    await updateDoc(contentDoc, {
+      title: title,
+      position: position,
+      content: content,
+      numberPosition: numberPosition,
+    });
+    alert("updated");
+  };
   return (
     <div className="pannelAdmin">
       <Row className=" overflow-hidden">
@@ -110,10 +131,22 @@ const UpdateContent = () => {
           <Form>
             <Row className="m-0 ">
               <Row>
-                <Col md={2}>Add new content</Col>
+                <Col md={2}>Update Content</Col>
                 <Col md={8}></Col>
                 <Col md={1}>
-                  <Button>Add</Button>
+                  <Button
+                    onClick={() =>
+                      updateContent(
+                        dataa.id,
+                        dataa.title,
+                        dataa.position,
+                        dataa.numberPosition,
+                        dataa.content
+                      )
+                    }
+                  >
+                    Update
+                  </Button>
                 </Col>
                 <Col md={1}>
                   <Button>Cancel</Button>
@@ -124,7 +157,7 @@ const UpdateContent = () => {
                   <Form.Group className="mb-3">
                     <Form.Label>Title</Form.Label>
                     <Form.Control
-                      value={dataa.title}
+                      value={dataa.title ? dataa.title : ""}
                       type="text"
                       placeholder="Enter Your Name"
                       onChange={(e) => setTitle(e.target.value)}
@@ -134,9 +167,8 @@ const UpdateContent = () => {
                 <Col md={6}>
                   <Form.Group className="mb-3">
                     <Form.Label>Position</Form.Label>
-
                     <Form.Select
-                      value={dataa.position}
+                      value={dataa.position ? dataa.position : ""}
                       onChange={(e) => setPosition(e.target.value)}
                     >
                       <option value={"Top"}>Top</option>
@@ -152,7 +184,7 @@ const UpdateContent = () => {
                     <Form.Label>Number</Form.Label>
                     <Form.Control
                       type="Number"
-                      value={dataa.numberPosition}
+                      value={dataa.numberPosition ? dataa.numberPosition : ""}
                       placeholder="Enter You Number"
                       onChange={(e) => setNumberPosition(e.target.value)}
                     />
@@ -175,7 +207,6 @@ const UpdateContent = () => {
             editor={ClassicEditor}
             onChange={(event, editor) => {
               const data = editor.getData();
-              console.log({ data });
               setContent(editor.getData());
             }}
             data={dataa.content ? dataa.content : ""}

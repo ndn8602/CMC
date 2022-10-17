@@ -7,7 +7,7 @@ const ContentBottomChild = ({ data }) => {
     <>
       <Row>
         <Col md={3}>
-          <img src={data.image} alt="" className="img-fluid"/>
+          <img src={data.image} alt="" className="img-fluid" />
         </Col>
         <Col md={9}>
           <h5 className="contentTitle" data-aos="fade-down">
