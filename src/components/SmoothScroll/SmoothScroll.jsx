@@ -56,13 +56,10 @@ const Scroll = () => {
   useEffect(() => {
     const p = document.querySelectorAll("p");
     const li = document.querySelectorAll("li");
-    console.log(p);
     p.forEach((element) => {
-      console.log(element);
       element.setAttribute("data-aos", "fade-down");
     });
     li.forEach((element) => {
-      console.log(element);
       element.setAttribute("data-aos", "fade-down");
     });
 

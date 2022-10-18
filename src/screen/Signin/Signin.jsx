@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { UserAuth } from "../../context/AuthContext";
+import { UserAuth } from "../../context/ServiceContext";
 import "./Signin.css";
 import { useNavigate } from "react-router-dom";
 const Signup = () => {

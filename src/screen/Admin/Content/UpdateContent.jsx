@@ -1,83 +1,88 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { UserAuth } from "../../../context/AuthContext";
+import { UserAuth } from "../../../context/ServiceContext";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Row, Col, Button, Form } from "react-bootstrap";
-import { collection, getDoc, doc, updateDoc } from "firebase/firestore";
-import { db } from "../../../firebase";
-import { getDatabase, ref, child, get } from "firebase/database";
-
 const UpdateContent = () => {
   const params = useParams();
   const { id } = params;
-  // console.log("id");
-  // console.log(id);
   const navigate = useNavigate();
-  const { user, logout } = UserAuth();
-  const usersCollectionRef = collection(db, "content");
+  const { user, logout, getContent, updateContent } = UserAuth();
   const [title, setTitle] = useState("");
   const [position, setPosition] = useState("Top");
   const [content, setContent] = useState("");
   const [numberPosition, setNumberPosition] = useState(0);
-
   const [file, setFile] = useState("");
-  const [dataa, setData] = useState([]);
-
+  const [message, setMessage] = useState({ error: false, msg: "" });
   const handleLogout = async () => {
     try {
       await logout();
       navigate("/signin");
       console.log("you logout");
     } catch (e) {
-      console.log(e.message);
+      console.log(message);
     }
   };
 
-  const getData = async (id) => {
-    // console.log("pass");
-    // console.log(id);
-    const contentDoc = doc(db, "content", `${id}`);
-    const docSnap = await getDoc(contentDoc);
-    console.log(docSnap.data());
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-      setData(docSnap.data());
-      setTitle(dataa.title);
-      setPosition(dataa.position);
-      setContent(dataa.content);
-      setNumberPosition(dataa.numberPosition);
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage("");
+    if (
+      title === "" ||
+      position === "" ||
+      numberPosition === "" ||
+      content === ""
+    ) {
+      setMessage({ error: true, msg: "All fields are mandatory!" });
+      return;
     }
-  };
-
-  // console.log(dataa);
-  useEffect(() => {
-    setTimeout(() => {
-      getData(id);
-    }, 3000);
-  }, [navigate, id]);
-
-  const updateContent = async (
-    id,
-    title,
-    position,
-    numberPosition,
-    content,
-    file
-  ) => {
-    const contentDoc = doc(db, "content", id);
-    console.log("contentDoc");
-    await updateDoc(contentDoc, {
+    const newContent = {
       title: title,
       position: position,
-      content: content,
       numberPosition: numberPosition,
-    });
-    alert("updated");
+      content: content,
+      file: file,
+    };
+    console.log(newContent);
+    try {
+      if (id !== undefined && id !== "") {
+        console.log(`id : ${id}`);
+        await updateContent(id, newContent);
+        setMessage({ error: false, msg: "Updated successfully!" });
+      }
+    } catch (err) {
+      setMessage({ error: true, msg: err.message });
+    }
+    setTitle("");
+    setPosition("");
+    setNumberPosition("");
+    setContent("");
+    navigate("../admin");
   };
+
+  const editHandler = async () => {
+    setMessage("");
+    try {
+      const docSnap = await getContent(id);
+      console.log("the record is :", docSnap.data());
+      setTitle(docSnap.data().title);
+      setPosition(docSnap.data().position);
+      setNumberPosition(docSnap.data().numberPosition);
+      setContent(docSnap.data().content);
+      setFile(docSnap.data().file);
+    } catch (err) {
+      setMessage({ error: true, msg: err.message });
+    }
+  };
+
+  useEffect(() => {
+    console.log("The id here is : ", id);
+    if (id !== undefined && id !== "") {
+      editHandler();
+    }
+  }, [id]);
+
   return (
     <div className="pannelAdmin">
       <Row className=" overflow-hidden">
@@ -128,25 +133,13 @@ const UpdateContent = () => {
         </Col>
         {/* <!--- Content ---> */}
         <Col md={10} className="">
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Row className="m-0 ">
               <Row>
                 <Col md={2}>Update Content</Col>
                 <Col md={8}></Col>
                 <Col md={1}>
-                  <Button
-                    onClick={() =>
-                      updateContent(
-                        dataa.id,
-                        dataa.title,
-                        dataa.position,
-                        dataa.numberPosition,
-                        dataa.content
-                      )
-                    }
-                  >
-                    Update
-                  </Button>
+                  <Button type="submit">Update</Button>
                 </Col>
                 <Col md={1}>
                   <Button>Cancel</Button>
@@ -157,7 +150,7 @@ const UpdateContent = () => {
                   <Form.Group className="mb-3">
                     <Form.Label>Title</Form.Label>
                     <Form.Control
-                      value={dataa.title ? dataa.title : ""}
+                      value={title}
                       type="text"
                       placeholder="Enter Your Name"
                       onChange={(e) => setTitle(e.target.value)}
@@ -168,7 +161,7 @@ const UpdateContent = () => {
                   <Form.Group className="mb-3">
                     <Form.Label>Position</Form.Label>
                     <Form.Select
-                      value={dataa.position ? dataa.position : ""}
+                      value={position}
                       onChange={(e) => setPosition(e.target.value)}
                     >
                       <option value={"Top"}>Top</option>
@@ -184,7 +177,7 @@ const UpdateContent = () => {
                     <Form.Label>Number</Form.Label>
                     <Form.Control
                       type="Number"
-                      value={dataa.numberPosition ? dataa.numberPosition : ""}
+                      value={numberPosition}
                       placeholder="Enter You Number"
                       onChange={(e) => setNumberPosition(e.target.value)}
                     />
@@ -206,10 +199,9 @@ const UpdateContent = () => {
           <CKEditor
             editor={ClassicEditor}
             onChange={(event, editor) => {
-              const data = editor.getData();
               setContent(editor.getData());
             }}
-            data={dataa.content ? dataa.content : ""}
+            data={content}
             onBlur={(event, editor) => {
               console.log("Blur.", editor);
             }}

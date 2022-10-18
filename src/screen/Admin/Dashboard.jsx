@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserAuth } from "../../context/AuthContext";
+
 import "./Dashboard.css";
 import { Row, Col, Button } from "react-bootstrap";
 import BootstrapTable from "react-bootstrap-table-next";
@@ -19,6 +19,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import ReactHtmlParser from "react-html-parser";
+import { UserAuth } from "../../context/ServiceContext";
 const Dashboard = () => {
   const navigate = useNavigate();
   const { user, logout } = UserAuth();
@@ -42,14 +43,14 @@ const Dashboard = () => {
     }
   };
   const updateContent = async (id) => {
-    const contentDoc = doc(db, "content", id);
-    const docSnap = await getDoc(contentDoc);
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-    }
+    // const contentDoc = doc(db, "content", id);
+    // const docSnap = await getDoc(contentDoc);
+    // if (docSnap.exists()) {
+    //   console.log("Document data:", docSnap.data());
+    // } else {
+    //   // doc.data() will be undefined in this case
+    //   console.log("No such document!");
+    // }
     navigate(`../admin/content/${id}`);
   };
   const deleteContent = async (id) => {
@@ -69,7 +70,6 @@ const Dashboard = () => {
       </>
     );
   };
-  console.log(lists.position);
   const convertHtml = (data, row) => {
     return ReactHtmlParser(data);
   };
@@ -146,6 +146,12 @@ const Dashboard = () => {
                   <Link to="./contact">
                     <i className="fa fa-list fa-2x" />
                     <span className="nav-text">Contact</span>
+                  </Link>
+                </li>
+                <li className="has-subnav">
+                  <Link to="./banner">
+                    <i className="fa fa-list fa-2x" />
+                    <span className="nav-text">Banner</span>
                   </Link>
                 </li>
               </ul>

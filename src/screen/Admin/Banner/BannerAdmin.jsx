@@ -1,27 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { db } from "../../../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import React from "react";
+import { Col, Row, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { Row, Col, Button, Alert, Table } from "react-bootstrap";
-import "./Contact.css";
-import TableContact from "./TableContact";
 import { UserAuth } from "../../../context/ServiceContext";
 
-const Contact = () => {
+const BannerAmin = () => {
   const navigate = useNavigate();
   const { user, logout } = UserAuth();
-  const [lists, setList] = useState([]);
-
-  useEffect(() => {
-    const getDatas = async () => {
-      const contactCollectionRef = collection(db, "contact");
-
-      const data = await getDocs(contactCollectionRef);
-      setList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-    getDatas();
-  }, []);
-
   const handleLogout = async () => {
     try {
       await logout();
@@ -31,10 +15,9 @@ const Contact = () => {
       console.log(e.message);
     }
   };
-
   return (
     <div className="pannelAdmin">
-      <Row className="overflow-hiddenr">
+      <Row className="overflow-hidden">
         <Col md={2} className="sidebar">
           <div className="area">
             <nav className="main-menu">
@@ -56,15 +39,21 @@ const Contact = () => {
                   </Link>
                 </li>
                 <li className="has-subnav">
-                  <Link to="../admin/content">
+                  <Link to="./content">
                     <i className="fa fa-laptop fa-2x" />
                     <span className="nav-text">Content</span>
                   </Link>
                 </li>
                 <li className="has-subnav">
-                  <Link to="../admin/contact">
+                  <Link to="./contact">
                     <i className="fa fa-list fa-2x" />
                     <span className="nav-text">Contact</span>
+                  </Link>
+                </li>
+                <li className="has-subnav">
+                  <Link to="./banner">
+                    <i className="fa fa-list fa-2x" />
+                    <span className="nav-text">Banner</span>
                   </Link>
                 </li>
               </ul>
@@ -81,18 +70,10 @@ const Contact = () => {
           </div>
         </Col>
         {/* <!--- Content ---> */}
-        <Col md={10} className="p-0">
-          <Alert variant="dark">Contact</Alert>
-          <Table bordered hover size="sm">
-            {/* {lists.map((list) => (
-                <TableContact key={list.id} lists={list} />
-              ))} */}
-            <TableContact lists={lists} />
-          </Table>
-        </Col>
+        <Col md={10} className="p-0"></Col>
       </Row>
     </div>
   );
 };
 
-export default Contact;
+export default BannerAmin;

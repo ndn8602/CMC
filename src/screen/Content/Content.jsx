@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import ContentMid from "./ContentMid";
@@ -34,19 +34,6 @@ export default function Content() {
     loading: true,
     listcontent: [],
   });
-  const [content, setContent] = useState([]);
-
-  useEffect(() => {
-    const contactCollectionRef = collection(db, "content");
-    const q = query(contactCollectionRef, orderBy("numberPosition", "asc"));
-    const data = onSnapshot(q, (snapshot) =>
-      setContent(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-    );
-    return data;
-  }, []);
-
-  console.log("content");
-  console.log(content);
 
   useEffect(() => {
     dispatch({ type: "REQUEST_FIREBASE" });

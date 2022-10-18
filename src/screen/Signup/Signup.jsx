@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { UserAuth } from "../../context/AuthContext";
 import "./Signup.css";
 import { useNavigate } from "react-router-dom";
+import { UserAuth } from "../../context/ServiceContext";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
