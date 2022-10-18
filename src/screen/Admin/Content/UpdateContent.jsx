@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { UserAuth } from "../../../context/ServiceContext";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { Row, Col, Button, Form } from "react-bootstrap";
+import { Row, Col, Button, Form, InputGroup } from "react-bootstrap";
 const UpdateContent = () => {
   const params = useParams();
   const { id } = params;
@@ -13,8 +13,10 @@ const UpdateContent = () => {
   const [position, setPosition] = useState("Top");
   const [content, setContent] = useState("");
   const [numberPosition, setNumberPosition] = useState(0);
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState(null);
   const [message, setMessage] = useState({ error: false, msg: "" });
+  const [check, setCheck] = useState(true);
+  const [banner, setBanner] = useState("");
   const handleLogout = async () => {
     try {
       await logout();
@@ -32,7 +34,8 @@ const UpdateContent = () => {
       title === "" ||
       position === "" ||
       numberPosition === "" ||
-      content === ""
+      content === "" ||
+      file === ""
     ) {
       setMessage({ error: true, msg: "All fields are mandatory!" });
       return;
@@ -42,47 +45,61 @@ const UpdateContent = () => {
       position: position,
       numberPosition: numberPosition,
       content: content,
-      file: file,
+      banner: banner,
     };
     console.log(newContent);
     try {
       if (id !== undefined && id !== "") {
         console.log(`id : ${id}`);
+        console.log(newContent);
         await updateContent(id, newContent);
         setMessage({ error: false, msg: "Updated successfully!" });
       }
     } catch (err) {
+      console.log(newContent);
       setMessage({ error: true, msg: err.message });
     }
     setTitle("");
     setPosition("");
     setNumberPosition("");
     setContent("");
-    navigate("../admin");
+    setBanner("");
+    setCheck(false);
+    // navigate("../admin");
   };
-
-  const editHandler = async () => {
-    setMessage("");
-    try {
-      const docSnap = await getContent(id);
-      console.log("the record is :", docSnap.data());
-      setTitle(docSnap.data().title);
-      setPosition(docSnap.data().position);
-      setNumberPosition(docSnap.data().numberPosition);
-      setContent(docSnap.data().content);
-      setFile(docSnap.data().file);
-    } catch (err) {
-      setMessage({ error: true, msg: err.message });
-    }
-  };
+  console.log(message);
 
   useEffect(() => {
+    const editHandler = async () => {
+      setMessage("");
+      try {
+        const docSnap = await getContent(id);
+        console.log("the record is :", docSnap.data());
+        setTitle(docSnap.data().title);
+        setPosition(docSnap.data().position);
+        setNumberPosition(docSnap.data().numberPosition);
+        setContent(docSnap.data().content);
+        if (docSnap.data().file) {
+          setFile(docSnap.data().file);
+        } else {
+          setFile(null);
+        }
+        setFile(docSnap.data().file);
+        setBanner(docSnap.data().banner);
+      } catch (err) {
+        setMessage({ error: true, msg: err.message });
+      }
+    };
     console.log("The id here is : ", id);
     if (id !== undefined && id !== "") {
       editHandler();
     }
-  }, [id]);
+  }, [id, navigate]);
 
+  const handleInputBanner = () => {
+    setCheck(!check);
+    setBanner("");
+  };
   return (
     <div className="pannelAdmin">
       <Row className=" overflow-hidden">
@@ -193,6 +210,21 @@ const UpdateContent = () => {
                   </Form.Group>
                 </Col>
               </Row>
+              <Form.Group controlId="banner">
+                <Form.Label>Banner</Form.Label>
+                <InputGroup className="mb-3">
+                  <InputGroup.Checkbox
+                    value={check}
+                    onClick={handleInputBanner}
+                  />
+                  <Form.Control
+                    value={banner ? banner : ""}
+                    onChange={(e) => setBanner(e.target.value)}
+                    className="inputBanner"
+                    disabled={check}
+                  />
+                </InputGroup>
+              </Form.Group>
             </Row>
           </Form>
           <h2>Using CKEditor 5 build in React</h2>

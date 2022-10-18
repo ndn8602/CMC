@@ -39,7 +39,7 @@ const Contact = () => {
           <div className="area">
             <nav className="main-menu">
               <div className="sidebar-logo">
-                <img src="./image/Logo.png" alt="" />
+                <img src="../image/Logo.png" alt="" />
               </div>
               <div className="sidebar-avatar">
                 <img

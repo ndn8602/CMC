@@ -3,7 +3,7 @@ import { Row, Col, Button } from "react-bootstrap";
 import Scrollbar from "smooth-scrollbar";
 import AOS from "aos";
 
-const Banner = () => {
+const BannerContent = () => {
   const content = document.querySelector(".content");
   AOS.init({ delay: 500 });
   const smoothScroll = Scrollbar.init(document.getElementById("webScroll"));
@@ -13,9 +13,11 @@ const Banner = () => {
 
   return (
     <div className="banner">
-      <Row style={{ height: 200, backgroundColor: "#333" }} variant="dark">
-        <Col md={9}>Learn more EB3 Visa Process</Col>
-        <Col md={3}>
+      <Row>
+        <Col md={9}>
+          <h3 className="bannerContent-Title">Learn more EB3 Visa Process</h3>
+        </Col>
+        <Col md={3} className="bannerButton">
           <Button onClick={sessionContent}>Click here</Button>
         </Col>
       </Row>
@@ -23,4 +25,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default BannerContent;

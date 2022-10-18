@@ -18,7 +18,7 @@ const ContentBottomChild = ({ data }) => {
           <div className="contentBottom">{ReactHtmlParser(data.content)}</div>
         </Col>
       </Row>
-      <BannerBottom />
+      <BannerBottom data={data} />
     </>
   );
 };

@@ -125,14 +125,12 @@ const Footer = () => {
             <div className="text-brand">
               <h3>LET'S GET STARTED</h3>
               <p>
-                We'r here to help answer your questions. Judicial matters can be
-                complicated, our experts are on hand to help inform you of every
-                aspect regarding your topic. We take great pride in usong our
-                experties for you and look forward to hearing from you.{" "}
+                We are here to anwser any questions you may have and create an
+                effective solution for your needs.
               </p>
             </div>
           </Col>
-          <Col md={8} className='footerForm-contact'>
+          <Col md={8} className="footerForm-contact">
             <Row>
               <Col md={6}>
                 <Form.Group className="mb-3">

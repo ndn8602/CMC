@@ -11,8 +11,10 @@ const ContentMid = ({ datas }) => {
         {datas.map((data) => (
           <ContentMidChild key={data.id} data={data} />
         ))}
+        <div className="">
+          <BannerContent />
+        </div>
       </Container>
-      <BannerContent />
     </>
   );
 };

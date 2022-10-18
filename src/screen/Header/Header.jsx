@@ -7,7 +7,7 @@ export default function Header() {
         <h1>VIETNAM WORKED</h1>
         <p>A reliable labor source for the US market</p>
       </div>
-      <div className="bannerImage d-none d-lg-block">
+      <div className="bannerImage">
         <img src="./image/imageHeader.jpg" alt="" />
       </div>
     </header>

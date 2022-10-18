@@ -4,7 +4,7 @@ import { UserAuth } from "../../../context/ServiceContext";
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { Row, Col, Button, Form } from "react-bootstrap";
+import { Row, Col, Button, Form, InputGroup } from "react-bootstrap";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db, storage } from "../../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -20,6 +20,8 @@ const Content = () => {
   const [image, setImage] = useState("");
   const [file, setFile] = useState("");
   const [lists, setList] = useState([]);
+  const [check, setCheck] = useState(true);
+  const [banner, setBanner] = useState("");
   const createContent = async () => {
     await addDoc(usersCollectionRef, {
       title: title,
@@ -27,10 +29,10 @@ const Content = () => {
       numberPosition: Number(numberPosition),
       content: content,
       image: image,
+      banner: banner,
     });
-    alert("added");
+    navigate("/admin");
   };
-  console.log(lists);
   const handleLogout = async () => {
     try {
       await logout();
@@ -40,7 +42,6 @@ const Content = () => {
       console.log(e.message);
     }
   };
-
   useEffect(() => {
     const getDatas = async () => {
       const contactCollectionRef = collection(db, "content");
@@ -50,6 +51,7 @@ const Content = () => {
     };
     getDatas();
   }, []);
+
   useEffect(() => {
     const uploadFile = () => {
       const name = new Date().getTime() + file.name;
@@ -88,14 +90,19 @@ const Content = () => {
     file && uploadFile();
   }, [file]);
 
+  const handleInputBanner = () => {
+    setCheck(!check);
+    setBanner("");
+  };
+
   return (
     <div className="pannelAdmin">
       <Row className=" overflow-hidden">
         <Col md={2} className="sidebar">
           <div className="area">
             <nav className="main-menu">
-              <div className="sidebar-logo">
-                <img src="./image/Logo.png" alt="" />
+            <div className="sidebar-logo">
+                <img src="../image/Logo.png" alt="" />
               </div>
               <div className="sidebar-avatar">
                 <img
@@ -193,6 +200,21 @@ const Content = () => {
                   </Form.Group>
                 </Col>
               </Row>
+              <Form.Group controlId="banner">
+                <Form.Label>Banner</Form.Label>
+                <InputGroup className="mb-3">
+                  <InputGroup.Checkbox
+                    value={check}
+                    onClick={handleInputBanner}
+                  />
+                  <Form.Control
+                    value={banner}
+                    onChange={(e) => setBanner(e.target.value)}
+                    className="inputBanner"
+                    disabled={check}
+                  />
+                </InputGroup>
+              </Form.Group>
             </Row>
           </Form>
           <h2>Using CKEditor 5 build in React</h2>

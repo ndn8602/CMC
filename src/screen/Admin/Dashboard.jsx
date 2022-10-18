@@ -11,12 +11,9 @@ import {
   collection,
   deleteDoc,
   doc,
-  getDoc,
-  getDocs,
   onSnapshot,
   orderBy,
   query,
-  updateDoc,
 } from "firebase/firestore";
 import ReactHtmlParser from "react-html-parser";
 import { UserAuth } from "../../context/ServiceContext";
@@ -43,14 +40,6 @@ const Dashboard = () => {
     }
   };
   const updateContent = async (id) => {
-    // const contentDoc = doc(db, "content", id);
-    // const docSnap = await getDoc(contentDoc);
-    // if (docSnap.exists()) {
-    //   console.log("Document data:", docSnap.data());
-    // } else {
-    //   // doc.data() will be undefined in this case
-    //   console.log("No such document!");
-    // }
     navigate(`../admin/content/${id}`);
   };
   const deleteContent = async (id) => {
@@ -108,6 +97,10 @@ const Dashboard = () => {
       formatter: convertHtml,
     },
     {
+      dataField: "banner",
+      text: "Banner",
+    },
+    {
       dataField: "id",
       text: "Modify",
       formatter: Modify,
@@ -146,12 +139,6 @@ const Dashboard = () => {
                   <Link to="./contact">
                     <i className="fa fa-list fa-2x" />
                     <span className="nav-text">Contact</span>
-                  </Link>
-                </li>
-                <li className="has-subnav">
-                  <Link to="./banner">
-                    <i className="fa fa-list fa-2x" />
-                    <span className="nav-text">Banner</span>
                   </Link>
                 </li>
               </ul>

@@ -52,4 +52,3 @@ const TableContact = ({ lists }) => {
 };
 
 export default TableContact;
-
