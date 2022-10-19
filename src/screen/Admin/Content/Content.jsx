@@ -5,7 +5,7 @@ import { UserAuth } from "../../../context/ServiceContext";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Row, Col, Button, Form, InputGroup } from "react-bootstrap";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { db, storage } from "../../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
@@ -19,7 +19,6 @@ const Content = () => {
   const [numberPosition, setNumberPosition] = useState(0);
   const [image, setImage] = useState("");
   const [file, setFile] = useState("");
-  const [lists, setList] = useState([]);
   const [check, setCheck] = useState(true);
   const [banner, setBanner] = useState("");
   const createContent = async () => {
@@ -42,19 +41,9 @@ const Content = () => {
       console.log(e.message);
     }
   };
-  useEffect(() => {
-    const getDatas = async () => {
-      const contactCollectionRef = collection(db, "content");
-
-      const data = await getDocs(contactCollectionRef);
-      setList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-    getDatas();
-  }, []);
 
   useEffect(() => {
     const uploadFile = () => {
-      const name = new Date().getTime() + file.name;
       const storageRef = ref(storage, file.name);
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(

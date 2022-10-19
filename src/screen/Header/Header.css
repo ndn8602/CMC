@@ -111,6 +111,9 @@ header {
   }
 }
 @media screen and (max-width: 571px) {
+  .bannerTitle {
+    top: 13%;
+  }
   .bannerTitle h1 {
     font-size: 36px;
   }
@@ -119,7 +122,7 @@ header {
     word-wrap: break-word;
   }
   .header {
-    height: 50rem;
+    height: 40rem;
   }
   .bannerImage {
     height: 28rem;
