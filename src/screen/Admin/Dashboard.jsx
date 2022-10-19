@@ -43,28 +43,40 @@ const Dashboard = () => {
     navigate(`../admin/content/${id}`);
   };
   const deleteContent = async (id) => {
-    const contentDoc = doc(db, "content", id);
-    await deleteDoc(contentDoc);
-    console.log("deleted");
+    if (window.confirm("Do you want to delete ?")) {
+      const contentDoc = doc(db, "content", id);
+      await deleteDoc(contentDoc);
+      console.log("deleted");
+    }
   };
   const Modify = (data, row) => {
     return (
       <>
-        <Button variant="primary" onClick={() => updateContent(data)}>
+        <Button
+          variant="primary"
+          className="mb-1"
+          onClick={() => updateContent(data)}
+        >
           update
         </Button>
-        <Button variant="danger" onClick={() => deleteContent(data)}>
+        <Button
+          variant="danger"
+          className="mt-3"
+          onClick={() => deleteContent(data)}
+        >
           delete
         </Button>
       </>
     );
   };
+
   const convertHtml = (data, row) => {
     return ReactHtmlParser(data);
   };
   const convertImg = (data, row) => {
     return <img src={data} alt="" style={{ heigh: 200, width: 200 }} />;
   };
+
   const defaultSortedBy = [
     {
       dataField: "position",

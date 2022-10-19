@@ -4,6 +4,8 @@ import { UserAuth } from "../../../context/ServiceContext";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Row, Col, Button, Form, InputGroup } from "react-bootstrap";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from "../../../firebase";
 const UpdateContent = () => {
   const params = useParams();
   const { id } = params;
@@ -13,10 +15,12 @@ const UpdateContent = () => {
   const [position, setPosition] = useState("Top");
   const [content, setContent] = useState("");
   const [numberPosition, setNumberPosition] = useState(0);
-  const [file, setFile] = useState(null);
+  const [image, setImage] = useState("");
+  const [file, setFile] = useState(undefined);
   const [message, setMessage] = useState({ error: false, msg: "" });
   const [check, setCheck] = useState(true);
   const [banner, setBanner] = useState("");
+  const [per, setperc] = useState(null); //percentage
   const handleLogout = async () => {
     try {
       await logout();
@@ -26,6 +30,7 @@ const UpdateContent = () => {
       console.log(message);
     }
   };
+  console.log(`image: ${image}`);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,13 +51,14 @@ const UpdateContent = () => {
       numberPosition: numberPosition,
       content: content,
       banner: banner,
+      image: image,
     };
     console.log(newContent);
     try {
       if (id !== undefined && id !== "") {
-        console.log(`id : ${id}`);
-        console.log(newContent);
-        await updateContent(id, newContent);
+        if (window.confirm("Are you sure ?")) {
+          await updateContent(id, newContent);
+        }
         setMessage({ error: false, msg: "Updated successfully!" });
       }
     } catch (err) {
@@ -65,10 +71,51 @@ const UpdateContent = () => {
     setContent("");
     setBanner("");
     setCheck(false);
-    // navigate("../admin");
+    navigate("../admin");
   };
-  console.log(message);
-
+  useEffect(() => {
+    const uploadFile = () => {
+      const name = new Date().getTime() + file.name;
+      try {
+        const storageRef = ref(storage, file.name);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log("Upload is " + progress + "% done");
+            setperc(progress);
+            switch (snapshot.state) {
+              case "paused":
+                console.log("Upload is paused");
+                break;
+              case "running":
+                console.log("Upload is running");
+                break;
+              default:
+                break;
+            }
+          },
+          (error) => {
+            // Handle unsuccessful uploads
+          },
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              console.log("File available at", downloadURL);
+              setImage(downloadURL);
+            });
+          }
+        );
+      } catch (e) {
+        console.log(e.message);
+      }
+    };
+    file && uploadFile();
+  }, [file]);
+  const comebackAdmin = () => {
+    navigate("../admin");
+  };
   useEffect(() => {
     const editHandler = async () => {
       setMessage("");
@@ -79,12 +126,7 @@ const UpdateContent = () => {
         setPosition(docSnap.data().position);
         setNumberPosition(docSnap.data().numberPosition);
         setContent(docSnap.data().content);
-        if (docSnap.data().file) {
-          setFile(docSnap.data().file);
-        } else {
-          setFile(null);
-        }
-        setFile(docSnap.data().file);
+        setImage(docSnap.data().image);
         setBanner(docSnap.data().banner);
       } catch (err) {
         setMessage({ error: true, msg: err.message });
@@ -100,6 +142,7 @@ const UpdateContent = () => {
     setCheck(!check);
     setBanner("");
   };
+
   return (
     <div className="pannelAdmin">
       <Row className=" overflow-hidden">
@@ -107,7 +150,7 @@ const UpdateContent = () => {
           <div className="area">
             <nav className="main-menu">
               <div className="sidebar-logo">
-                <img src="./image/Logo.png" alt="" />
+                <img src="../image/Logo.png" alt="" />
               </div>
               <div className="sidebar-avatar">
                 <img
@@ -156,10 +199,12 @@ const UpdateContent = () => {
                 <Col md={2}>Update Content</Col>
                 <Col md={8}></Col>
                 <Col md={1}>
-                  <Button type="submit">Update</Button>
+                  <Button type="submit" disabled={per !== null && per < 100}>
+                    Update
+                  </Button>
                 </Col>
                 <Col md={1}>
-                  <Button>Cancel</Button>
+                  <Button onClick={comebackAdmin}>Cancel</Button>
                 </Col>
               </Row>
               <Row>
@@ -241,7 +286,6 @@ const UpdateContent = () => {
               console.log("Focus.", editor);
             }}
           />
-          {content}
         </Col>
       </Row>
     </div>

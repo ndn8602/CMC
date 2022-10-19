@@ -55,7 +55,6 @@ const Content = () => {
   useEffect(() => {
     const uploadFile = () => {
       const name = new Date().getTime() + file.name;
-      console.log(name);
       const storageRef = ref(storage, file.name);
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(
@@ -101,7 +100,7 @@ const Content = () => {
         <Col md={2} className="sidebar">
           <div className="area">
             <nav className="main-menu">
-            <div className="sidebar-logo">
+              <div className="sidebar-logo">
                 <img src="../image/Logo.png" alt="" />
               </div>
               <div className="sidebar-avatar">
@@ -237,7 +236,6 @@ const Content = () => {
               console.log("Focus.", editor);
             }}
           />
-          {content}
         </Col>
       </Row>
     </div>
