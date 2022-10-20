@@ -82,55 +82,80 @@ const Content = () => {
     setCheck(!check);
     setBanner("");
   };
-
+  let width = window.innerWidth;
+  const [open, setOpen] = useState(false);
+  const HandleOpenMenu = () => {
+    if (open) {
+      setOpen(!open);
+    } else {
+      setOpen(!open);
+    }
+  };
   return (
-    <div className="pannelAdmin">
-      <Row className=" overflow-hidden">
-        <Col md={2} className="sidebar">
-          <div className="area">
-            <nav className="main-menu">
-              <div className="sidebar-logo">
-                <img src="../image/Logo.png" alt="" />
+    <div>
+      <Row className=" pannelAdmin overflow-hidden m-0">
+        <Col md={2} className={open ? "sidebar active p-0" : "sidebar p-0"}>
+          <div className="menu d-flex flex-column justify-content-between">
+            <div className="menu-head">
+              <div className="menu-headLogo sidebar-logo">
+                <img src="./image/Logo.png" alt="" />
               </div>
-              <div className="sidebar-avatar">
+              <div className="menu-headAdmin sidebar-avatar d-flex align-items-center">
                 <img
                   src="https://images.unsplash.com/photo-1440589473619-3cde28941638?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                   alt=""
                 />
-                <span>{user && user.email}</span>
+                <p>{user && user.email}</p>
               </div>
-              <ul>
-                <li className="has-subnav">
+              <div className="menu-headDirection">
+                <ul>
                   <Link to="../admin">
-                    <i className="fa fa-laptop fa-2x" />
-                    <span className="nav-text">Admin</span>
+                    <li className=" headDirection d-flex align-items-center ">
+                      <i className="fa-solid fa-palette fa-2x" />
+                      <span className="nav-text">Admin</span>
+                    </li>
                   </Link>
-                </li>
-                <li className="has-subnav">
                   <Link to="../admin/content">
-                    <i className="fa fa-laptop fa-2x" />
-                    <span className="nav-text">Content</span>
+                    <li className=" headDirection d-flex align-items-center ">
+                      <i className="fa-sharp fa-solid fa-file-contract fa-2x" />
+                      <span className="nav-text">Content</span>
+                    </li>
                   </Link>
-                </li>
-                <li className="has-subnav">
                   <Link to="../admin/contact">
-                    <i className="fa fa-list fa-2x" />
-                    <span className="nav-text">Contact</span>
+                    <li className="headDirection d-flex align-items-center ">
+                      <i class="fa-solid fa-address-book fa-2x" />
+                      <span className="nav-text">Contact</span>
+                    </li>
                   </Link>
-                </li>
-              </ul>
-
-              <ul className="logout">
+                </ul>
+              </div>
+            </div>
+            <div className="menu-bot d-flex align-items-center justify-content-center flex-column">
+              <ul>
                 <li>
-                  <Button onClick={handleLogout}>
-                    <i className="fa fa-power-off fa-2x" />
+                  <Button
+                    onClick={handleLogout}
+                    className="headDirection d-flex align-items-center "
+                    variant="danger"
+                  >
+                    <i className="fa-sharp fa-solid fa-right-from-bracket fa-2x" />
                     <span className="nav-text">Logout</span>
                   </Button>
                 </li>
+                <li className={width < 768 ? "" : "d-none"}>
+                  <Button
+                    onClick={HandleOpenMenu}
+                    className="headDirection d-flex align-items-center "
+                  >
+                    <i className="fa-solid fa-up-right-and-down-left-from-center fa-2x" />
+                    <span className="nav-text">Close</span>
+                  </Button>
+                </li>
               </ul>
-            </nav>
+            </div>
           </div>
         </Col>
+
         {/* <!--- Content ---> */}
         <Col md={10} className="">
           <Form>
@@ -205,7 +230,7 @@ const Content = () => {
               </Form.Group>
             </Row>
           </Form>
-          <h2>Using CKEditor 5 build in React</h2>
+          <h2>Description</h2>
           <CKEditor
             editor={ClassicEditor}
             data="<p>Hello from CKEditor 5!</p>"

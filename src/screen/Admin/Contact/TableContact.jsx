@@ -40,7 +40,7 @@ const TableContact = ({ lists }) => {
     },
   ];
   return (
-    <>
+    <div className=" dashboardTableDataContact">
       <BootstrapTable
         keyField="id"
         data={lists}
@@ -51,7 +51,7 @@ const TableContact = ({ lists }) => {
         pagination={paginationFactory()}
         rowStyle={{ whiteSpace: "normal" }}
       />
-    </>
+    </div>
   );
 };
 

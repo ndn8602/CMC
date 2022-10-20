@@ -41,7 +41,6 @@ const Dashboard = () => {
     }
   };
   let width = window.innerWidth;
-  console.log(`width:${width}`);
 
   const updateContent = async (id) => {
     navigate(`../admin/content/${id}`);
@@ -192,54 +191,6 @@ const Dashboard = () => {
               </ul>
             </div>
           </div>
-          {/* <div className="area">
-            <nav className="main-menu">
-              <div className="sidebar-logo">
-                <img src="./image/Logo.png" alt="" />
-              </div>
-              <div className="sidebar-avatar">
-                <img
-                  src="https://images.unsplash.com/photo-1440589473619-3cde28941638?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                  alt=""
-                />
-                <span>{user && user.email}</span>
-              </div>
-              <ul>
-                <li className="has-subnav">
-                  <Link to="../admin">
-                    <i className="fa-solid fa-palette fa-2x" />
-                    <span className="nav-text">Admin</span>
-                  </Link>
-                </li>
-                <li className="has-subnav">
-                  <Link to="./content">
-                    <i className="fa-sharp fa-solid fa-file-contract fa-2x" />
-                    <span className="nav-text">Content</span>
-                  </Link>
-                </li>
-                <li className="has-subnav">
-                  <Link to="./contact">
-                    <i class="fa-solid fa-address-book fa-2x" />
-                    <span className="nav-text">Contact</span>
-                  </Link>
-                </li>
-              </ul>
-
-              <ul className="logout">
-                <li>
-                  <Button onClick={handleLogout} className="btn-admin">
-                    <i className="fa-sharp fa-solid fa-right-from-bracket fa-2x" />
-                    <span className="nav-text">Logout</span>
-                  </Button>
-                </li>
-                <li className={width < 768 ? "" : "d-none"}>
-                  <Button onClick={HandleOpenMenu} className="btn-admin">
-                    <i className="fa-solid fa-up-right-and-down-left-from-center fa-2x" />
-                  </Button>
-                </li>
-              </ul>
-            </nav>
-          </div> */}
         </Col>
         {/* <!--- Content ---> */}
         <Col md={10} className="p-0 dashboardTableData">

@@ -217,27 +217,34 @@ nav.main-menu li.active > a,
 @media screen and (max-width: 768px) {
   .sidebar {
     width: 12% !important;
-    height: 100vh;
+    height: auto;
     padding: 0 !important;
     transition: 0.3s ease-in;
   }
-
+  .pannelAdmin {
+    overflow: hidden;
+  }
   .pannelAdmin .row {
     --bs-gutter-x: none;
   }
   .dashboardTableData {
     width: 88% !important;
   }
-
+  .dashboardTableDataContact {
+    width: 60% !important;
+  }
   .sidebar.active {
     width: 15rem !important;
   }
-  .react-bootstrap-table {
-    height: 35rem;
+  /* .dashboardTableData {
     overflow-y: scroll;
+  } */
+  .react-bootstrap-table {
+    height: 30rem;
+    overflow-y: scroll !important;
   }
   .react-bootstrap-table-pagination {
     width: 50% !important;
-    flex-wrap: nowrap;
+    flex-wrap: nowrap !important;
   }
 }
