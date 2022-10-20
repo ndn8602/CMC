@@ -25,6 +25,10 @@ const TableContact = ({ lists }) => {
       text: "Phone",
     },
     {
+      dataField: "address",
+      text: "Adress",
+    },
+    {
       dataField: "message",
       text: "Message",
     },

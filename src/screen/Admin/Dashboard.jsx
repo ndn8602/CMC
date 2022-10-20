@@ -21,6 +21,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { user, logout } = UserAuth();
   const [lists, setList] = useState([]);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     const contactCollectionRef = collection(db, "content");
     const q = query(contactCollectionRef, orderBy("numberPosition", "asc"));
@@ -39,6 +40,9 @@ const Dashboard = () => {
       console.log(e.message);
     }
   };
+  let width = window.innerWidth;
+  console.log(`width:${width}`);
+
   const updateContent = async (id) => {
     navigate(`../admin/content/${id}`);
   };
@@ -69,7 +73,14 @@ const Dashboard = () => {
       </>
     );
   };
-
+  console.log(`open:${open}`);
+  const HandleOpenMenu = () => {
+    if (open) {
+      setOpen(!open);
+    } else {
+      setOpen(!open);
+    }
+  };
   const convertHtml = (data, row) => {
     return ReactHtmlParser(data);
   };
@@ -119,10 +130,69 @@ const Dashboard = () => {
     },
   ];
   return (
-    <div className="pannelAdmin">
-      <Row className="overflow-hidden">
-        <Col md={2} className="sidebar">
-          <div className="area">
+    <div>
+      <Row className=" pannelAdmin overflow-hidden m-0">
+        <Col md={2} className={open ? "sidebar active p-0" : "sidebar p-0"}>
+          <div className="menu d-flex flex-column justify-content-between">
+            <div className="menu-head">
+              <div className="menu-headLogo sidebar-logo">
+                <img src="./image/Logo.png" alt="" />
+              </div>
+              <div className="menu-headAdmin sidebar-avatar d-flex align-items-center">
+                <img
+                  src="https://images.unsplash.com/photo-1440589473619-3cde28941638?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                  alt=""
+                />
+                <p>{user && user.email}</p>
+              </div>
+              <div className="menu-headDirection">
+                <ul>
+                  <Link to="../admin">
+                    <li className=" headDirection d-flex align-items-center ">
+                      <i className="fa-solid fa-palette fa-2x" />
+                      <span className="nav-text">Admin</span>
+                    </li>
+                  </Link>
+                  <Link to="./content">
+                    <li className=" headDirection d-flex align-items-center ">
+                      <i className="fa-sharp fa-solid fa-file-contract fa-2x" />
+                      <span className="nav-text">Content</span>
+                    </li>
+                  </Link>
+                  <Link to="./contact">
+                    <li className="headDirection d-flex align-items-center ">
+                      <i class="fa-solid fa-address-book fa-2x" />
+                      <span className="nav-text">Contact</span>
+                    </li>
+                  </Link>
+                </ul>
+              </div>
+            </div>
+            <div className="menu-bot d-flex align-items-center justify-content-center flex-column">
+              <ul>
+                <li>
+                  <Button
+                    onClick={handleLogout}
+                    className="headDirection d-flex align-items-center "
+                    variant="danger"
+                  >
+                    <i className="fa-sharp fa-solid fa-right-from-bracket fa-2x" />
+                    <span className="nav-text">Logout</span>
+                  </Button>
+                </li>
+                <li className={width < 768 ? "" : "d-none"}>
+                  <Button
+                    onClick={HandleOpenMenu}
+                    className="headDirection d-flex align-items-center "
+                  >
+                    <i className="fa-solid fa-up-right-and-down-left-from-center fa-2x" />
+                    <span className="nav-text">Close</span>
+                  </Button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          {/* <div className="area">
             <nav className="main-menu">
               <div className="sidebar-logo">
                 <img src="./image/Logo.png" alt="" />
@@ -137,19 +207,19 @@ const Dashboard = () => {
               <ul>
                 <li className="has-subnav">
                   <Link to="../admin">
-                    <i className="fa fa-laptop fa-2x" />
+                    <i className="fa-solid fa-palette fa-2x" />
                     <span className="nav-text">Admin</span>
                   </Link>
                 </li>
                 <li className="has-subnav">
                   <Link to="./content">
-                    <i className="fa fa-laptop fa-2x" />
+                    <i className="fa-sharp fa-solid fa-file-contract fa-2x" />
                     <span className="nav-text">Content</span>
                   </Link>
                 </li>
                 <li className="has-subnav">
                   <Link to="./contact">
-                    <i className="fa fa-list fa-2x" />
+                    <i class="fa-solid fa-address-book fa-2x" />
                     <span className="nav-text">Contact</span>
                   </Link>
                 </li>
@@ -157,17 +227,22 @@ const Dashboard = () => {
 
               <ul className="logout">
                 <li>
-                  <Button onClick={handleLogout}>
-                    <i className="fa fa-power-off fa-2x" />
+                  <Button onClick={handleLogout} className="btn-admin">
+                    <i className="fa-sharp fa-solid fa-right-from-bracket fa-2x" />
                     <span className="nav-text">Logout</span>
+                  </Button>
+                </li>
+                <li className={width < 768 ? "" : "d-none"}>
+                  <Button onClick={HandleOpenMenu} className="btn-admin">
+                    <i className="fa-solid fa-up-right-and-down-left-from-center fa-2x" />
                   </Button>
                 </li>
               </ul>
             </nav>
-          </div>
+          </div> */}
         </Col>
         {/* <!--- Content ---> */}
-        <Col md={10} className="p-0">
+        <Col md={10} className="p-0 dashboardTableData">
           <BootstrapTable
             keyField="id"
             data={lists}

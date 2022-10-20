@@ -1,6 +1,14 @@
 .wrap {
   height: 100vh;
+  position: relative;
+  flex-direction: column;
+  background-color: #333333;
 }
+.wrap img {
+  position: absolute;
+  top: 10%;
+}
+
 .form {
   width: 350px;
   height: 350px;

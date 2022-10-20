@@ -22,7 +22,8 @@ const Signup = () => {
     }
   };
   return (
-    <Container fluid="sm wrap d-flex justify-content-center align-items-center ">
+    <Container fluid=" wrap d-flex justify-content-center align-items-center ">
+      <img src="./image/Logo.png" alt="" />
       <Form className="form" onSubmit={handleSignin}>
         <h1>Sign In</h1>
         <Form.Group className="mb-3" controlId="formBasicEmail">

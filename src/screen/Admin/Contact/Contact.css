@@ -3,13 +3,24 @@
 .pannelAdmin .row {
   height: 100%;
   margin-right: 0 !important;
-  margin-top: 0 !important;
+  margin-top: 1rem !important;
+  --bs-gutter-x: 0 !important;
 }
+.pannelAdmin {
+  position: relative;
+  flex-wrap: nowrap !important;
+}
+
 .sidebar {
   height: 100vh;
   width: 100%;
 }
-
+.menu {
+  background-color: #777;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
 .sidebar-logo img {
   padding: 20px;
   width: 100%;
@@ -18,7 +29,7 @@
 }
 
 .sidebar-avatar img {
-  margin-left: 20px;
+  margin-left: 10px;
   width: 50px;
   height: 50px;
   background-size: cover;
@@ -32,8 +43,50 @@
   font-weight: 700;
   margin-left: 10px;
 }
+.menu-headDirection ul {
+  padding: 0;
+}
+.menu-headDirection ul li {
+  margin: 0.5rem auto;
+  list-style: none;
+  padding: 0;
+  color: #fff;
+  padding: 0.2rem;
+}
+.menu-headDirection ul li i {
+  padding-left: 0.5rem;
+}
+
+.menu-headDirection ul li:hover {
+  margin: 0.5rem auto;
+  list-style: none;
+  padding: 0;
+  background-color: rgb(167, 247, 240);
+}
+.menu-headDirection ul a {
+  text-decoration: none;
+}
+
 .fa-2x {
   font-size: 2em;
+}
+.menu-bot .btn-admin {
+  margin-bottom: 1rem;
+}
+.menu-bot ul {
+  padding: 0;
+  width: 100%;
+}
+.menu-bot ul li {
+  list-style: none;
+  width: 100%;
+}
+.menu-bot ul li button {
+  width: 100%;
+  margin: 0.5rem 0;
+}
+.menu-bot ul li button i {
+  font-size: 24px;
 }
 .fa {
   position: relative;
@@ -44,7 +97,11 @@
   vertical-align: middle;
   font-size: 20px;
 }
-
+.nav-text {
+  font-size: 1.2rem;
+  padding: 0 2rem;
+}
+/* }
 .main-menu {
   background: #212121;
   border-right: 1px solid #e5e5e5;
@@ -53,12 +110,11 @@
   overflow: hidden;
   -webkit-transition: width 0.05s linear;
   transition: width 0.05s linear;
-  -webkit-transform: translateZ(0) scale(1, 1);
   z-index: 1000;
 }
 
 .main-menu > ul {
-  margin: 7px 0;
+  margin: 7px 0.7rem;
 }
 
 .main-menu li {
@@ -68,6 +124,7 @@
 }
 
 .main-menu li > a {
+  width: 100%;
   position: relative;
   display: table;
   border-collapse: collapse;
@@ -76,7 +133,6 @@
   font-family: arial;
   font-size: 14px;
   text-decoration: none;
-  -webkit-transform: translateZ(0) scale(1, 1);
   -webkit-transition: all 0.1s linear;
   transition: all 0.1s linear;
 }
@@ -101,7 +157,6 @@
 
 .main-menu > ul.logout {
   position: absolute;
-  left: 0;
   bottom: 0;
 }
 
@@ -150,7 +205,7 @@ nav.main-menu li.active > a,
   background: #e2e2e2;
   width: 100%;
   height: 100%;
-}
+} */
 @font-face {
   font-family: "Titillium Web";
   font-style: normal;
@@ -158,4 +213,31 @@ nav.main-menu li.active > a,
   src: local("Titillium WebLight"), local("TitilliumWeb-Light"),
     url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff)
       format("woff");
+}
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 12% !important;
+    height: 100vh;
+    padding: 0 !important;
+    transition: 0.3s ease-in;
+  }
+
+  .pannelAdmin .row {
+    --bs-gutter-x: none;
+  }
+  .dashboardTableData {
+    width: 88% !important;
+  }
+
+  .sidebar.active {
+    width: 15rem !important;
+  }
+  .react-bootstrap-table {
+    height: 35rem;
+    overflow-y: scroll;
+  }
+  .react-bootstrap-table-pagination {
+    width: 50% !important;
+    flex-wrap: nowrap;
+  }
 }
