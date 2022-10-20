@@ -128,9 +128,9 @@ const Footer = () => {
                 We are here to anwser any questions you may have and create an
                 effective solution for your needs.
               </p>
-              <p>phone: +1-619-558-4338</p>
-              <p>email: Jenny.nguyen@ccglobalagency.com</p>
-              <p>address: 5303 N Walrond Ave, Kansas City, MO.64119</p>
+              <p>Phone: +1-619-558-4338</p>
+              <p>Email: Jenny.nguyen@ccglobalagency.com</p>
+              <p>Address: 5303 N Walrond Ave, Kansas City, MO.64119</p>
             </div>
           </Col>
           <Col md={8} className="footerForm-contact">
