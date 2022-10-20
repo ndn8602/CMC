@@ -18,13 +18,14 @@
   margin-bottom: 2rem;
 } */
 .bannerContent {
-  background-color: #777777b9;
+  background-color: #e2e1e1;
+
   height: auto;
   padding: 0.2rem;
   border-radius: 10px;
 }
 .bannerContent-Title {
-  color: #fff;
+  color: #787272;
 }
 .contentTitle {
   font-size: 24px;
