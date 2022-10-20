@@ -157,7 +157,7 @@ const UpdateContent = () => {
           <div className="menu d-flex flex-column justify-content-between">
             <div className="menu-head">
               <div className="menu-headLogo sidebar-logo">
-                <img src="./image/Logo.png" alt="" />
+                <img src="../image/Logo.png" alt="" />
               </div>
               <div className="menu-headAdmin sidebar-avatar d-flex align-items-center">
                 <img
