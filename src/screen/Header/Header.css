@@ -75,6 +75,7 @@ header {
   object-fit: cover;
   overflow: hidden;
 }
+
 @keyframes growDown {
   0% {
     transform: scaleY(0);
@@ -91,14 +92,29 @@ header {
     width: 150px;
   }
   .bannerTitle {
-    width: 100%;
+    width: calc(100% - 250px);
     padding: 10px;
   }
   .bannerTitle h1 {
-    font-size: 60px;
+    font-size: 50px;
   }
   .bannerTitle p {
     font-size: 30px;
+  }
+  .bannerImage {
+    width: 250px;
+    height: 100%;
+    top: 0;
+    right: 0;
+  }
+  .bannerImage img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    object-fit: cover;
+    overflow: hidden;
   }
   .navbar {
     width: 100%;
