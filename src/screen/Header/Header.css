@@ -129,6 +129,7 @@ header {
 @media screen and (max-width: 571px) {
   .bannerTitle {
     top: 13%;
+    width: 100%;
   }
   .bannerTitle h1 {
     font-size: 36px;
