@@ -13,48 +13,27 @@
 .banner {
   margin: 2rem 0;
 }
-.banner .row {
+/* .banner .row {
   height: auto;
-  background-color: #333;
   margin-bottom: 2rem;
+} */
+.bannerContent {
+  background-color: #777777b9;
+  height: auto;
+  padding: 0.2rem;
+  border-radius: 10px;
 }
-
 .bannerContent-Title {
   color: #fff;
 }
-
-/* .contentTop img,
-.contentBottom img {
-  width: 250px;
-  height: 200px;
-  background-size: cover;
-  background-position: center;
-  object-fit: cover;
-  margin: 10px 20px 10px 10px;
-}
-.contentTop:nth-child(odd) img,
-.contentBottom:nth-child(odd) img {
-  float: left;
-}
-.contentTop:nth-child(even) img,
-.contentBottom:nth-child(even) img {
-  float: right;
-}
-p {
-  font-size: 24px;
-}
-h3 {
-  font-size: 24px !important;
-}
-.content ol,
-.content ul {
-  padding-left: 5rem !important;
-}
-} */
 .contentTitle {
   font-size: 24px;
   color: orange;
 }
+.bannerContent-Title {
+  font-size: 24px;
+}
+
 @media screen and (max-width: 768px) {
   .content {
     padding: 10px !important;

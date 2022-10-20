@@ -15,11 +15,16 @@ const BannerBottom = (data) => {
   return (
     <div className={data.data.banner ? "banner" : "d-none"}>
       <Row>
-        <Col md={9}>
-          <h3 className="bannerContent-Title">{data.data.banner}</h3>
-        </Col>
-        <Col md={3} className="bannerButton">
-          <Button onClick={sessionFooter}>Click here</Button>
+        <Col md={3}></Col>
+        <Col md={9} className="bannerContent">
+          <Row>
+            <Col md={9}>
+              <h3 className="bannerContent-Title">{data.data.banner}</h3>
+            </Col>
+            <Col md={3} className="bannerButton">
+              <Button onClick={sessionFooter}>Click here</Button>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </div>
