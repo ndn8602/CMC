@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import "./Dashboard.css";
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col, Button, Alert } from "react-bootstrap";
 import BootstrapTable from "react-bootstrap-table-next";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import paginationFactory from "react-bootstrap-table2-paginator";
@@ -173,7 +173,7 @@ const Dashboard = () => {
                   <Button
                     onClick={handleLogout}
                     className="headDirection d-flex align-items-center "
-                    variant="danger"
+                    variant="warning"
                   >
                     <i className="fa-sharp fa-solid fa-right-from-bracket fa-2x" />
                     <span className="nav-text">Logout</span>
@@ -194,6 +194,9 @@ const Dashboard = () => {
         </Col>
         {/* <!--- Content ---> */}
         <Col md={10} className="p-0 dashboardTableData">
+          <Alert variant="secondary text-center font-weight-bold">
+            <h3>CONTENT</h3>
+          </Alert>
           <BootstrapTable
             keyField="id"
             data={lists}

@@ -4,7 +4,7 @@ import { UserAuth } from "../../../context/ServiceContext";
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { Row, Col, Button, Form, InputGroup } from "react-bootstrap";
+import { Row, Col, Button, Form, InputGroup, Alert } from "react-bootstrap";
 import { collection, addDoc } from "firebase/firestore";
 import { db, storage } from "../../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -136,7 +136,7 @@ const Content = () => {
                   <Button
                     onClick={handleLogout}
                     className="headDirection d-flex align-items-center "
-                    variant="danger"
+                    variant="warning"
                   >
                     <i className="fa-sharp fa-solid fa-right-from-bracket fa-2x" />
                     <span className="nav-text">Logout</span>
@@ -158,6 +158,9 @@ const Content = () => {
 
         {/* <!--- Content ---> */}
         <Col md={10} className="">
+          <Alert variant="secondary text-center font-weight-bold">
+            <h3>Add New Content</h3>
+          </Alert>{" "}
           <Form>
             <Row className="m-0 ">
               <Row>

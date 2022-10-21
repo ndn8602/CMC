@@ -17,10 +17,6 @@ const TableContact = ({ lists }) => {
       text: "Email",
     },
     {
-      dataField: "subject",
-      text: "Subject",
-    },
-    {
       dataField: "phone",
       text: "Phone",
     },

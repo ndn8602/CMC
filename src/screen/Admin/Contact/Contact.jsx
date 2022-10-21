@@ -85,7 +85,7 @@ const Contact = () => {
                   <Button
                     onClick={handleLogout}
                     className="headDirection d-flex align-items-center "
-                    variant="danger"
+                    variant="warning"
                   >
                     <i className="fa-sharp fa-solid fa-right-from-bracket fa-2x" />
                     <span className="nav-text">Logout</span>
@@ -106,7 +106,9 @@ const Contact = () => {
         </Col>
         {/* <!--- Content ---> */}
         <Col md={10} className="p-0">
-          <Alert variant="dark">Contact</Alert>
+          <Alert variant="secondary text-center font-weight-bold">
+            <h3>CONTACT</h3>
+          </Alert>
           <Table bordered hover size="sm">
             <TableContact lists={lists} />
           </Table>

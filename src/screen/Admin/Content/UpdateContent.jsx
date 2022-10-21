@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { UserAuth } from "../../../context/ServiceContext";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { Row, Col, Button, Form, InputGroup } from "react-bootstrap";
+import { Row, Col, Button, Form, InputGroup, Alert } from "react-bootstrap";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../../../firebase";
 const UpdateContent = () => {
@@ -195,7 +195,7 @@ const UpdateContent = () => {
                   <Button
                     onClick={handleLogout}
                     className="headDirection d-flex align-items-center "
-                    variant="danger"
+                    variant="warning"
                   >
                     <i className="fa-sharp fa-solid fa-right-from-bracket fa-2x" />
                     <span className="nav-text">Logout</span>
@@ -217,6 +217,9 @@ const UpdateContent = () => {
 
         {/* <!--- Content ---> */}
         <Col md={10} className="">
+          <Alert variant="secondary text-center font-weight-bold">
+            <h3>UPDATE CONTENT</h3>
+          </Alert>
           <Form onSubmit={handleSubmit}>
             <Row className="m-0 ">
               <Row>
