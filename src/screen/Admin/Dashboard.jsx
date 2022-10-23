@@ -137,50 +137,69 @@ const Dashboard = () => {
                   src="https://images.unsplash.com/photo-1440589473619-3cde28941638?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                   alt=""
                 />
-                <p className={open ? "" : "d-none"}>{user && user.email}</p>
+                <p className={open || width > 768 ? "" : "d-none"}>
+                  {user && user.email}
+                </p>
               </div>
               <div className="menu-headDirection">
                 <ul>
                   <Link to="../admin">
-                    <li className=" headDirection d-flex align-items-center ">
+                    <li className=" headDirection ">
                       <i className="fa-solid fa-palette fa-2x" />
-                      <span className="nav-text">Contents</span>
+                      <span
+                        className={open || width > 768 ? "nav-text" : "d-none"}
+                      >
+                        Contents
+                      </span>
                     </li>
                   </Link>
                   <Link to="./content">
-                    <li className=" headDirection d-flex align-items-center ">
+                    <li className=" headDirection  ">
                       <i className="fa-sharp fa-solid fa-file-contract fa-2x" />
-                      <span className="nav-text">Add New Content</span>
+                      <span
+                        className={open || width > 768 ? "nav-text" : "d-none"}
+                      >
+                        Add New Content
+                      </span>
                     </li>
                   </Link>
                   <Link to="./contact">
-                    <li className="headDirection d-flex align-items-center ">
+                    <li className="headDirection  ">
                       <i className="fa-solid fa-phone fa-2x"></i>
-                      <span className="nav-text">Contacts</span>
+                      <span
+                        className={open || width > 768 ? "nav-text" : "d-none"}
+                      >
+                        Contacts
+                      </span>
                     </li>
                   </Link>
                 </ul>
               </div>
             </div>
-            <div className="menu-bot d-flex align-items-center justify-content-center flex-column">
+            <div className="menu-bot d-flex flex-column">
               <ul>
                 <li>
                   <Button
                     onClick={handleLogout}
-                    className="headDirection d-flex align-items-center "
+                    className="headDirection"
                     variant="warning"
                   >
                     <i className="fa-sharp fa-solid fa-right-from-bracket fa-2x" />
-                    <span className="nav-text">Logout</span>
+                    <span
+                      className={open || width > 768 ? "nav-text" : "d-none"}
+                    >
+                      Logout
+                    </span>
                   </Button>
                 </li>
                 <li className={width < 768 ? "" : "d-none"}>
-                  <Button
-                    onClick={HandleOpenMenu}
-                    className="headDirection d-flex align-items-center "
-                  >
+                  <Button onClick={HandleOpenMenu} className="headDirection  ">
                     <i className="fa-solid fa-up-right-and-down-left-from-center fa-2x" />
-                    <span className="nav-text">Close</span>
+                    <span
+                      className={open || width > 768 ? "nav-text" : "d-none"}
+                    >
+                      Close
+                    </span>
                   </Button>
                 </li>
               </ul>
