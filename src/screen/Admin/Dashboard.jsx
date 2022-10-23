@@ -35,10 +35,7 @@ const Dashboard = () => {
     try {
       await logout();
       navigate("/signin");
-      console.log("you logout");
-    } catch (e) {
-      console.log(e.message);
-    }
+    } catch (e) {}
   };
   let width = window.innerWidth;
 
@@ -49,7 +46,6 @@ const Dashboard = () => {
     if (window.confirm("Do you want to delete ?")) {
       const contentDoc = doc(db, "content", id);
       await deleteDoc(contentDoc);
-      console.log("deleted");
     }
   };
   const Modify = (data, row) => {
@@ -72,7 +68,6 @@ const Dashboard = () => {
       </>
     );
   };
-  console.log(`open:${open}`);
   const HandleOpenMenu = () => {
     if (open) {
       setOpen(!open);
@@ -137,31 +132,31 @@ const Dashboard = () => {
               <div className="menu-headLogo sidebar-logo">
                 <img src="./image/Logo.png" alt="" />
               </div>
-              <div className="menu-headAdmin sidebar-avatar d-flex align-items-center">
+              <div className="menu-headAdmin sidebar-avatar">
                 <img
                   src="https://images.unsplash.com/photo-1440589473619-3cde28941638?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                   alt=""
                 />
-                <p>{user && user.email}</p>
+                <p className={open ? "" : "d-none"}>{user && user.email}</p>
               </div>
               <div className="menu-headDirection">
                 <ul>
                   <Link to="../admin">
                     <li className=" headDirection d-flex align-items-center ">
                       <i className="fa-solid fa-palette fa-2x" />
-                      <span className="nav-text">Admin</span>
+                      <span className="nav-text">Contents</span>
                     </li>
                   </Link>
                   <Link to="./content">
                     <li className=" headDirection d-flex align-items-center ">
                       <i className="fa-sharp fa-solid fa-file-contract fa-2x" />
-                      <span className="nav-text">Content</span>
+                      <span className="nav-text">Add New Content</span>
                     </li>
                   </Link>
                   <Link to="./contact">
                     <li className="headDirection d-flex align-items-center ">
-                      <i class="fa-solid fa-address-book fa-2x" />
-                      <span className="nav-text">Contact</span>
+                      <i className="fa-solid fa-phone fa-2x"></i>
+                      <span className="nav-text">Contacts</span>
                     </li>
                   </Link>
                 </ul>

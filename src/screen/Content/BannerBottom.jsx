@@ -13,8 +13,8 @@ const BannerBottom = (data) => {
     smoothScroll.scrollTo(0, footer.offsetTop - 130, 1000);
   };
   return (
-    <div className={data.data.banner ? "banner" : "d-none"}>
-      <Row>
+    <div className={data.data.banner ? "banner" : "d-none"} data-aos="fade-down">
+      <Row >
         <Col md={3}></Col>
         <Col md={9} className="bannerContent">
           <Row>

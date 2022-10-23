@@ -164,7 +164,7 @@ const UpdateContent = () => {
                   src="https://images.unsplash.com/photo-1440589473619-3cde28941638?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                   alt=""
                 />
-                <p>{user && user.email}</p>
+                <p className={open ? "" : "d-none"}>{user && user.email}</p>
               </div>
               <div className="menu-headDirection">
                 <ul>
@@ -182,7 +182,7 @@ const UpdateContent = () => {
                   </Link>
                   <Link to="../admin/contact">
                     <li className="headDirection d-flex align-items-center ">
-                      <i class="fa-solid fa-address-book fa-2x" />
+                      <i className="fa-solid fa-phone fa-2x"></i>
                       <span className="nav-text">Contact</span>
                     </li>
                   </Link>
@@ -216,7 +216,7 @@ const UpdateContent = () => {
         </Col>
 
         {/* <!--- Content ---> */}
-        <Col md={10} className="">
+        <Col md={10} className="TitleAdmin">
           <Alert variant="secondary text-center font-weight-bold">
             <h3>UPDATE CONTENT</h3>
           </Alert>

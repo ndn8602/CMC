@@ -12,11 +12,11 @@ const BannerContent = () => {
   };
 
   return (
-    <div className="banner">
+    <div className="banner" data-aos="fade-down">
       <Row>
         <Col md={3}></Col>
-        <Col md={9}className="bannerContent">
-          <Row >
+        <Col md={9} className="bannerContent">
+          <Row>
             <Col md={9}>
               <h3 className="bannerContent-Title">
                 Learn more EB3 Visa Process

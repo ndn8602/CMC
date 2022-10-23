@@ -54,26 +54,26 @@ const Contact = () => {
                   src="https://images.unsplash.com/photo-1440589473619-3cde28941638?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                   alt=""
                 />
-                <p>{user && user.email}</p>
+                <p className={open ? "" : "d-none"}>{user && user.email}</p>
               </div>
               <div className="menu-headDirection">
                 <ul>
                   <Link to="../admin">
                     <li className=" headDirection d-flex align-items-center ">
                       <i className="fa-solid fa-palette fa-2x" />
-                      <span className="nav-text">Admin</span>
+                      <span className="nav-text">Contents</span>
                     </li>
                   </Link>
                   <Link to="../admin/content">
                     <li className=" headDirection d-flex align-items-center ">
                       <i className="fa-sharp fa-solid fa-file-contract fa-2x" />
-                      <span className="nav-text">Content</span>
+                      <span className="nav-text">Add New Content</span>
                     </li>
                   </Link>
                   <Link to="../admin/contact">
                     <li className="headDirection d-flex align-items-center ">
-                      <i class="fa-solid fa-address-book fa-2x" />
-                      <span className="nav-text">Contact</span>
+                      <i className="fa-solid fa-phone fa-2x"></i>
+                      <span className="nav-text">Contacts</span>
                     </li>
                   </Link>
                 </ul>
@@ -105,7 +105,7 @@ const Contact = () => {
           </div>
         </Col>
         {/* <!--- Content ---> */}
-        <Col md={10} className="p-0">
+        <Col md={10} className="p-0 TitleAdmin">
           <Alert variant="secondary text-center font-weight-bold">
             <h3>CONTACT</h3>
           </Alert>

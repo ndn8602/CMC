@@ -27,6 +27,7 @@ function App() {
             }
           />
           <Route path="admin/contact" element={<Contact />} />
+          <Route path='/*' element={<Content />} />
           {/* <Route path="admin/banner" element={<BannerAdmin />} /> */}
           <Route path="admin/content" element={<ContentAdmin />} />
           <Route path="admin/content/:id" element={<UpdateContent />} />

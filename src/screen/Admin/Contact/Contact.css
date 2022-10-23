@@ -29,19 +29,21 @@
 }
 
 .sidebar-avatar img {
-  margin-left: 10px;
-  width: 50px;
-  height: 50px;
+  margin-left: 5px;
+  width: 40px;
+  height: 40px;
   background-size: cover;
   object-fit: cover;
   background-position: center;
   border-radius: 50%;
+  float: left;
 }
 .sidebar-avatar span {
   font-size: 18px;
   color: #fff;
   font-weight: 700;
   margin-left: 10px;
+  transition: 0.3s ease;
 }
 .menu-headDirection ul {
   padding: 0;
@@ -58,10 +60,7 @@
 }
 
 .menu-headDirection ul li:hover {
-  margin: 0.5rem auto;
-  list-style: none;
-  padding: 0;
-  background-color: rgb(167, 247, 240);
+  background-color: rgb(252, 183, 56);
 }
 .menu-headDirection ul a {
   text-decoration: none;
@@ -101,111 +100,7 @@
   font-size: 1.2rem;
   padding: 0 2rem;
 }
-/* }
-.main-menu {
-  background: #212121;
-  border-right: 1px solid #e5e5e5;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  -webkit-transition: width 0.05s linear;
-  transition: width 0.05s linear;
-  z-index: 1000;
-}
 
-.main-menu > ul {
-  margin: 7px 0.7rem;
-}
-
-.main-menu li {
-  position: relative;
-  display: block;
-  width: 100%;
-}
-
-.main-menu li > a {
-  width: 100%;
-  position: relative;
-  display: table;
-  border-collapse: collapse;
-  border-spacing: 0;
-  color: #999;
-  font-family: arial;
-  font-size: 14px;
-  text-decoration: none;
-  -webkit-transition: all 0.1s linear;
-  transition: all 0.1s linear;
-}
-
-.main-menu .nav-icon {
-  position: relative;
-  display: table-cell;
-  width: 60px;
-  height: 36px;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 18px;
-}
-
-.main-menu .nav-text {
-  position: relative;
-  display: table-cell;
-  vertical-align: middle;
-  width: 190px;
-  font-family: "Titillium Web", sans-serif;
-}
-
-.main-menu > ul.logout {
-  position: absolute;
-  bottom: 0;
-}
-
-.no-touch .scrollable.hover {
-  overflow-y: hidden;
-}
-
-.no-touch .scrollable.hover:hover {
-  overflow-y: auto;
-  overflow: visible;
-}
-
-a:hover,
-a:focus {
-  text-decoration: none;
-}
-
-nav {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-}
-
-nav ul,
-nav li {
-  outline: 0;
-  margin: 0;
-  padding: 0;
-}
-.main-menu li:hover > a,
-nav.main-menu li.active > a,
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus,
-.dropdown-menu > .active > a,
-.dropdown-menu > .active > a:hover,
-.dropdown-menu > .active > a:focus,
-.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,
-.dashboard-page nav.dashboard-menu ul li.active a {
-  color: #fff;
-  background-color: #5fa2db;
-}
-.area {
-  float: left;
-  background: #e2e2e2;
-  width: 100%;
-  height: 100%;
-} */
 @font-face {
   font-family: "Titillium Web";
   font-style: normal;
@@ -215,6 +110,12 @@ nav.main-menu li.active > a,
       format("woff");
 }
 @media screen and (max-width: 768px) {
+  .contentTable {
+    width: calc(100% - 12%);
+  }
+  .TitleAdmin {
+    width: calc(100% - 12%) !important;
+  }
   .sidebar {
     width: 12% !important;
     height: auto;
@@ -231,7 +132,7 @@ nav.main-menu li.active > a,
     width: 88% !important;
   }
   .dashboardTableDataContact {
-    width: 45% !important;
+    width: calc(100% - 47%);
   }
   .sidebar.active {
     width: 15rem !important;
