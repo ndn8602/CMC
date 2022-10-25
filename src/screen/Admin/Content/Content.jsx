@@ -105,7 +105,9 @@ const Content = () => {
                   src="https://images.unsplash.com/photo-1440589473619-3cde28941638?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                   alt=""
                 />
-                <p className={open ? "" : "d-none"}>{user && user.email}</p>
+               <p className={open || width > 768 ? "" : "d-none"}>
+                  {user && user.email}
+                </p>
               </div>
               <div className="menu-headDirection">
                 <ul>

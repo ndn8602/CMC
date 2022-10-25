@@ -159,56 +159,56 @@ const UpdateContent = () => {
               <div className="menu-headLogo sidebar-logo">
                 <img src="../image/Logo.png" alt="" />
               </div>
-              <div className="menu-headAdmin sidebar-avatar d-flex align-items-center">
+              <div className="menu-headAdmin sidebar-avatar">
                 <img
                   src="https://images.unsplash.com/photo-1440589473619-3cde28941638?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                   alt=""
                 />
-                <p className={open || width > 768 ? "nav-text" : "d-none"}>
+                <p className={open || width > 768 ? "" : "d-none"}>
                   {user && user.email}
                 </p>
               </div>
               <div className="menu-headDirection">
                 <ul>
                   <Link to="../admin">
-                    <li className=" headDirection d-flex align-items-center ">
+                    <li className=" headDirection ">
                       <i className="fa-solid fa-palette fa-2x" />
                       <span
                         className={open || width > 768 ? "nav-text" : "d-none"}
                       >
-                        Admin
+                        Contents
                       </span>
                     </li>
                   </Link>
-                  <Link to="../admin/content">
-                    <li className=" headDirection d-flex align-items-center ">
+                  <Link to="./content">
+                    <li className=" headDirection  ">
                       <i className="fa-sharp fa-solid fa-file-contract fa-2x" />
                       <span
                         className={open || width > 768 ? "nav-text" : "d-none"}
                       >
-                        Content
+                        Add New Content
                       </span>
                     </li>
                   </Link>
-                  <Link to="../admin/contact">
-                    <li className="headDirection d-flex align-items-center ">
+                  <Link to="./contact">
+                    <li className="headDirection  ">
                       <i className="fa-solid fa-phone fa-2x"></i>
                       <span
                         className={open || width > 768 ? "nav-text" : "d-none"}
                       >
-                        Contact
+                        Contacts
                       </span>
                     </li>
                   </Link>
                 </ul>
               </div>
             </div>
-            <div className="menu-bot d-flex align-items-center justify-content-center flex-column">
+            <div className="menu-bot d-flex flex-column">
               <ul>
                 <li>
                   <Button
                     onClick={handleLogout}
-                    className="headDirection d-flex align-items-center "
+                    className="headDirection"
                     variant="warning"
                   >
                     <i className="fa-sharp fa-solid fa-right-from-bracket fa-2x" />
@@ -220,10 +220,7 @@ const UpdateContent = () => {
                   </Button>
                 </li>
                 <li className={width < 768 ? "" : "d-none"}>
-                  <Button
-                    onClick={HandleOpenMenu}
-                    className="headDirection d-flex align-items-center "
-                  >
+                  <Button onClick={HandleOpenMenu} className="headDirection  ">
                     <i className="fa-solid fa-up-right-and-down-left-from-center fa-2x" />
                     <span
                       className={open || width > 768 ? "nav-text" : "d-none"}
