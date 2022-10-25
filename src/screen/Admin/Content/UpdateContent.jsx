@@ -157,9 +157,9 @@ const UpdateContent = () => {
           <div className="menu d-flex flex-column justify-content-between">
             <div className="menu-head">
               <div className="menu-headLogo sidebar-logo">
-                <img src="../image/Logo.png" alt="" />
+                <img src="../../image/Logo.png" alt="" />
               </div>
-              <div className="menu-headAdmin sidebar-avatar">
+              <div className="menu-headAdmin sidebar-avatar d-flex align-items-center">
                 <img
                   src="https://images.unsplash.com/photo-1440589473619-3cde28941638?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                   alt=""
@@ -171,7 +171,7 @@ const UpdateContent = () => {
               <div className="menu-headDirection">
                 <ul>
                   <Link to="../admin">
-                    <li className=" headDirection ">
+                    <li className=" headDirection d-flex align-items-center ">
                       <i className="fa-solid fa-palette fa-2x" />
                       <span
                         className={open || width > 768 ? "nav-text" : "d-none"}
@@ -180,8 +180,8 @@ const UpdateContent = () => {
                       </span>
                     </li>
                   </Link>
-                  <Link to="./content">
-                    <li className=" headDirection  ">
+                  <Link to="../admin/content">
+                    <li className=" headDirection d-flex align-items-center ">
                       <i className="fa-sharp fa-solid fa-file-contract fa-2x" />
                       <span
                         className={open || width > 768 ? "nav-text" : "d-none"}
@@ -190,9 +190,10 @@ const UpdateContent = () => {
                       </span>
                     </li>
                   </Link>
-                  <Link to="./contact">
-                    <li className="headDirection  ">
+                  <Link to="../admin/contact">
+                    <li className="headDirection d-flex align-items-center ">
                       <i className="fa-solid fa-phone fa-2x"></i>
+
                       <span
                         className={open || width > 768 ? "nav-text" : "d-none"}
                       >
@@ -203,12 +204,12 @@ const UpdateContent = () => {
                 </ul>
               </div>
             </div>
-            <div className="menu-bot d-flex flex-column">
+            <div className="menu-bot d-flex align-items-center justify-content-center flex-column">
               <ul>
                 <li>
                   <Button
                     onClick={handleLogout}
-                    className="headDirection"
+                    className="headDirection d-flex align-items-center "
                     variant="warning"
                   >
                     <i className="fa-sharp fa-solid fa-right-from-bracket fa-2x" />
@@ -220,7 +221,10 @@ const UpdateContent = () => {
                   </Button>
                 </li>
                 <li className={width < 768 ? "" : "d-none"}>
-                  <Button onClick={HandleOpenMenu} className="headDirection  ">
+                  <Button
+                    onClick={HandleOpenMenu}
+                    className="headDirection d-flex align-items-center "
+                  >
                     <i className="fa-solid fa-up-right-and-down-left-from-center fa-2x" />
                     <span
                       className={open || width > 768 ? "nav-text" : "d-none"}
