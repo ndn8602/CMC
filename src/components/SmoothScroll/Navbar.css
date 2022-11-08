@@ -23,3 +23,7 @@
   object-fit: cover;
   overflow: hidden;
 }
+
+.navbar{
+  width: 100%;
+}

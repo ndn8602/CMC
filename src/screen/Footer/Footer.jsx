@@ -113,12 +113,12 @@ const Footer = () => {
 
   return (
     <footer id="contact" className="footer">
-      <div className="footer-brand ">
+      {/* <div className="footer-brand ">
         <p>C.C.Global </p>
         <p>C.C.Global L.L.C</p>
-      </div>
+      </div> */}
       <Form onSubmit={handleSubmit} class='formed'>
-        <Row className="m-0 footer-info">
+        <Row className="m-0 p-3 footer-info">
           <Col md={4}>
             <img src="./image/Logo.png" className='footer-img' alt="" />
             <div className="text-brand">

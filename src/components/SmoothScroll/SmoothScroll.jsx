@@ -139,9 +139,6 @@ const Scroll = () => {
             <Nav.Link href="#!" onClick={sessionHome}>
               HOME
             </Nav.Link>
-            <Nav.Link href="#!" onClick={sessionContent}>
-              Q&A
-            </Nav.Link>
             <Nav.Link href="#!" onClick={sessionFooter}>
               CONTACT US
             </Nav.Link>
