@@ -18,12 +18,12 @@ const BannerBottom = (data) => {
         <Col md={3}></Col>
         <Col md={9} className="bannerContent">
           <Row>
-            <Col md={9}>
+            <Col md={12}>
               <h3 className="bannerContent-Title">{data.data.banner}</h3>
             </Col>
-            <Col md={3} className="bannerButton">
+            {/* <Col md={3} className="bannerButton">
               <Button onClick={sessionFooter}>Click here</Button>
-            </Col>
+            </Col> */}
           </Row>
         </Col>
       </Row>

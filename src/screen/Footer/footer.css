@@ -1,3 +1,4 @@
+
 .footer-brand {
   background-image: url("/public/image/background.jpg");
   width: 100%;
@@ -10,11 +11,11 @@
   flex-wrap: wrap;
   justify-content: center;
   flex-direction: row;
-  margin: 40px 0 10px 0;
+  margin: 5px 0;
   padding: 0;
 }
 .footer-brand p {
-  font-size: 32px;
+  font-size: 24px;
   color: orange;
   margin: 0 20px;
 }
@@ -31,7 +32,7 @@
   background-position: center;
   object-fit: cover;
   overflow: hidden;
-  padding: 20px;
+  padding: 0 20px;
 }
 
 .footer-info label {
@@ -90,11 +91,23 @@
   font-size: 16px;
 }
 .text-brand p {
-  font-size: 14px;
+  font-size: 11px;
   font-style: italic;
 }
 .footer .button {
   margin-bottom: 25px;
+}
+.footer-img{
+  height: 70px !important;
+}
+.formed{
+  height: 24rem;
+}
+.form-label{
+  font-size: 11px;
+}
+.form-control{
+  height: 2rem;
 }
 @media screen and (max-width: 992px) {
   .footerForm-contact {

@@ -115,13 +115,12 @@ const Footer = () => {
     <footer id="contact" className="footer">
       <div className="footer-brand ">
         <p>C.C.Global </p>
-        <p>&copy;2021-2022</p>
         <p>C.C.Global L.L.C</p>
       </div>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} class='formed'>
         <Row className="m-0 footer-info">
           <Col md={4}>
-            <img src="./image/Logo.png" alt="" />
+            <img src="./image/Logo.png" className='footer-img' alt="" />
             <div className="text-brand">
               <h3>LET'S GET STARTED</h3>
               <p>
@@ -136,7 +135,7 @@ const Footer = () => {
           <Col md={8} className="footerForm-contact">
             <Row>
               <Col md={6}>
-                <Form.Group className="mb-3">
+                <Form.Group >
                   <Form.Label>FULLNAME(*)</Form.Label>
                   <Form.Control
                     type="text"
@@ -152,7 +151,7 @@ const Footer = () => {
                 )}
               </Col>
               <Col md={6}>
-                <Form.Group className="mb-3">
+                <Form.Group >
                   <Form.Label>EMAIL(*)</Form.Label>
                   <Form.Control
                     value={values.email}
@@ -170,7 +169,7 @@ const Footer = () => {
             </Row>
             <Row>
               <Col md={6}>
-                <Form.Group className="mb-3">
+                <Form.Group>
                   <Form.Label>ADDRESS</Form.Label>
                   <Form.Control
                     type="text"
@@ -184,7 +183,7 @@ const Footer = () => {
                 </Form.Group>
               </Col>
               <Col md={6}>
-                <Form.Group className="mb-3">
+                <Form.Group>
                   <Form.Label>PHONE(*)</Form.Label>
                   <Form.Control
                     type="text"
@@ -201,7 +200,7 @@ const Footer = () => {
               </Col>
             </Row>
 
-            <Form.Group className="mb-3">
+            <Form.Group >
               <Form.Label>MESSAGE</Form.Label>
               <Form.Control
                 type="text"
@@ -215,7 +214,7 @@ const Footer = () => {
               />
             </Form.Group>
 
-            <div className="button" disabled>
+            <div className="button mt-3" disabled>
               <Button
                 type="submit"
                 variant="success"
@@ -240,7 +239,7 @@ const Footer = () => {
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              <img src="./image/Logo.png" alt="" className="img-fluid" />
+              <img src="./image/Logo.png" alt="" className="img-fluid " />
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
