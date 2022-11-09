@@ -9,6 +9,7 @@ import { db } from "../../firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { useFormik } from "formik";
 import { contactFormSchema } from "./Schema";
+import { Container } from "react-bootstrap";
 
 const Footer = () => {
   const [name, setName] = useState("");
@@ -117,8 +118,9 @@ const Footer = () => {
         <p>C.C.Global </p>
         <p>C.C.Global L.L.C</p>
       </div> */}
+      <Container className='p-0'>
       <Form onSubmit={handleSubmit} class='formed'>
-        <Row className="m-0 p-3 footer-info">
+        <Row className="m-0 p-0 footer-info">
           <Col md={4}>
             <img src="./image/Logo.png" className='footer-img' alt="" />
             <div className="text-brand">
@@ -132,7 +134,7 @@ const Footer = () => {
               <p>Address: 5303 N Walrond Ave, Kansas City, MO.64119</p>
             </div>
           </Col>
-          <Col md={8} className="footerForm-contact">
+          <Col md={8} className="footerForm-contact p-0">
             <Row>
               <Col md={6}>
                 <Form.Group >
@@ -235,6 +237,7 @@ const Footer = () => {
           onHide={() => setModalShow(false)}
         />
       </Form>
+      </Container>
       <div className="modalThank">
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
