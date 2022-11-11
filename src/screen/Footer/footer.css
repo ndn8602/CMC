@@ -101,11 +101,12 @@ brand p {
 }
 @media screen and (max-width: 992px) {
   .footer {
-    padding:1rem
+    padding:1rem;
   }
 
   .footerForm-contact {
-    padding-bottom: 3rem;
+  margin-bottom:3rem;
+  padding-bottom: 3rem;
   }
   .text-brand {
     padding: 0;
